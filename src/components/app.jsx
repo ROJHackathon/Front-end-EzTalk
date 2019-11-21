@@ -77,18 +77,7 @@ export default class extends React.Component {
     return (
       <App params={ this.state.f7params } themeDark>
 
-        {/* Left panel with cover effect*/}
-        <Panel left cover themeDark>
-          <View>
-            <Page>
-              <Navbar title="Left Panel"/>
-              <Block>Left panel content goes here</Block>
-            </Page>
-          </View>
-        </Panel>
-
-
-        {/* Right panel with reveal effect*/}
+        {/* Right panel with reveal effect -- for user side panel*/}
         <Panel right reveal themeDark>
           <View>
             <Page>
@@ -98,24 +87,23 @@ export default class extends React.Component {
           </View>
         </Panel>
 
-
         {/* Views/Tabs container */}
         <Views tabs className="safe-areas">
           {/* Tabbar for switching views-tabs */}
           <Toolbar tabbar labels bottom>
             <Link tabLink="#view-home" tabLinkActive iconIos="f7:house_fill" iconAurora="f7:house_fill" iconMd="material:home" text="Home" />
-            <Link tabLink="#view-catalog" iconIos="f7:square_list_fill" iconAurora="f7:square_list_fill" iconMd="material:view_list" text="Catalog" />
-            <Link tabLink="#view-settings" iconIos="f7:gear" iconAurora="f7:gear" iconMd="material:settings" text="Settings" />
+            <Link tabLink="#view-translate" iconIos="f7:search" iconAurora="f7:search" iconMd="material:view_list" text="Translate" />
+            <Link tabLink="#view-chatroom" iconIos="f7:chat_bubble_2_fill" iconAurora="f7:chat_bubble_2_fill" iconMd="material:settings" text="Chatroom" />
           </Toolbar>
 
           {/* Your main view/tab, should have "view-main" class. It also has "tabActive" prop */}
-          <View id="view-home" main tab tabActive url="/" />
+          <View id="view-home" main tab tabActive url="/home/" />
 
           {/* Catalog View */}
-          <View id="view-catalog" name="catalog" tab url="/catalog/" />
+          <View id="view-translate" name="translate" tab url="/translate/" />
 
           {/* Settings View */}
-          <View id="view-settings" name="settings" tab url="/settings/" />
+          <View id="view-chatroom" name="chatroom" tab url="/chatroom/" />
 
         </Views>
 
