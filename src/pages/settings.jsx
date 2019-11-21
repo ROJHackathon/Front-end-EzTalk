@@ -10,7 +10,9 @@ import {
   Row,
   Button,
   Range,
-  Block
+  Block,
+  Subnavbar,
+  Searchbar
 } from 'framework7-react';
 
 export default () => (
