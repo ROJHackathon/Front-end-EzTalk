@@ -22,6 +22,10 @@ import {
 } from 'framework7-react';
 
 
+//Self-defined component
+import UserPanel from '../components/userPanel';
+
+
 import routes from '../js/routes';
 
 export default class extends React.Component {
@@ -78,14 +82,15 @@ export default class extends React.Component {
       <App params={ this.state.f7params } themeDark>
 
         {/* Right panel with reveal effect -- for user side panel*/}
-        <Panel right reveal themeDark>
+        {/* <Panel right reveal themeDark>
           <View>
             <Page>
               <Navbar title="Right Panel"/>
               <Block>Right panel content goes here</Block>
             </Page>
           </View>
-        </Panel>
+        </Panel> */}
+        <UserPanel></UserPanel>
 
         {/* Views/Tabs container */}
         <Views tabs className="safe-areas">

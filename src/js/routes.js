@@ -13,6 +13,7 @@ import RequestAndLoad from '../pages/request-and-load.jsx';
 import NotFoundPage from '../pages/404.jsx';
 
 var routes = [
+  /* Main pages */
   {
     path: '/home/',
     component: HomePage,
@@ -25,6 +26,8 @@ var routes = [
     path: '/chatroom/',
     component: ChatroomPage
   },
+
+  /* subpages */
   {
     path: '/about/',
     component: AboutPage,

@@ -1,1 +1,34 @@
 /* Your app custom styles here */
+
+/* UserPanel */
+
+/* Avatar */
+.avatar{
+    margin-top: 20%;
+    height: 300px;
+    width: 100%;
+  }
+
+.avatar .portrait {
+    /* centre */
+    margin-left: auto;
+    margin-right: auto;
+    /* aventar size */
+    width: 160px;
+    height: 160px;
+    background: url(../static/images/UserInfo.jpeg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    /* border */
+    border-radius: 50%;
+    border: solid 3px #eece1a;
+}
+
+.avatar .user-name{
+    /* centre */
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+    margin-top: 10%;
+  }

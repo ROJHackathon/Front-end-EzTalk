@@ -43,6 +43,6 @@ export default class extends React.Component {
                     </Subnavbar>
                 </Navbar>
             </Page>
-        );
+        )
     }
 }
