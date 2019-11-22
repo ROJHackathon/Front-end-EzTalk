@@ -24,6 +24,7 @@ import {
 
 //Self-defined component
 import UserPanel from '../components/userPanel';
+import Login from '../components/login.jsx';
 
 
 import routes from '../js/routes';
@@ -75,21 +76,18 @@ export default class extends React.Component {
       // Login screen demo data
       username: '',
       password: '',
+      // loginScreenOpened: true,
     }
   }
   render() {
     return (
       <App params={ this.state.f7params } themeDark>
 
+        {/* Login screen */}
+        <Login></Login>
+
+
         {/* Right panel with reveal effect -- for user side panel*/}
-        {/* <Panel right reveal themeDark>
-          <View>
-            <Page>
-              <Navbar title="Right Panel"/>
-              <Block>Right panel content goes here</Block>
-            </Page>
-          </View>
-        </Panel> */}
         <UserPanel></UserPanel>
 
         {/* Views/Tabs container */}
@@ -114,7 +112,7 @@ export default class extends React.Component {
 
 
         {/* Popup */}
-        <Popup id="my-popup">
+        {/* <Popup id="my-popup">
           <View>
             <Page>
               <Navbar title="Popup">
@@ -127,9 +125,9 @@ export default class extends React.Component {
               </Block>
             </Page>
           </View>
-        </Popup>
+        </Popup> */}
 
-        <LoginScreen id="my-login-screen">
+        {/* <LoginScreen id="my-login-screen">
           <View>
             <Page loginScreen>
               <LoginScreenTitle>Login</LoginScreenTitle>
@@ -157,7 +155,7 @@ export default class extends React.Component {
               </List>
             </Page>
           </View>
-        </LoginScreen>
+        </LoginScreen> */}
       </App>
     )
   }
