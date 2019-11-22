@@ -129,3 +129,15 @@
     line-height: 30px;
     font-weight: bold;
 }
+
+/* Feed */
+.feed-card .card-header{
+    height: 40vw;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+.feed-card .date{
+    color: #8e8e93;
+}
