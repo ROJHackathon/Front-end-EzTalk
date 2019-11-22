@@ -36,7 +36,7 @@ class LoginButtonArea extends React.Component {
             <div className="login-btn-area">
                 <Button outline round className="login-btn" onClick={this.signIn.bind(this)}>Login</Button>
                 <div className="or">OR</div>
-                <Button raise round fill className="sign-up-btn">Sign Up</Button>
+                <Button raised round fill className="sign-up-btn">Sign Up</Button>
             </div>
         )
     };

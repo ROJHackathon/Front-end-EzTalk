@@ -86,7 +86,6 @@ export default class extends React.Component {
         {/* Login screen */}
         <Login></Login>
 
-
         {/* Right panel with reveal effect -- for user side panel*/}
         <UserPanel></UserPanel>
 

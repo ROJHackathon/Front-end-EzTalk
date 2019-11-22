@@ -19,6 +19,9 @@ import {
   Searchbar
 } from 'framework7-react';
 
+//self-defined component
+import Feed from '../components/feed.jsx';
+
 export default class extends React.Component {
 
   render() {
@@ -42,7 +45,7 @@ export default class extends React.Component {
         </Navbar>
 
         {/* Page content */}
-
+        <Feed></Feed>
       </Page>
     )
   };
