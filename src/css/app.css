@@ -33,13 +33,30 @@
     margin-top: 10%;
 }
 
-.side-panel .log-out{
+.side-panel .log-out-btn{
     font-size: 16px;
     height: 30px;
     width: auto;
     /* horizontal margin */
     margin-inline: 15px;   
     /* top margin */
+    margin-top: 50px;
+}
+
+/* Login Screen */
+.login-screen{
+    /* background-repeat: no-repeat ; */
+    background-size: cover;
+    background-image: url(../static/images/loginBackground.jpg);
+}
+
+.login-screen .login-screen{
+    height: 100%;
+}
+
+.login-screen .login-btn-area{
+    height: 30px;
+    margin-inline: 25px; 
     margin-top: 50px;
 }
 

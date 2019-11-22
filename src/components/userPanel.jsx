@@ -40,7 +40,7 @@ class UserPanel extends React.Component {
           <Page className="side-panel">
             <Avatar></Avatar>
             <ToolBar></ToolBar>
-            <Button fill color="red" className="log-out" onClick={this.handleClick.bind(this)}>Log out</Button>
+            <Button fill color="red" className="log-out-btn" onClick={this.handleClick.bind(this)}>Log out</Button>
           </Page>
         </View>
       </Panel>
