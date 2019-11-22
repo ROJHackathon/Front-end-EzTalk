@@ -23,6 +23,8 @@ import {
 } from 'framework7-react';
 
 import LoginButtonArea from './login/loginButtonArea.jsx';
+import LoginInputArea from './login/loginInputArea.jsx';
+import LoginTitle from './login/loginTitle.jsx';
 
 class Login extends React.Component {
     constructor(props) {
@@ -42,8 +44,8 @@ class Login extends React.Component {
                 onLoginScreenClosed=
                 {() => { this.setState({ loginScreenOpened: false }) }}>
                 <Page loginScreen className="login-page">
-                    <LoginScreenTitle>Framework7</LoginScreenTitle>
-                    <List form>
+                <LoginTitle></LoginTitle>
+                    {/* <List form className="login-form">
                         <ListInput
                             label="Username"
                             type="text"
@@ -62,28 +64,24 @@ class Login extends React.Component {
                                 this.setState({ password: e.target.value });
                             }}
                         />
-                    </List>
-                    <List>
-                        <Button onClick={this.signIn.bind(this)} className="login-btn">
-                            Sign In
-                        </Button>
-                        <BlockFooter>Some text about login information.<br />Lorem ipsum dolor sit amet, consectetur adipiscing elit.</BlockFooter>
-                    </List>
+                    </List> */}
+                    <LoginInputArea></LoginInputArea>
 
+                    {/* <List>
+                    <Button onClick={this.signIn.bind(this)} className="login-btn">
+                        Sign In
+                    </Button>
+                    <BlockFooter>Some text about login information.<br />Lorem ipsum dolor sit amet, consectetur adipiscing elit.</BlockFooter>
+                    </List> */}
+
+
+                    <LoginButtonArea></LoginButtonArea>
                 </Page>
+
+
             </LoginScreen>
         )
     };
-
-    signIn() {
-        const self = this;
-        const app = self.$f7;
-
-        app.dialog.alert(`Username: ${self.state.username}<br>Password: ${self.state.password}`, () => {
-            app.loginScreen.close();
-        });
-    }
-
 
 }
 

@@ -3,11 +3,12 @@
 /* UserPanel */
 
 /* Avatar */
-.avatar{
+
+.avatar {
     margin-top: 20%;
     height: 300px;
     width: 100%;
-  }
+}
 
 .avatar .portrait {
     /* centre */
@@ -25,7 +26,7 @@
     border: solid 3px #eece1a;
 }
 
-.avatar .user-name{
+.avatar .user-name {
     /* centre */
     text-align: center;
     font-weight: bold;
@@ -33,30 +34,98 @@
     margin-top: 10%;
 }
 
-.side-panel .log-out-btn{
+.side-panel .log-out-btn {
     font-size: 16px;
     height: 30px;
     width: auto;
     /* horizontal margin */
-    margin-inline: 15px;   
+    margin-inline: 15px;
     /* top margin */
     margin-top: 50px;
 }
 
 /* Login Screen */
-.login-screen{
+
+.login-screen {
     /* background-repeat: no-repeat ; */
     background-size: cover;
     background-image: url(../static/images/loginBackground.jpg);
+    position: relative;
 }
 
-.login-screen .login-screen{
+/* frosted cover */
+
+.login-screen .login-page {
     height: 100%;
+    background: inherit;
+    position: absolute;
+    overflow: hidden;
 }
 
-.login-screen .login-btn-area{
-    height: 30px;
-    margin-inline: 25px; 
-    margin-top: 50px;
+.login-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: inherit;
+    background-attachment: fixed;
+    filter: blur(4px);
 }
 
+.login-page::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.login-page .header{
+    margin-inline: 20px;
+}
+
+.header .name{
+    font-size: xx-large;
+    font-weight: bold;
+}
+.header .info{
+    margin-top: 10px;
+    color: #808080;
+}
+
+.login-page .login-form{
+    margin-top: 150px;
+}
+.login-screen .login-btn-area {
+    margin-top: 100px;
+    margin-inline: 25px;
+}
+
+.login-screen .login-btn-area .login-btn {
+    font-size: 15px;
+    height: 35px;
+    width: auto;
+    text-align: center;
+    font-weight: bold;
+    line-height: 30px;
+}
+
+.login-screen .login-btn-area .or{
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.login-screen .login-btn-area .sign-up-btn {
+    font-size: 15px;
+    height: 35px;
+    width: auto;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+}
