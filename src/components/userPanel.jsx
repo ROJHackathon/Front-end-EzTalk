@@ -18,7 +18,8 @@ import {
   ListItem,
   ListInput,
   ListButton,
-  BlockFooter
+  BlockFooter,
+  Button
 } from 'framework7-react';
 
 import Avatar from './userPanel/avatar.jsx';
@@ -36,9 +37,10 @@ class UserPanel extends React.Component {
     return (
       <Panel right reveal themeDark>
         <View>
-          <Page>
+          <Page className="side-panel">
             <Avatar></Avatar>
             <ToolBar></ToolBar>
+            <Button fill color="red" className="log-out">Log out</Button>
           </Page>
         </View>
       </Panel>
