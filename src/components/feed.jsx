@@ -77,7 +77,9 @@ class Feed extends React.Component {
             let url = 'http://108.61.221.218:58447/api-fake/user/' + 10 + '/request-feed';
             axios.get(url).then(res => {
                 //console.log(res);
-                let newList = materials.concat(res.data);
+                let prevList = materials;
+                let newList = res.data;
+                newList = newList.concat(prevList);
                 self.setState({materials: newList});
                 console.log(newList);
             });
