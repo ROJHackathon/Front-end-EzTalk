@@ -21,6 +21,7 @@ import {
 
 //self-defined component
 import Feed from '../components/feed.jsx';
+import FeedTest from '../components/feedTest.jsx';
 
 export default class extends React.Component {
 
@@ -45,7 +46,7 @@ export default class extends React.Component {
         </Navbar>
 
         {/* Page content */}
-        <Feed></Feed>
+        <FeedTest></FeedTest>
       </Page>
     )
   };

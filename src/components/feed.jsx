@@ -23,6 +23,8 @@ import {
     CardHeader
 } from 'framework7-react';
 
+import axios from 'axios';
+
 class Feed extends React.Component {
     constructor(props) {
         super(props);
@@ -49,6 +51,7 @@ class Feed extends React.Component {
             authors: ['Beatles', 'Queen', 'Michael Jackson', 'Red Hot Chili Peppers'],
         }
     }
+
     render() {
         return (
             <Page ptr onPtrRefresh={this.loadMore.bind(this)}>
@@ -71,7 +74,7 @@ class Feed extends React.Component {
                             >{item.title}</CardHeader>
                             <CardContent>
                                 <p className="date">Posted on January 21, 2015</p>
-                                <p>{item.author}</p>
+                                <p>{item.description}</p>
                             </CardContent>
                             <CardFooter>
                                 <Link>Like</Link>
