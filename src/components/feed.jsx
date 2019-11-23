@@ -30,51 +30,34 @@ class Feed extends React.Component {
         super(props);
 
         this.state = {
-            items: [
-                {
-                    title: 'Yellow Submarine',
-                    author: 'Beatles',
-                    cover: 'https://cdn.framework7.io/placeholder/nature-1000x600-1.jpg',
-                },
-                {
-                    title: 'Don\'t Stop Me Now',
-                    author: 'Queen',
-                    cover: 'https://cdn.framework7.io/placeholder/nature-1000x600-2.jpg',
-                },
-                {
-                    title: 'Billie Jean',
-                    author: 'Michael Jackson',
-                    cover: 'https://cdn.framework7.io/placeholder/nature-1000x600-3.jpg',
-                },
-            ],
-            songs: ['Yellow Submarine', 'Don\'t Stop Me Now', 'Billie Jean', 'Californication'],
-            authors: ['Beatles', 'Queen', 'Michael Jackson', 'Red Hot Chili Peppers'],
+            materials: [],
+            cover: "https://cdn.framework7.io/placeholder/nature-1000x600-3.jpg",
         }
+    }
+
+    componentDidMount() {
+        let url = 'http://108.61.221.218:58447/api-fake/user/' + 10 + '/request-feed'; // 10 is the user id
+        axios.get(url).then(res => {
+            console.log(res);
+            this.setState({ materials: res.data });
+        });
     }
 
     render() {
         return (
             <Page ptr onPtrRefresh={this.loadMore.bind(this)}>
-                <Navbar title="Pull To Refresh"></Navbar>
                 <List mediaList>
-                    {this.state.items.map((item, index) => (
-                        // <ListItem
-                        //     key={index}
-                        //     title={item.title}
-                        //     subtitle={item.author}
-                        // >
-                        //     <img slot="media" src={item.cover} width="44"/>
-                        // </ListItem>
+                    {this.state.materials.map((material, index) => (
                         <Card className="feed-card"
                                 key = {index}>
                             <CardHeader className = "card-header"
                                 className="no-border"
                                 valign="bottom"
-                                style= {{backgroundImage: "url(" + item.cover + ")"} }
-                            >{item.title}</CardHeader>
+                                style= {{backgroundImage: "url(" + this.state.cover + ")"} }
+                            >{material.title}</CardHeader>
                             <CardContent>
-                                <p className="date">Posted on January 21, 2015</p>
-                                <p>{item.description}</p>
+                                <p className="date">Posted on January 21, 2019</p>
+                                <p>{material.description}</p>
                             </CardContent>
                             <CardFooter>
                                 <Link>Like</Link>
@@ -90,19 +73,17 @@ class Feed extends React.Component {
     loadMore(done) {
         const self = this;
         setTimeout(() => {
-            const { items, songs, authors } = self.state;
-            const picURL = `https://cdn.framework7.io/placeholder/nature-1000x600-${(Math.floor(Math.random() * 10) + 1)}.jpg`;
-            const song = songs[Math.floor(Math.random() * songs.length)];
-            const author = authors[Math.floor(Math.random() * authors.length)];
-            items.push({
-                title: song,
-                author,
-                cover: picURL,
+            const { materials, cover } = self.state;
+            let url = 'http://108.61.221.218:58447/api-fake/user/' + 10 + '/request-feed';
+            axios.get(url).then(res => {
+                //console.log(res);
+                let newList = materials.concat(res.data);
+                self.setState({materials: newList});
+                console.log(newList);
             });
-            self.setState({ items });
 
             done();
-        }, 1000);
+        }, 1000)
     }
 
 }

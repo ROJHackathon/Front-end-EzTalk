@@ -70,7 +70,7 @@ class FeedTest extends React.Component {
                 //console.log(res);
                 let newList = materials.concat(res.data);
                 self.setState({materials: newList});
-                console.log(newList);
+                //console.log(newList);
             });
 
             done();

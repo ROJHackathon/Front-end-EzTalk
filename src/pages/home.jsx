@@ -46,7 +46,7 @@ export default class extends React.Component {
         </Navbar>
 
         {/* Page content */}
-        <FeedTest></FeedTest>
+        <Feed></Feed>
       </Page>
     )
   };
