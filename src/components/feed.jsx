@@ -31,7 +31,6 @@ class Feed extends React.Component {
 
         this.state = {
             materials: [],
-            cover: "https://cdn.framework7.io/placeholder/nature-1000x600-3.jpg",
         }
     }
 
@@ -53,7 +52,7 @@ class Feed extends React.Component {
                             <CardHeader className = "card-header"
                                 className="no-border"
                                 valign="bottom"
-                                style= {{backgroundImage: "url(" + this.state.cover + ")"} }
+                                style= {{backgroundImage: "url(" + material.coverUrl + ")"} }
                             >{material.title}</CardHeader>
                             <CardContent>
                                 <p className="date">Posted on January 21, 2019</p>
@@ -61,7 +60,7 @@ class Feed extends React.Component {
                             </CardContent>
                             <CardFooter>
                                 <Link>Like</Link>
-                                <Link href="/material/1/">Read more</Link>
+                                <Link href={"/material/"+ material.id + "/"} >Read more</Link>
                             </CardFooter>
                         </Card>
                     ))}

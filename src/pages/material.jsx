@@ -1,25 +1,35 @@
 import React from 'react';
 import { Page, Navbar, Block, Link } from 'framework7-react';
+import axios from 'axios';
+
+import MarterialCard from '../components/materialInfo/materialCard.jsx';
 
 export default class Material extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            material: {}
+            material: {},
         }
     }
 
     componentDidMount() {
-        let url = ''; // get the info of one material
+        let url = ' http://108.61.221.218:58447/api-fake/' + this.$f7route.url; // get the info of one material
+        //console.log(url);
+        axios.get(url).then(res => {
+            this.setState({material: res.data})
+        });
+
+
     };
 
 
     render() {
         return (
             <Page>
-                <Navbar title="Dynamic Route" backLink="Back" />
-                <Block strong>
+                <Navbar title={this.state.material.title} backLink="Back" />
+                <MarterialCard id={this.$f7route.params.id}></MarterialCard>
+                {/* <Block strong>
                     <ul>
                         <li><b>Url:</b> {this.$f7route.url}</li>
                         <li><b>Path:</b> {this.$f7route.path}</li>
@@ -43,8 +53,8 @@ export default class Material extends React.Component {
                 </Block>
                 <Block strong>
                     <Link onClick={() => this.$f7router.back()}>Go back via Router API</Link>
-                </Block>
+                </Block> */}
             </Page>
-        )
-    };
+        );
+    }
 }
