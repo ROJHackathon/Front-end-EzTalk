@@ -20,10 +20,10 @@ import {
     Card,
     CardContent,
     CardFooter,
-    CardHeader
+    CardHeader,
+    Icon
 } from 'framework7-react';
 import axios from 'axios';
-import { throws } from 'assert';
 
 class MaterialCard extends React.Component {
     constructor(props) {
@@ -31,11 +31,14 @@ class MaterialCard extends React.Component {
 
         this.state = {
             material: {},
-        }
+            isLiked: false,
+        };
+
+        this.handleClickLike = this.handleClickLike.bind(this);
     }
 
     componentDidMount() {
-        let url = ' http://108.61.221.218:58447/api-fake/material/' + this.props.id; // get the info of one material
+        let url = ' http://108.61.221.218:39802/api-fake/material/' + this.props.id; // get the info of one material
         //console.log(url);
         axios.get(url).then(res => {
             this.setState({ material: res.data })
@@ -44,6 +47,13 @@ class MaterialCard extends React.Component {
     };
 
     render() {
+        let button;
+        if(this.state.isLiked){
+           button =  <Icon ios="f7:heart"></Icon>
+        }else{
+            button =  <Icon ios="f7:heart_fill"></Icon>
+        }
+
         return (
             <Card className="feed-card">
                 <CardHeader
@@ -52,15 +62,30 @@ class MaterialCard extends React.Component {
                     style={{ backgroundImage: 'url(' + this.state.material.coverUrl + ')' }}
                 >{this.state.material.title}</CardHeader>
                 <CardContent>
-                    <p className="date">Posted on January 21, 2015</p>
+                    <p className="date">Posted on January 21, 2019</p>
                     <p>{this.state.material.description}</p>
                 </CardContent>
                 <CardFooter>
-                    <Link>Like</Link>
-                    <Link>Read more</Link>
+                    <Button onClick={this.handleClickLike}>
+                       {button}
+                    </Button>
+                    <Button>
+                        <Icon ios="f7:captions_bubble_fill"></Icon>
+                    </Button>
+                    <Link iconF7="link"></Link>
                 </CardFooter>
             </Card>
         );
+    }
+
+    handleClickLike() {
+        if(this.state.isLiked == false){
+            this.setState({isLiked: true});
+            // console.log(this.state.isLiked);
+        }else{
+            this.setState({isLiked: false});
+            // console.log(this.state.isLiked);
+        }
     }
 }
 

@@ -14,7 +14,7 @@ export default class Material extends React.Component {
     }
 
     componentDidMount() {
-        let url = ' http://108.61.221.218:58447/api-fake/' + this.$f7route.url; // get the info of one material
+        let url = ' http://108.61.221.218:39802/api-fake/' + this.$f7route.url; // get the info of one material
         //console.log(url);
         axios.get(url).then(res => {
             this.setState({material: res.data})
@@ -22,7 +22,6 @@ export default class Material extends React.Component {
 
 
     };
-
 
     render() {
         return (
