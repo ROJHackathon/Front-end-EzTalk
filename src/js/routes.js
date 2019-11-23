@@ -11,6 +11,7 @@ import SettingsPage from '../pages/settings.jsx';
 import DynamicRoutePage from '../pages/dynamic-route.jsx';
 import RequestAndLoad from '../pages/request-and-load.jsx';
 import NotFoundPage from '../pages/404.jsx';
+import MaterialPage from '../pages/material.jsx';
 
 var routes = [
   /* Main pages */
@@ -28,6 +29,12 @@ var routes = [
   },
 
   /* subpages */
+  // Feed
+  {
+    path: '/material/:id/',
+    component: MaterialPage,
+  },
+  // About
   {
     path: '/about/',
     component: AboutPage,
@@ -41,6 +48,8 @@ var routes = [
     path: '/product/:id/',
     component: ProductPage,
   },
+
+  // Setting
   {
     path: '/settings/',
     component: SettingsPage,
