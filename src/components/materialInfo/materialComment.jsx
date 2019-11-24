@@ -35,13 +35,19 @@ class MaterialComment extends React.Component {
     }
 
     componentDidMount() {
-
+        let url = 'http://108.61.221.218:39802/api-fake/material/' + this.props.id + '/get-comment';
+        axios.get(url).then(res => {
+            this.setState({
+                comments : res.data,
+            })
+            console.log(res)
+        })
     }
 
     render() {
         return (
             <List mediaList>
-                {this.props.comments.map((comment, index) => (
+                {this.state.comments.map((comment, index) => (
                     <ListItem
                         key = {index}
                         title = {comment.user.name}

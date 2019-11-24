@@ -11,88 +11,7 @@ export default class Material extends React.Component {
         super(props);
         this.state = {
             material: {},
-            comments: [
-                {
-                    "id": null,
-                    "content": "Comment 1",
-                    "user": {
-                        "id": null,
-                        "name": "fake user 1"
-                    }
-                },
-                {
-                    "id": null,
-                    "content": "Comment 2",
-                    "user": {
-                        "id": null,
-                        "name": "fake user 2"
-                    }
-                },
-                {
-                    "id": null,
-                    "content": "Comment 3",
-                    "user": {
-                        "id": null,
-                        "name": "fake user 3"
-                    }
-                },
-                {
-                    "id": null,
-                    "content": "Comment 4",
-                    "user": {
-                        "id": null,
-                        "name": "fake user 4"
-                    }
-                },
-                {
-                    "id": null,
-                    "content": "Comment 5",
-                    "user": {
-                        "id": null,
-                        "name": "fake user 5"
-                    }
-                },
-                {
-                    "id": null,
-                    "content": "Comment 6",
-                    "user": {
-                        "id": null,
-                        "name": "fake user 6"
-                    }
-                },
-                {
-                    "id": null,
-                    "content": "Comment 7",
-                    "user": {
-                        "id": null,
-                        "name": "fake user 7"
-                    }
-                },
-                {
-                    "id": null,
-                    "content": "Comment 8",
-                    "user": {
-                        "id": null,
-                        "name": "fake user 8"
-                    }
-                },
-                {
-                    "id": null,
-                    "content": "Comment 9",
-                    "user": {
-                        "id": null,
-                        "name": "fake user 9"
-                    }
-                },
-                {
-                    "id": null,
-                    "content": "Comment 10",
-                    "user": {
-                        "id": null,
-                        "name": "fake user 10"
-                    }
-                }
-            ],
+            comments: [],
             allowInfinite: true,
             showPreloader: true,
         }
@@ -104,8 +23,6 @@ export default class Material extends React.Component {
         axios.get(url).then(res => {
             this.setState({ material: res.data })
         });
-
-
     };
 
     render() {
@@ -114,7 +31,7 @@ export default class Material extends React.Component {
                 infinite
                 infiniteDistance={50}
                 infinitePreloader={this.state.showPreloader}
-                onInfinite={this.loadMore.bind(this)}
+                onInfinite={this.loadMoreComment.bind(this)}
             >
                 <Navbar title={this.state.material.title} backLink="Back" />
                 <MarterialCard id={this.$f7route.params.id}></MarterialCard>
@@ -144,34 +61,25 @@ export default class Material extends React.Component {
                     <Link onClick={() => this.$f7router.back()}>Go back via Router API</Link>
                 </Block> */}
 
-                <MaterialComment comments={this.state.comments}></MaterialComment>
+                <MaterialComment id={this.$f7route.params.id}></MaterialComment>
             </Page>
 
         );
     }
 
-    loadMore() {
+    loadMoreComment() {
         const self = this;
         if (!self.state.allowInfinite) return;
         self.setState({ allowInfinite: false });
 
         setTimeout(() => {
-            const comments = self.state.comments;
-            if (comments.length >= 200) {
-                self.setState({ showPreloader: false });
-                return;
-            }
-
-            const commentsLength = comments.length;
-
-            for (let i = 1; i <= 20; i += 1) {
-                comments.push(commentsLength + i);
-            }
-
-            self.setState({
-                comments,
-                allowInfinite: true,
-            });
+            let url = 'http://108.61.221.218:39802/api-fake/material/' + this.$f7route.params.id + '/get-comment';
+            axios.get(url).then(res => {
+                self.setState({
+                    comments : res.data,
+                    allowInfinite : true
+                })
+            })
         }, 1000);
     }
 }
