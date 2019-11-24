@@ -2,6 +2,7 @@
   "name": "eztalk",
   "private": true,
   "version": "1.0.0",
+  "homepage": "https://ROJHackathon.github.io/Front-end-EzTalk",
   "engines": {
     "node": "12.6.0"
   },
@@ -39,7 +40,8 @@
     "dev": "node node_modules/cross-env/src/bin/cross-env.js NODE_ENV=development webpack-dev-server --config ./build/webpack.config.js",
     "build-dev": " node node_modules/cross-env/src/bin/cross-env.js NODE_ENV=development node ./build/build.js",
     "build-prod": " node node_modules/cross-env/src/bin/cross-env.js NODE_ENV=production node ./build/build.js",
-    "postinstall": "cpy './node_modules/framework7-icons/fonts/*.*' './src/fonts/'"
+    "postinstall": "cpy './node_modules/framework7-icons/fonts/*.*' './src/fonts/'",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": [
     "Android >= 7",
@@ -78,6 +80,7 @@
     "cross-env": "^6.0.3",
     "css-loader": "^3.2.0",
     "file-loader": "^4.2.0",
+    "gh-pages": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.8.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
