@@ -144,3 +144,14 @@
 
 /* Material Page */
 /* Material Comment */
+/* Material Rate */
+.rate-area{
+    margin-top: -15px ;
+    margin-bottom: -35px ;
+}
+
+.rate-area .stars{
+    margin-top: 40px;
+    margin-inline: 100px;
+    margin-bottom: 40px;
+}

@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import MarterialCard from '../components/materialInfo/materialCard.jsx';
 import MaterialComment from '../components/materialInfo/materialComment.jsx';
+import RatingArea from '../components/materialInfo/ratingArea.jsx';
 
 export default class Material extends React.Component {
 
@@ -35,6 +36,7 @@ export default class Material extends React.Component {
             >
                 <Navbar title={this.state.material.title} backLink="Back" />
                 <MarterialCard id={this.$f7route.params.id}></MarterialCard>
+                <RatingArea></RatingArea>
                 {/* <Block strong>
                     <ul>
                         <li><b>Url:</b> {this.$f7route.url}</li>
@@ -80,6 +82,7 @@ export default class Material extends React.Component {
                     allowInfinite : true
                 })
             })
+            
         }, 1000);
     }
 }
