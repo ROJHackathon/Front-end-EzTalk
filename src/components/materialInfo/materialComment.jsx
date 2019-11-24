@@ -21,7 +21,8 @@ import {
     CardContent,
     CardFooter,
     CardHeader,
-    Icon
+    Icon,
+    Sheet
 } from 'framework7-react';
 import axios from 'axios';
 
