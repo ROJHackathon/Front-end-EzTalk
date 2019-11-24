@@ -34,6 +34,7 @@ class MaterialCard extends React.Component {
             isLiked: false,
         };
 
+        // bind
         this.handleClickLike = this.handleClickLike.bind(this);
     }
 
@@ -49,9 +50,9 @@ class MaterialCard extends React.Component {
     render() {
         let button;
         if(this.state.isLiked){
-           button =  <Icon ios="f7:heart"></Icon>
+           button = <Icon ios="f7:heart"></Icon>
         }else{
-            button =  <Icon ios="f7:heart_fill"></Icon>
+            button = <Icon ios="f7:heart_fill"></Icon>
         }
 
         return (
