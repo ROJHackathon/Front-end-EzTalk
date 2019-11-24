@@ -11,7 +11,88 @@ export default class Material extends React.Component {
         super(props);
         this.state = {
             material: {},
-            comments: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+            comments: [
+                {
+                    "id": null,
+                    "content": "Comment 1",
+                    "user": {
+                        "id": null,
+                        "name": "fake user 1"
+                    }
+                },
+                {
+                    "id": null,
+                    "content": "Comment 2",
+                    "user": {
+                        "id": null,
+                        "name": "fake user 2"
+                    }
+                },
+                {
+                    "id": null,
+                    "content": "Comment 3",
+                    "user": {
+                        "id": null,
+                        "name": "fake user 3"
+                    }
+                },
+                {
+                    "id": null,
+                    "content": "Comment 4",
+                    "user": {
+                        "id": null,
+                        "name": "fake user 4"
+                    }
+                },
+                {
+                    "id": null,
+                    "content": "Comment 5",
+                    "user": {
+                        "id": null,
+                        "name": "fake user 5"
+                    }
+                },
+                {
+                    "id": null,
+                    "content": "Comment 6",
+                    "user": {
+                        "id": null,
+                        "name": "fake user 6"
+                    }
+                },
+                {
+                    "id": null,
+                    "content": "Comment 7",
+                    "user": {
+                        "id": null,
+                        "name": "fake user 7"
+                    }
+                },
+                {
+                    "id": null,
+                    "content": "Comment 8",
+                    "user": {
+                        "id": null,
+                        "name": "fake user 8"
+                    }
+                },
+                {
+                    "id": null,
+                    "content": "Comment 9",
+                    "user": {
+                        "id": null,
+                        "name": "fake user 9"
+                    }
+                },
+                {
+                    "id": null,
+                    "content": "Comment 10",
+                    "user": {
+                        "id": null,
+                        "name": "fake user 10"
+                    }
+                }
+            ],
             allowInfinite: true,
             showPreloader: true,
         }
