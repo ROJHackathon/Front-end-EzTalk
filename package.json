@@ -2,6 +2,9 @@
   "name": "eztalk",
   "private": true,
   "version": "1.0.0",
+  "engines": {
+    "node": "12.6.0"
+  },
   "description": "EzTalk",
   "repository": "",
   "license": "UNLICENSED",
