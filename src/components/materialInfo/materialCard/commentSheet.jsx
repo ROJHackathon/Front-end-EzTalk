@@ -55,7 +55,6 @@ class CommentSheet extends React.Component {
                     </Block>
                 </PageContent>
             </Sheet>
-            
         )
     }
 
