@@ -51,13 +51,12 @@ class LoginButtonArea extends React.Component {
         const app = self.$f7;
         
         //test
-        app.dialog.alert(`Username: ${this.props.username}<br>Password: ${self.props.password}`, () => {
-            app.loginScreen.close();
-        });
+        // app.dialog.alert(`Username: ${this.props.username}<br>Password: ${self.props.password}`, () => {
+        //     app.loginScreen.close();
+        // });
         
         let url = "http://108.61.221.218:39802/api-fake/login"
-        axios.post(url, 
-            {
+        axios.post(url, {
                 userName: this.props.username,
                 password: this.props.password,
             }).then((res) => {
@@ -65,7 +64,8 @@ class LoginButtonArea extends React.Component {
                 let message = res.data.message
                 if(message === "Login success"){
                     this.setState({isSuccess: true})
-                    console.log(this.state.isSuccess);
+                    //console.log(this.state.isSuccess);
+                    app.loginScreen.close();
                 }else if(message === "User Name Does Not Exist"){
                     this.$f7.dialog.alert("Login Fail: User name does not exits");
                 }else if(message === "Invalid Password"){

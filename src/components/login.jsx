@@ -47,39 +47,11 @@ class Login extends React.Component {
                 {() => { this.setState({ loginScreenOpened: false }) }}>
                 <Page loginScreen className="login-page">
                 <LoginTitle></LoginTitle>
-                    {/* <List form className="login-form">
-                        <ListInput
-                            label="Username"
-                            type="text"
-                            placeholder="Your username"
-                            value={this.state.username}
-                            onInput={(e) => {
-                                this.setState({ username: e.target.value });
-                            }}
-                        />
-                        <ListInput
-                            label="Password"
-                            type="password"
-                            placeholder="Your password"
-                            value={this.state.password}
-                            onInput={(e) => {
-                                this.setState({ password: e.target.value });
-                            }}
-                        />
-                    </List> */}
                     <LoginInputArea 
                         handleUserNameInput={this.handleUserNameInput.bind(this)}
                         handlePasswordInput={this.handlePasswordInput.bind(this)}
                     >
                     </LoginInputArea>
-
-                    {/* <List>
-                    <Button onClick={this.signIn.bind(this)} className="login-btn">
-                        Sign In
-                    </Button>
-                    <BlockFooter>Some text about login information.<br />Lorem ipsum dolor sit amet, consectetur adipiscing elit.</BlockFooter>
-                    </List> */}
-
 
                     <LoginButtonArea 
                         username={this.state.username} 
