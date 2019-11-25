@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
     App,
     Panel,
@@ -25,7 +25,7 @@ import {
     Segmented
 } from 'framework7-react';
 
-class Account extends Component {
+class Account extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
