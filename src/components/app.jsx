@@ -158,9 +158,6 @@ export default class extends React.Component {
       </App>
     )
   }
-  alertLoginData() {
-    this.$f7.dialog.alert('Username: ' + this.state.username + '<br>Password: ' + this.state.password);
-  }
   componentDidMount() {
     this.$f7ready((f7) => {
 

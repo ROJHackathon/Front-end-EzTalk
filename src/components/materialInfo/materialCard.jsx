@@ -96,7 +96,7 @@ class MaterialCard extends React.Component {
 
     handleCloseComment() {
         this.setState({ isCommentOpen: false });
-        console.log(this.state.isCommentOpen)
+        //console.log(this.state.isCommentOpen)
     }
 }
 

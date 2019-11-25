@@ -25,6 +25,7 @@ import {
 import LoginButtonArea from './login/loginButtonArea.jsx';
 import LoginInputArea from './login/loginInputArea.jsx';
 import LoginTitle from './login/loginTitle.jsx';
+import { throws } from 'assert';
 
 class Login extends React.Component {
     constructor(props) {
@@ -38,6 +39,7 @@ class Login extends React.Component {
     }
 
     render() {
+        //console.log(this.state.username);
         return (
             <LoginScreen className="login-screen"
                 opened={this.state.loginScreenOpened}
@@ -65,7 +67,11 @@ class Login extends React.Component {
                             }}
                         />
                     </List> */}
-                    <LoginInputArea></LoginInputArea>
+                    <LoginInputArea 
+                        handleUserNameInput={this.handleUserNameInput.bind(this)}
+                        handlePasswordInput={this.handlePasswordInput.bind(this)}
+                    >
+                    </LoginInputArea>
 
                     {/* <List>
                     <Button onClick={this.signIn.bind(this)} className="login-btn">
@@ -75,13 +81,30 @@ class Login extends React.Component {
                     </List> */}
 
 
-                    <LoginButtonArea></LoginButtonArea>
+                    <LoginButtonArea 
+                        username={this.state.username} 
+                        password={this.state.password}
+                    >
+                    </LoginButtonArea>
                 </Page>
-
-
             </LoginScreen>
         )
     };
+
+
+    handleUserNameInput(val) {
+        this.setState({username: val})
+    };
+
+    handlePasswordInput(val) {
+        this.setState({password: val})
+    };
+
+    alertLoginData() {
+        this.$f7.dialog.alert('Username: ' + this.state.username + '<br>Password: ' + this.state.password);
+      }
+
+
 
 }
 

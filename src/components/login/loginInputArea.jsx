@@ -40,7 +40,8 @@ class LoginInputArea extends React.Component {
                     placeholder="Your username"
                     value={this.state.username}
                     onInput={(e) => {
-                        this.setState({ username: e.target.value });
+                        this.setState({username: e.target.value})
+                        this.props.handleUserNameInput(e.target.value)
                     }}
                 />
                 <ListInput
@@ -49,14 +50,13 @@ class LoginInputArea extends React.Component {
                     placeholder="Your password"
                     value={this.state.password}
                     onInput={(e) => {
-                        this.setState({ password: e.target.value });
+                        this.setState({password: e.target.value})
+                        this.props.handlePasswordInput(e.target.value)
                     }}
                 />
             </List>
         );
     }
-
-
 }
 
 
