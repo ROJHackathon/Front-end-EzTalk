@@ -1,4 +1,5 @@
 import React from 'react';
+import Core from '../components/chatroom/core'
 import {
     Page,
     Navbar,
@@ -42,6 +43,13 @@ export default class extends React.Component {
                         ></Searchbar>
                     </Subnavbar>
                 </Navbar>
+                <Core/>
+
+
+
+
+
+
             </Page>
         )
     }

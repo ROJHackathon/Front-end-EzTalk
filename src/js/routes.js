@@ -7,6 +7,8 @@ import AboutPage from '../pages/about.jsx';
 import FormPage from '../pages/form.jsx';
 import ProductPage from '../pages/product.jsx';
 import SettingsPage from '../pages/settings.jsx';
+import PreferenceSettingsPage from '../pages/preferenceSettings.jsx'
+import AccountSettingPage from '../pages/accountSettings'
 
 import DynamicRoutePage from '../pages/dynamic-route.jsx';
 import RequestAndLoad from '../pages/request-and-load.jsx';
@@ -53,6 +55,15 @@ var routes = [
   {
     path: '/settings/',
     component: SettingsPage,
+  },
+  {
+    path:'/settings/preference',
+    component: PreferenceSettingsPage,
+
+  },
+  {
+    path:'/settings/accountSetting',
+    component: AccountSettingPage
   },
 
   {

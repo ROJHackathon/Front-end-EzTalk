@@ -31,17 +31,37 @@ class ToolBar extends React.Component {
 
     render() {
         return (
-            <List inset className="tool-bar">
-                <ListItem link="#" title="My Chatrooms">
-                    <Icon slot="media" ios="f7:person_2_square_stack"></Icon>
-                </ListItem>
-                <ListItem link="#" title="Settings">
-                    <Icon slot="media" ios="f7:gear"></Icon>
-                </ListItem>
-                <ListItem link="#" title="Help">
-                    <Icon slot="media" ios="f7:question_circle"></Icon>
-                </ListItem>
-            </List>
+            // <List inset className="tool-bar">
+            //     <ListItem link="#" title="My Chatrooms">
+            //         <Icon slot="media" ios="f7:person_2_square_stack"></Icon>
+            //     </ListItem>
+            //     <ListItem title="Settings" >
+            //         <a href="/settings/" data-view="#view-home" className="panel-close">
+            //             <Icon slot="media" f7="arrow_right"></Icon>
+            //         </a>
+            //     </ListItem>
+            //     <ListItem link="#" title="Help">
+            //         <Icon slot="media" ios="f7:question_circle"></Icon>
+            //     </ListItem>
+
+
+            // </List>
+
+            <div className="list links-list">
+                <ul>
+                    <li>
+                        <a href="/settings/" data-view="#view-home" className="panel-close">
+                            <div className="item-media">
+                                <i className="icon f7-icons">gear</i>
+                            </div>
+                            <div className="item-inner">
+                                <div className="item-title">Seetings</div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
         )
     };
 }
