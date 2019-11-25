@@ -31,11 +31,12 @@ class Feed extends React.Component {
 
         this.state = {
             materials: [],
+            page: 1,
         }
     }
 
     componentDidMount() {
-        let url = 'http://108.61.221.218:39802/api-fake/user/' + 10 + '/request-feed'; // 10 is the user id
+        let url = 'http://108.61.221.218:39802/api-fake/user/' + 10 + '/request-feed?page=' + this.state.page; // 10 is the user id
         axios.get(url).then(res => {
             //console.log(res);
             this.setState({ materials: res.data });
@@ -72,15 +73,18 @@ class Feed extends React.Component {
     loadMore(done) {
         const self = this;
         setTimeout(() => {
-            const { materials, cover } = self.state;
-            let url = 'http://108.61.221.218:39802/api-fake/user/' + 10 + '/request-feed';
+            const { materials, page } = self.state;
+            let url = 'http://108.61.221.218:39802/api-fake/user/' + 10 + '/request-feed?page='+this.state.page;
             axios.get(url).then(res => {
                 //console.log(res);
                 let prevList = materials;
                 let newList = res.data;
                 newList = newList.concat(prevList);
-                self.setState({ materials: newList });
-                //console.log(newList);
+                self.setState({ 
+                    materials: newList,
+                    page: page+1,
+                });
+                console.log(this.state.page);
             });
 
             done();
