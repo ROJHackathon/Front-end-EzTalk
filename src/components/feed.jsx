@@ -39,7 +39,11 @@ class Feed extends React.Component {
         let url = 'http://108.61.221.218:39802/api-fake/user/' + 10 + '/request-feed?page=' + this.state.page; // 10 is the user id
         axios.get(url).then(res => {
             //console.log(res);
-            this.setState({ materials: res.data });
+            let page = this.state.page;
+            this.setState({ 
+                materials: res.data,
+                page: page+1
+            });
         });
     }
 
@@ -81,7 +85,7 @@ class Feed extends React.Component {
                 let newList = res.data;
                 newList = newList.concat(prevList);
                 self.setState({ 
-                    materials: newList,
+                    materials: newList, 
                     page: page+1,
                 });
                 console.log(this.state.page);
