@@ -1,4 +1,6 @@
 import React from 'react';
+import TranslateTool from '../components/translateTool'
+import translateBox from '../components/translateBox'
 import {
   Page,
   Navbar,
@@ -18,12 +20,31 @@ import {
   Subnavbar,
   Searchbar
 } from 'framework7-react';
+import TranslateBox from '../components/translateBox';
 
 export default class extends React.Component {
   constructor() {
     super();
 
-    this.state = {}
+    this.state = {
+      isDisplay:false,
+      result: "Hello World!"
+    }
+
+    this.enableBox = this.enableBox.bind(this)
+    this.disableBox = this.disableBox.bind(this)
+  }
+
+  enableBox(){
+    this.setState(
+      {isDisplay:true}
+    )
+  }
+
+  disableBox(){
+    this.setState(
+      {isDisplay:false}
+    )
   }
   render() {
     return (
@@ -40,9 +61,16 @@ export default class extends React.Component {
               searchIn=".item-title"   // what is the query
               placeholder="Translate Your Sentence"
               clearButton={true}
+              onSearchbarEnable={this.enableBox}
+              onSearchbarDisable={this.disableBox}
             ></Searchbar>
           </Subnavbar>
         </Navbar>
+        <TranslateBox isDisplay={this.state.isDisplay} result={this.state.result}/>
+
+        
+        <TranslateTool/>
+
 
       </Page>
     );
