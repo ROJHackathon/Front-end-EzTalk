@@ -25,6 +25,7 @@ import {
     Icon,
     Sheet,
     PageContent,
+    ListInput,
 } from 'framework7-react';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -53,13 +54,24 @@ class CommentSheet extends React.Component {
                     <BlockTitle large>Commenting</BlockTitle>
 
                     <Block>
-                        <TextField
-                            id="comment-input"
-                            label="Your Comment"
-                            variant="outlined"
-                            multiline
-                            rowsMax="5"
-                        />
+                        <List inlineLabels noHairlinesMd>
+                            <ListInput
+                                label="Comment"
+                                type="textarea"
+                                resizable
+                                placeholder="commenting ..."
+                            >
+                                <Icon ios="f7:bubble_left_bubble_right_fill" slot="media" />
+                            </ListInput>
+                        </List>
+
+                        <Row>
+                            <Col></Col>
+                            <Col></Col>
+                            <Col>
+                                <Button fill raised round>Submit</Button>
+                            </Col>
+                        </Row>
                     </Block>
                 </PageContent>
             </Sheet >
