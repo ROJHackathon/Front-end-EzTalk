@@ -26,14 +26,16 @@ import {
     Sheet,
     PageContent,
 } from 'framework7-react';
-import { throws } from 'assert';
+
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
 
 class CommentSheet extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            
+
         }
     }
 
@@ -41,20 +43,26 @@ class CommentSheet extends React.Component {
         return (
             <Sheet
                 className=".comment-sheet"
-                opened = {this.props.state}
+                opened={this.props.state}
                 onSheetClosed={this.props.handleCloseComment}
-                style={{ height: 'auto'}}
+                style={{ height: 'auto' }}
                 swipeToClose
                 backdrop
             >
                 <PageContent>
-                    <BlockTitle large>Hello!</BlockTitle>
+                    <BlockTitle large>Commenting</BlockTitle>
+
                     <Block>
-                        <p>Eaque maiores ducimus, impedit unde culpa qui, explicabo accusamus, non vero corporis voluptatibus similique odit ab. Quaerat quasi consectetur quidem libero? Repudiandae adipisci vel voluptatum, autem libero minus dignissimos repellat.</p>
-                        <p>Iusto, est corrupti! Totam minus voluptas natus esse possimus nobis, delectus veniam expedita sapiente ut cum reprehenderit aliquid odio amet praesentium vero temporibus obcaecati beatae aspernatur incidunt, perferendis voluptates doloribus?</p>
+                        <TextField
+                            id="comment-input"
+                            label="Your Comment"
+                            variant="outlined"
+                            multiline
+                            rowsMax="5"
+                        />
                     </Block>
                 </PageContent>
-            </Sheet>
+            </Sheet >
         )
     }
 

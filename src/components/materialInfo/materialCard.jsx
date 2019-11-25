@@ -58,31 +58,28 @@ class MaterialCard extends React.Component {
         }
 
         return (
-            <div>
-                <Card className="feed-card">
-                    <CardHeader
-                        className="card-header"
-                        valign="bottom"
-                        style={{ backgroundImage: 'url(' + this.state.material.coverUrl + ')' }}
-                    >{this.state.material.title}</CardHeader>
-                    <CardContent>
-                        <p className="date">Posted on January 21, 2019</p>
-                        <p>{this.state.material.description}</p>
-                    </CardContent>
-                    <CardFooter>
-                        <Button onClick={this.handleClickLike}>
-                            {button}
-                        </Button>
-                        <Button onClick={() => (this.setState({isCommentOpen: true}))}>
-                            <Icon ios="f7:captions_bubble_fill"></Icon>
-                        </Button>
-                        <Link iconF7="link"></Link>
-                    </CardFooter>
-                </Card>
-                <CommentSheet state={this.state.isCommentOpen}></CommentSheet>
 
-            </div>
-
+            <Card className="feed-card">
+                <CardHeader
+                    className="card-header"
+                    valign="bottom"
+                    style={{ backgroundImage: 'url(' + this.state.material.coverUrl + ')' }}
+                >{this.state.material.title}</CardHeader>
+                <CardContent>
+                    <p className="date">Posted on January 21, 2019</p>
+                    <p>{this.state.material.description}</p>
+                </CardContent>
+                <CardFooter>
+                    <Button onClick={this.handleClickLike}>
+                        {button}
+                    </Button>
+                    <Button onClick={() => (this.setState({ isCommentOpen: true }))}>
+                        <Icon ios="f7:captions_bubble_fill"></Icon>
+                    </Button>
+                    <Link iconF7="link"></Link>
+                </CardFooter>
+                <CommentSheet state={this.state.isCommentOpen} handleCloseComment={this.handleCloseComment.bind(this)}></CommentSheet>
+            </Card>
 
         );
     }
@@ -98,7 +95,7 @@ class MaterialCard extends React.Component {
     }
 
     handleCloseComment() {
-        this.setState({isCommentOpen: false});
+        this.setState({ isCommentOpen: false });
         console.log(this.state.isCommentOpen)
     }
 }
