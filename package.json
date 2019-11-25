@@ -41,7 +41,7 @@
     "build-dev": " node node_modules/cross-env/src/bin/cross-env.js NODE_ENV=development node ./build/build.js",
     "build-prod": " node node_modules/cross-env/src/bin/cross-env.js NODE_ENV=production node ./build/build.js",
     "postinstall": "cpy './node_modules/framework7-icons/fonts/*.*' './src/fonts/'",
-    "deploy": "gh-pages -d build-dev"
+    "deploy": "gh-pages -d www"
   },
   "browserslist": [
     "Android >= 7",
