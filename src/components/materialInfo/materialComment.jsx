@@ -21,7 +21,8 @@ import {
     CardContent,
     CardFooter,
     CardHeader,
-    Icon
+    Icon,
+    Sheet
 } from 'framework7-react';
 import axios from 'axios';
 
@@ -40,13 +41,14 @@ class MaterialComment extends React.Component {
             this.setState({
                 comments : res.data,
             })
-            console.log(res)
+            //console.log(res)
         })
     }
 
     render() {
         return (
-            <List mediaList>
+            <List mediaList className="comment-list">
+                <ListItem title="Comments" groupTitle></ListItem>
                 {this.state.comments.map((comment, index) => (
                     <ListItem
                         key = {index}
