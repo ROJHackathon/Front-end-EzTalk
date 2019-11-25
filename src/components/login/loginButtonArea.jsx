@@ -65,12 +65,19 @@ class LoginButtonArea extends React.Component {
                 if(message === "Login success"){
                     this.setState({isSuccess: true})
                     //console.log(this.state.isSuccess);
-                    app.loginScreen.close();
+                    // app.loginScreen.close();
+                    this.props.handleIsSuccess(this.state.isSuccess);
                 }else if(message === "User Name Does Not Exist"){
+                    this.setState({isSuccess: false})
+                    this.props.handleIsSuccess(this.state.isSuccess);
                     this.$f7.dialog.alert("Login Fail: User name does not exits");
                 }else if(message === "Invalid Password"){
+                    this.setState({isSuccess: false})
+                    this.props.handleIsSuccess(this.state.isSuccess);
                     this.$f7.dialog.alert("Login Fail: Check your password");
                 }else{
+                    this.setState({isSuccess: false})
+                    this.props.handleIsSuccess(this.state.isSuccess);
                     this.$f7.dialog.alert("Unknown Error");
                 }
             });    

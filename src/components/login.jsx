@@ -25,7 +25,6 @@ import {
 import LoginButtonArea from './login/loginButtonArea.jsx';
 import LoginInputArea from './login/loginInputArea.jsx';
 import LoginTitle from './login/loginTitle.jsx';
-import { throws } from 'assert';
 
 class Login extends React.Component {
     constructor(props) {
@@ -35,18 +34,25 @@ class Login extends React.Component {
             username: '',
             password: '',
             loginScreenOpened: true,
+            isSuccess: false
         };
     }
 
     render() {
         //console.log(this.state.username);
+        console.log(this.state.isSuccess);
+
         return (
             <LoginScreen className="login-screen"
-                opened={this.state.loginScreenOpened}
+                opened={!this.state.isSuccess}
                 onLoginScreenClosed=
-                {() => { this.setState({ loginScreenOpened: false }) }}>
+                {() => { this.setState({ loginScreenOpened: false }) }}
+                onLoginScreenOpened=
+                {() => { this.setState({isSuccess :false})}}
+            >
+
                 <Page loginScreen className="login-page">
-                <LoginTitle></LoginTitle>
+                    <LoginTitle></LoginTitle>
                     <LoginInputArea 
                         handleUserNameInput={this.handleUserNameInput.bind(this)}
                         handlePasswordInput={this.handlePasswordInput.bind(this)}
@@ -56,6 +62,7 @@ class Login extends React.Component {
                     <LoginButtonArea 
                         username={this.state.username} 
                         password={this.state.password}
+                        handleIsSuccess={this.handleIsSuccess.bind(this)}
                     >
                     </LoginButtonArea>
                 </Page>
@@ -72,12 +79,9 @@ class Login extends React.Component {
         this.setState({password: val})
     };
 
-    alertLoginData() {
-        this.$f7.dialog.alert('Username: ' + this.state.username + '<br>Password: ' + this.state.password);
-      }
-
-
-
+    handleIsSuccess(val){
+        this.setState({isSuccess: val})
+    };
 }
 
 export default Login;

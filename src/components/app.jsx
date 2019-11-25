@@ -126,35 +126,6 @@ export default class extends React.Component {
           </View>
         </Popup> */}
 
-        {/* <LoginScreen id="my-login-screen">
-          <View>
-            <Page loginScreen>
-              <LoginScreenTitle>Login</LoginScreenTitle>
-              <List form>
-                <ListInput
-                  type="text"
-                  name="username"
-                  placeholder="Your username"
-                  value={this.state.username}
-                  onInput={(e) => this.setState({username: e.target.value})}
-                ></ListInput>
-                <ListInput
-                  type="password"
-                  name="password"
-                  placeholder="Your password"
-                  value={this.state.password}
-                  onInput={(e) => this.setState({password: e.target.value})}
-                ></ListInput>
-              </List>
-              <List>
-                <ListButton title="Sign In" loginScreenClose onClick={() => this.alertLoginData()} />
-                <BlockFooter>
-                  Some text about login information.<br />Click "Sign In" to close Login Screen
-                </BlockFooter>
-              </List>
-            </Page>
-          </View>
-        </LoginScreen> */}
       </App>
     )
   }
