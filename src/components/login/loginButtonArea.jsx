@@ -41,16 +41,15 @@ class LoginButtonArea extends React.Component {
             <div className="login-btn-area">
                 <Button outline round className="login-btn" onClick={this.signIn.bind(this)}>Login</Button>
                 <div className="or">OR</div>
-                <Button raised round fill className="sign-up-btn">Sign Up</Button>
+                <Button raised round fill className="sign-up-btn" onClick ={this.signUp.bind(this)}>Sign Up</Button>
             </div>
         )
     };
 
     signIn() {
-        const self = this;
-        const app = self.$f7;
-        
-        //test
+        // test
+        // const self = this;
+        // const app = self.$f7;
         // app.dialog.alert(`Username: ${this.props.username}<br>Password: ${self.props.password}`, () => {
         //     app.loginScreen.close();
         // });
@@ -83,6 +82,22 @@ class LoginButtonArea extends React.Component {
                     this.$f7.dialog.alert("Unknown Error");
                 }
             });    
+    }
+
+    signUp() {
+        let url = "http://108.61.221.218:39802/api-fake/sign-up"
+
+        axios.post(url, {
+            userName: this.props.username,
+            password: this.props.password,
+        }).then((res) => {
+            if(res.data.id == null){
+                this.$f7.dialog.alert("Sign Up Fail: User name is used by others ");
+            }else{
+                this.$f7.dialog.alert("Sign Up Success: Your user name is " + this.props.username);
+            }
+        })
+
     }
 
 }
