@@ -1,17 +1,32 @@
 import React from 'react';
 
+import axios from 'axios';
+
 class Avatar extends React.Component {
   constructor() {
     super();
 
-    this.state = {}
+    this.state = {
+      username: ""
+    }
+  }
+
+  componentDidUpdate(propsPrev){
+    let url = "http://108.61.221.218:39802/api-fake/get-user?token=" + this.props.token;
+    if(this.props.token != propsPrev.token){
+      //console.log("token change")
+      axios.get(url).then((res) => {
+        //console.log(res.data.name)
+        this.setState({username: res.data.name})
+      })
+    }
   }
 
   render() {
     return (
       <div className="avatar">
         <div className="portrait"></div>
-        <div className="user-name">Carwyn Denton</div>
+      <div className="user-name">{this.state.username}</div>
       </div>
     )
   };

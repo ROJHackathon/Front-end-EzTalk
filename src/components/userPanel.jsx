@@ -38,7 +38,7 @@ class UserPanel extends React.Component {
       <Panel right reveal themeDark>
         <View>
           <Page className="side-panel">
-            <Avatar></Avatar>
+            <Avatar token={this.props.token}></Avatar>
             <ToolBar tabAvtive={this.props.tabActive}></ToolBar>
             <Button fill color="red" className="log-out-btn" onClick={this.handleClick.bind(this)}>Log out</Button>
           </Page>
