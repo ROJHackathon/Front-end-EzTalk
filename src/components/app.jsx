@@ -29,8 +29,8 @@ import Login from '../components/login.jsx';
 
 import routes from '../js/routes';
 
-// a context
-const tokenContext = React.createContext(0);
+// Context 
+import TokenContext from './tokenContext.jsx'
 
 export default class extends React.Component {
   constructor() {
@@ -67,52 +67,36 @@ export default class extends React.Component {
   render() {
     //console.log(this.state.token);
     return (
-      <App params={this.state.f7params} themeDark>
+      <TokenContext.Provider value={this.state.token}>
+        <App params={this.state.f7params} themeDark>
 
-        {/* Login screen */}
-        <Login handleLogin={this.handleLogin.bind(this)}></Login>
+          {/* Login screen */}
+          <Login handleLogin={this.handleLogin.bind(this)}></Login>
 
-        {/* Right panel with reveal effect -- for user side panel*/}
-        <UserPanel uid={this.state.uid} token={this.state.token}></UserPanel>
+          {/* Right panel with reveal effect -- for user side panel*/}
+          <UserPanel uid={this.state.uid} token={this.state.token}></UserPanel>
 
-        {/* Views/Tabs container */}
-        <Views tabs className="safe-areas">
-          {/* Tabbar for switching views-tabs */}
-          <Toolbar tabbar labels bottom>
-            <Link tabLink="#view-home" tabLinkActive iconIos="f7:house_fill" iconAurora="f7:house_fill" iconMd="material:home" text="Home" />
-            <Link tabLink="#view-translate" iconIos="f7:search" iconAurora="f7:search" iconMd="material:view_list" text="Translate" />
-            <Link tabLink="#view-chatroom" iconIos="f7:chat_bubble_2_fill" iconAurora="f7:chat_bubble_2_fill" iconMd="material:settings" text="Chatroom" />
-          </Toolbar>
+          {/* Views/Tabs container */}
+          <Views tabs className="safe-areas">
+            {/* Tabbar for switching views-tabs */}
+            <Toolbar tabbar labels bottom>
+              <Link tabLink="#view-home" tabLinkActive iconIos="f7:house_fill" iconAurora="f7:house_fill" iconMd="material:home" text="Home" />
+              <Link tabLink="#view-translate" iconIos="f7:search" iconAurora="f7:search" iconMd="material:view_list" text="Translate" />
+              <Link tabLink="#view-chatroom" iconIos="f7:chat_bubble_2_fill" iconAurora="f7:chat_bubble_2_fill" iconMd="material:settings" text="Chatroom" />
+            </Toolbar>
 
-          {/* Your main view/tab, should have "view-main" class. It also has "tabActive" prop */}
-          <View id="view-home" main tab tabActive url="/home/"/>
+            {/* Your main view/tab, should have "view-main" class. It also has "tabActive" prop */}
+            <View id="view-home" main tab tabActive url="/home/" />
 
-          {/* Catalog View */}
-          <View id="view-translate" name="translate" tab url="/translate/" />
+            {/* Catalog View */}
+            <View id="view-translate" name="translate" tab url="/translate/" />
 
-          {/* Settings View */}
-          <View id="view-chatroom" name="chatroom" tab url="/chatroom/" />
+            {/* Settings View */}
+            <View id="view-chatroom" name="chatroom" tab url="/chatroom/" />
 
-        </Views>
-
-
-        {/* Popup */}
-        {/* <Popup id="my-popup">
-          <View>
-            <Page>
-              <Navbar title="Popup">
-                <NavRight>
-                  <Link popupClose>Close</Link>
-                </NavRight>
-              </Navbar>
-              <Block>
-                <p>Popup content goes here.</p>
-              </Block>
-            </Page>
-          </View>
-        </Popup> */}
-
-      </App>
+          </Views>
+        </App>
+      </TokenContext.Provider>
     )
   }
   componentDidMount() {
@@ -125,7 +109,6 @@ export default class extends React.Component {
   handleLogin(val) {
     this.setState({ token: val })
     //console.log(this.state.f7params.token);
-    this.setState({f7params: {token: val}})
     //console.log(this.state.f7params.token);
   }
 

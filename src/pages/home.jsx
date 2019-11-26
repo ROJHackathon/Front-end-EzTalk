@@ -23,6 +23,9 @@ import {
 import Feed from '../components/feed.jsx';
 import FeedTest from '../components/feedTest.jsx';
 
+//context
+import TokenContext from '../components/tokenContext.jsx'
+
 export default class extends React.Component {
   constructor(props){
     super(props)
@@ -32,6 +35,7 @@ export default class extends React.Component {
     }
   }
 
+  static contextType = TokenContext;
   render() {
     console.log(this.context);
     return (
