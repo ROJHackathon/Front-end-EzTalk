@@ -17,7 +17,10 @@ import {
     Col,
     Button,
     Subnavbar,
-    Searchbar
+    Searchbar,
+    Fab,
+    Icon,
+
 } from 'framework7-react';
 
 export default class extends React.Component {
@@ -43,12 +46,11 @@ export default class extends React.Component {
                         ></Searchbar>
                     </Subnavbar>
                 </Navbar>
-                <Core/>
+                <Core />
 
-
-
-
-
+                <Fab position="right-bottom" slot="fixed" color="blue">
+                    <Icon f7="plus"></Icon>
+                </Fab>
 
             </Page>
         )

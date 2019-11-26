@@ -34,10 +34,10 @@ export default class extends React.Component {
 
     }
   }
-
+  // declear context type 
   static contextType = TokenContext;
   render() {
-    console.log(this.context);
+    //console.log(this.context);
     return (
       <Page name="home">
         {/* Top Navbar */}

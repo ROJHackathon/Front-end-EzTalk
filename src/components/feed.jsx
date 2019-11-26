@@ -25,6 +25,8 @@ import {
 
 import axios from 'axios';
 
+import TokenContext from './tokenContext.jsx'
+
 class Feed extends React.Component {
     constructor(props) {
         super(props);
@@ -35,8 +37,11 @@ class Feed extends React.Component {
         }
     }
 
+    static contextType = TokenContext;
+
+
     componentDidMount() {
-        let url = 'http://108.61.221.218:39802/api-fake/user/' + 10 + '/request-feed?page=' + this.state.page; // 10 is the user id
+        let url = 'http://108.61.221.218:39802/api-fake/request-feed?page=' + this.state.page + '&token=' + this.context; // 10 is the user id
         axios.get(url).then(res => {
             //console.log(res);
             let page = this.state.page;
@@ -78,7 +83,7 @@ class Feed extends React.Component {
         const self = this;
         setTimeout(() => {
             const { materials, page } = self.state;
-            let url = 'http://108.61.221.218:39802/api-fake/user/' + 10 + '/request-feed?page='+this.state.page;
+            let url = 'http://108.61.221.218:39802/api-fake/request-feed?page=' + this.state.page + '&token=' + this.context;;
             axios.get(url).then(res => {
                 //console.log(res);
                 let prevList = materials;
