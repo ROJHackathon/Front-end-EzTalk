@@ -71,7 +71,7 @@ export default class extends React.Component {
                         ></Searchbar>
                     </Subnavbar>
                 </Navbar>
-                <Core />
+                <Core officialrooms={this.state.officialrooms} privaterooms={this.state.privaterooms}/>
 
                 <Fab position="right-bottom" slot="fixed" color="blue">
                     <Icon f7="plus"></Icon>

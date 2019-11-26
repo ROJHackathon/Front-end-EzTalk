@@ -33,13 +33,14 @@ class Tag extends Component {
         super(props)
         this.state = {
             activeItem: "1",
+            
         }
         this.handleItemClick = this.handleItemClick.bind(this)
 
     }
     handleItemClick(e) {
         this.setState({ activeItem: e.target.id })
-        // console.log(e.target)
+        //console.log(e.target)
     }
     render() {
         return (
@@ -51,7 +52,17 @@ class Tag extends Component {
                         onClick={this.handleItemClick}>Private</button>
                 </Segmented>
 
-                {this.state.activeItem === "1" ? <TagOfficial/> : <TagPrivate/>}
+
+
+                <List mediaList>
+                    {
+                    this.state.activeItem === "1" ? 
+                    this.props.officialrooms.map((room, i)=> <TagOfficial key={i} name={room.name} content={room.language} />) : 
+                    this.props.privaterooms.map((room, i)=> <TagPrivate key={i} name={room.name} content={room.language}/>)
+                    }
+                </List>
+
+
 
 
 

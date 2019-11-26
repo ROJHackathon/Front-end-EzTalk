@@ -10,6 +10,8 @@ import SettingsPage from '../pages/settings.jsx';
 import PreferenceSettingsPage from '../pages/preferenceSettings.jsx'
 import AccountSettingPage from '../pages/accountSettings'
 
+import MessagePage from '../pages/Message.jsx'
+
 import DynamicRoutePage from '../pages/dynamic-route.jsx';
 import RequestAndLoad from '../pages/request-and-load.jsx';
 import NotFoundPage from '../pages/404.jsx';
@@ -49,6 +51,10 @@ var routes = [
   {
     path: '/product/:id/',
     component: ProductPage,
+  },
+  {
+    path: '/message/',
+    component: MessagePage,
   },
 
   // Setting

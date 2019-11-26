@@ -36,17 +36,14 @@ class TagPrivate extends Component {
     }
     render() {
         return (
-            <List mediaList>
-                <ListItem title="Private Demo" badge="Private" link="#"
-                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis 
-                    tellus ut turpis condimentum, ut dignissim lacus tincidunt. 
-                    Cras dolor metus, ultrices condimentum sodales sit amet, 
-                    pharetra sodales eros. Phasellus vel felis tellus. 
-                    Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, 
-                    pulvinar lacus.">
-                </ListItem>
-            </List>
-            
+            <ListItem
+            title={this.props.name}
+            link="/message/"
+            subtitle={this.props.content}
+            after="5:00"
+        >
+
+            </ListItem>
         )
     };
 

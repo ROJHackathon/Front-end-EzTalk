@@ -34,18 +34,13 @@ class Core extends React.Component {
         }
     }
 
-
-
     render() {
         return (
             <div>
-                <Tag />
-            </div>
-            
+                <Tag officialrooms={this.props.officialrooms} privaterooms={this.props.privaterooms}/>
+            </div>   
         )
     };
-
-
 }
 
 
