@@ -23,8 +23,8 @@ import {
 } from 'framework7-react';
 
 class ToolBar extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {}
     }
@@ -47,21 +47,41 @@ class ToolBar extends React.Component {
 
             // </List>
 
-            <div className="list links-list">
+            <div className="list inset">
                 <ul>
                     <li>
-                        <a href="/settings/" data-view="#view-home" className="panel-close">
+                        <a href="#" className="item-link item-content">
+                            <div className="item-media">
+                                <i className="icon f7-icons">person_2_square_stack</i>
+                            </div>
+                            <div className="item-inner">
+                                <div className="item-title">My Chatrooms</div>
+                            </div>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/settings/" data-view={"#" + this.props.tabAvtive} className="panel-close item-link item-content">
                             <div className="item-media">
                                 <i className="icon f7-icons">gear</i>
                             </div>
                             <div className="item-inner">
-                                <div className="item-title">Seetings</div>
+                                <div className="item-title">Settings</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" className="item-link item-content">
+                            <div className="item-media">
+                                <i className="icon f7-icons">question_circle</i>
+                            </div>
+                            <div className="item-inner">
+                                <div className="item-title">Help</div>
                             </div>
                         </a>
                     </li>
                 </ul>
             </div>
-
         )
     };
 }
