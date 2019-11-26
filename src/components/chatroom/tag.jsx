@@ -39,7 +39,7 @@ class Tag extends Component {
     }
     handleItemClick(e) {
         this.setState({ activeItem: e.target.id })
-        console.log(e.target)
+        // console.log(e.target)
     }
     render() {
         return (

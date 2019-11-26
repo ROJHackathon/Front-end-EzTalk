@@ -22,13 +22,38 @@ import {
     Icon,
 
 } from 'framework7-react';
+import axios from 'axios'
 
 export default class extends React.Component {
     constructor() {
         super();
-        this.state = {}
+        this.state = {
+            officialrooms : [],
+            privaterooms : [],
+        }
     }
+
+    componentDidMount() {
+        let urlOfficial = "http://108.61.221.218:39802/api-fake/official-chatroom-list"
+
+        let urlPrivate = "http://108.61.221.218:39802/api-fake/chatroom-list"
+
+        axios.get(urlOfficial).then((res) => {
+            this.setState({
+                officialrooms: res.data,
+            })
+        })
+
+        axios.get(urlPrivate).then((res) => {
+            this.setState({
+                privaterooms: res.data,
+            })
+        })
+        
+    }
+
     render() {
+        console.log(this.state.officialrooms);
         return (
             <Page name="chatroom">
                 <Navbar sliding={false} large>
