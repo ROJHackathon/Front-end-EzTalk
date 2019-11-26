@@ -52,6 +52,22 @@ class Feed extends React.Component {
         });
     }
 
+    componentDidUpdate(prevProps, prevState){
+        if(this.props != prevProps){
+            let url = 'http://108.61.221.218:39802/api-fake/request-feed?page=' + this.state.page + '&token=' + this.context; // 10 is the user id
+            axios.get(url).then(res => {
+                //console.log(res);
+                let page = this.state.page;
+                this.setState({ 
+                    materials: res.data,
+                    page: page+1
+                });
+            });
+        }
+    }
+
+
+
     render() {
         return (
             <Page ptr onPtrRefresh={this.loadMore.bind(this)}>

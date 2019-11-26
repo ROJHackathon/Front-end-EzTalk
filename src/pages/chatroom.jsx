@@ -53,7 +53,7 @@ export default class extends React.Component {
     }
 
     render() {
-        console.log(this.state.officialrooms);
+        //console.log(this.state.officialrooms);
         return (
             <Page name="chatroom">
                 <Navbar sliding={false} large>
