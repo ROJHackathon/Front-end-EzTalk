@@ -19,6 +19,7 @@ import {
     Subnavbar,
     Searchbar
 } from 'framework7-react';
+import axios from 'axios';
 
 export default class extends React.Component {
     constructor() {
