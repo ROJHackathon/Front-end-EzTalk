@@ -21,7 +21,6 @@ import {
 
 //self-defined component
 import Feed from '../components/feed.jsx';
-import FeedTest from '../components/feedTest.jsx';
 
 //context
 import TokenContext from '../components/tokenContext.jsx'
