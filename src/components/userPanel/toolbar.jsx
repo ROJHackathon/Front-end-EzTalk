@@ -55,7 +55,7 @@ class ToolBar extends React.Component {
                                 <i className="icon f7-icons">gear</i>
                             </div>
                             <div className="item-inner">
-                                <div className="item-title">Seetings</div>
+                                <div className="item-title">Settings</div>
                             </div>
                         </a>
                     </li>

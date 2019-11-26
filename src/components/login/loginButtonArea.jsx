@@ -62,11 +62,13 @@ class LoginButtonArea extends React.Component {
             }).then((res) => {
                 console.log(res)
                 let message = res.data.message
+                let token = res.data.token
                 if(message === "Login success"){
                     this.setState({isSuccess: true})
                     //console.log(this.state.isSuccess);
                     // app.loginScreen.close();
                     this.props.handleIsSuccess(this.state.isSuccess);
+                    this.props.handleToken(token);
                 }else if(message === "User Name Does Not Exist"){
                     this.setState({isSuccess: false})
                     this.props.handleIsSuccess(this.state.isSuccess);

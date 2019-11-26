@@ -88,7 +88,7 @@ class Feed extends React.Component {
                     materials: newList, 
                     page: page+1,
                 });
-                console.log(this.state.page);
+                //console.log(this.state.page);
             });
 
             done();

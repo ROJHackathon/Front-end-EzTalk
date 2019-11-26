@@ -24,8 +24,16 @@ import Feed from '../components/feed.jsx';
 import FeedTest from '../components/feedTest.jsx';
 
 export default class extends React.Component {
+  constructor(props){
+    super(props)
+
+    this.state = {
+
+    }
+  }
 
   render() {
+    console.log(this.context);
     return (
       <Page name="home">
         {/* Top Navbar */}

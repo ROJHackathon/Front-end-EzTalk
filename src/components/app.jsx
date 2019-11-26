@@ -29,6 +29,9 @@ import Login from '../components/login.jsx';
 
 import routes from '../js/routes';
 
+// a context
+const tokenContext = React.createContext(0);
+
 export default class extends React.Component {
   constructor() {
     super();
@@ -38,56 +41,39 @@ export default class extends React.Component {
       f7params: {
         name: 'EzTalk', // App name
         theme: 'auto', // Automatic theme detection
-        // App root data
-        data: function () {
-          return {
-            user: {
-              firstName: 'John',
-              lastName: 'Doe',
-            },
-            // Demo products for Catalog section
-            products: [
-              {
-                id: '1',
-                title: 'Apple iPhone 8',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi tempora similique reiciendis, error nesciunt vero, blanditiis pariatur dolor, minima sed sapiente rerum, dolorem corrupti hic modi praesentium unde saepe perspiciatis.'
-              },
-              {
-                id: '2',
-                title: 'Apple iPhone 8 Plus',
-                description: 'Velit odit autem modi saepe ratione totam minus, aperiam, labore quia provident temporibus quasi est ut aliquid blanditiis beatae suscipit odio vel! Nostrum porro sunt sint eveniet maiores, dolorem itaque!'
-              },
-              {
-                id: '3',
-                title: 'Apple iPhone X',
-                description: 'Expedita sequi perferendis quod illum pariatur aliquam, alias laboriosam! Vero blanditiis placeat, mollitia necessitatibus reprehenderit. Labore dolores amet quos, accusamus earum asperiores officiis assumenda optio architecto quia neque, quae eum.'
-              },
-            ]
-          };
-        },
-
         // App routes
         routes: routes,
         // Register service worker
         serviceWorker: {
           path: '/service-worker.js',
         },
+        token: 0,
+
+        data: function () {
+          return {
+            token: this.token,
+          };
+        },
       },
-      // Login screen demo data
-      username: '',
-      password: '',
-      // loginScreenOpened: true,
+
+
+      // User data
+      uid: 0, // test only
+      token: 0,
+
     }
   }
+
   render() {
+    //console.log(this.state.token);
     return (
-      <App params={ this.state.f7params } themeDark>
+      <App params={this.state.f7params} themeDark>
 
         {/* Login screen */}
-        <Login></Login>
+        <Login handleLogin={this.handleLogin.bind(this)}></Login>
 
         {/* Right panel with reveal effect -- for user side panel*/}
-        <UserPanel></UserPanel>
+        <UserPanel uid={this.state.uid} token={this.state.token}></UserPanel>
 
         {/* Views/Tabs container */}
         <Views tabs className="safe-areas">
@@ -99,7 +85,7 @@ export default class extends React.Component {
           </Toolbar>
 
           {/* Your main view/tab, should have "view-main" class. It also has "tabActive" prop */}
-          <View id="view-home" main tab tabActive url="/home/" />
+          <View id="view-home" main tab tabActive url="/home/"/>
 
           {/* Catalog View */}
           <View id="view-translate" name="translate" tab url="/translate/" />
@@ -135,4 +121,12 @@ export default class extends React.Component {
       // Call F7 APIs here
     });
   }
+
+  handleLogin(val) {
+    this.setState({ token: val })
+    //console.log(this.state.f7params.token);
+    this.setState({f7params: {token: val}})
+    //console.log(this.state.f7params.token);
+  }
+
 }

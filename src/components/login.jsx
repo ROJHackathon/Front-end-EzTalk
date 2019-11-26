@@ -25,6 +25,7 @@ import {
 import LoginButtonArea from './login/loginButtonArea.jsx';
 import LoginInputArea from './login/loginInputArea.jsx';
 import LoginTitle from './login/loginTitle.jsx';
+import { throws } from 'assert';
 
 class Login extends React.Component {
     constructor(props) {
@@ -34,19 +35,25 @@ class Login extends React.Component {
             username: '',
             password: '',
             loginScreenOpened: true,
-            isSuccess: false
+            isSuccess: false,
+            token: 0,
         };
+    }
+
+    componentDidUpdate(prevProps){
+        
     }
 
     render() {
         //console.log(this.state.username);
-        console.log(this.state.isSuccess);
+        //console.log(this.state.isSuccess);
+        //console.log(this.state.token);
 
         return (
             <LoginScreen className="login-screen"
                 opened={!this.state.isSuccess}
                 onLoginScreenClosed=
-                {() => { this.setState({ loginScreenOpened: false }) }}
+                {() => { this.props.handleLogin(this.state.token)}}
                 onLoginScreenOpened=
                 {() => { this.setState({isSuccess :false})}}
             >
@@ -63,6 +70,7 @@ class Login extends React.Component {
                         username={this.state.username} 
                         password={this.state.password}
                         handleIsSuccess={this.handleIsSuccess.bind(this)}
+                        handleToken={this.handleToken.bind(this)}
                     >
                     </LoginButtonArea>
                 </Page>
@@ -82,6 +90,10 @@ class Login extends React.Component {
     handleIsSuccess(val){
         this.setState({isSuccess: val})
     };
+
+    handleToken(val){
+        this.setState({token: val})
+    }
 }
 
 export default Login;
