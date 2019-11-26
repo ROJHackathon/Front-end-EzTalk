@@ -23,7 +23,27 @@ import {
 export default class extends React.Component {
     constructor() {
         super();
-        this.state = {}
+        this.state = {
+            officialrooms : [],
+            privaterooms : [],
+        }
+    }
+
+    componentDidMount() {
+        let urlOfficial = "http://108.61.221.218:39802/api-fake/official-chatroom-list"
+        let urlPrivate = "http://108.61.221.218:39802/api-fake/chatroom-list"
+        axios.get(urlOfficial).then((res) => {
+            this.setState({
+                officialrooms: res.data,
+            })
+        })
+
+        axios.get(urlPrivate).then((res) => {
+            this.setState({
+                privaterooms: res.data,
+            })
+        })
+        
     }
     render() {
         return (
@@ -43,11 +63,7 @@ export default class extends React.Component {
                         ></Searchbar>
                     </Subnavbar>
                 </Navbar>
-                <Core/>
-
-
-
-
+                <Core officialrooms={this.state.officialrooms} privaterooms={this.state.privaterooms}/>
 
 
             </Page>
