@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {
     App,
     Panel,
@@ -22,27 +22,29 @@ import {
     Button,
     Icon,
     Toggle,
-    Segmented
+    Card
 } from 'framework7-react';
 
-class Account extends React.Component {
+class PopularTopic extends React.Component {
+
     constructor(props) {
         super(props)
         this.state = {
-            
-
+            content:"content here"
         }
-    
     }
+
 
     render() {
         return (
-            <div>
-                <BlockTitle>Preference</BlockTitle>
-                
-            </div>
+            <Card
+                title="Top 10"
+                content={this.state.content}
+            ></Card>
         )
     };
 
+
 }
-export default Account
+
+export default PopularTopic

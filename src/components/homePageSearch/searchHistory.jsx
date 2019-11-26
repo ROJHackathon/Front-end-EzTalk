@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {
     App,
     Panel,
@@ -22,27 +22,31 @@ import {
     Button,
     Icon,
     Toggle,
-    Segmented
+    Card
 } from 'framework7-react';
 
-class Account extends React.Component {
+class SearchHistory extends React.Component {
+
     constructor(props) {
         super(props)
         this.state = {
-            
-
+            history:"Your search history"
         }
-    
     }
+
 
     render() {
         return (
-            <div>
-                <BlockTitle>Preference</BlockTitle>
-                
-            </div>
+            <Card
+                title="Search History"
+                content={this.state.history}
+            ></Card>
         )
     };
 
+
 }
-export default Account
+
+
+
+export default SearchHistory

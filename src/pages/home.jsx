@@ -1,4 +1,5 @@
 import React from 'react';
+import Core from '../components/homePageSearch/core'
 import {
   Page,
   Navbar,
@@ -25,6 +26,33 @@ import FeedTest from '../components/feedTest.jsx';
 
 export default class extends React.Component {
 
+  constructor() {
+    super()
+    this.state = {
+      onSearch: false,
+      what:"hahah"
+    }
+    this.enableSearch = this.enableSearch.bind(this)
+    this.disableSearch = this.disableSearch.bind(this)
+  }
+
+  enableSearch() {
+    this.setState(
+      {
+        onSearch:true
+      }
+    )
+  }
+
+  disableSearch() {
+    this.setState(
+      {
+        onSearch:false
+      }
+    )
+
+  }
+
   render() {
     return (
       <Page name="home">
@@ -41,12 +69,15 @@ export default class extends React.Component {
               searchIn=".item-title"   // what is the query
               placeholder="Search Materials"
               clearButton={true}
+              onSearchbarEnable={this.enableSearch}
+              onSearchbarDisable={this.disableSearch}
             ></Searchbar>
           </Subnavbar>
         </Navbar>
 
-        {/* Page content */}
-        <Feed></Feed>
+        {!this.state.onSearch ? <Feed/> : <Core/>}
+
+
       </Page>
     )
   };
