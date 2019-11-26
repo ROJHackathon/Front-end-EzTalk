@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { Component } from 'react'
+import SearchHistory from './searchHistory'
+import PopularTopic from './popularTopic'
 import {
     App,
     Panel,
@@ -21,28 +23,32 @@ import {
     BlockFooter,
     Button,
     Icon,
-    Toggle,
-    Segmented
+    Toggle
 } from 'framework7-react';
 
-class Account extends React.Component {
+class Core extends React.Component {
+
     constructor(props) {
         super(props)
         this.state = {
-            
 
         }
-    
     }
+    
 
     render() {
         return (
             <div>
-                <BlockTitle>Preference</BlockTitle>
-                
+                <SearchHistory/>
+                <PopularTopic/>
             </div>
+            
         )
     };
 
+
 }
-export default Account
+
+
+
+export default Core

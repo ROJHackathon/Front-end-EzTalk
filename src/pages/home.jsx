@@ -21,21 +21,40 @@ import {
 
 //self-defined component
 import Feed from '../components/feed.jsx';
-import FeedTest from '../components/feedTest.jsx';
+import Core from '../components/homePageSearch/core'
 
 //context
 import TokenContext from '../components/tokenContext.jsx'
 
 export default class extends React.Component {
-  constructor(props){
-    super(props)
-
+  constructor() {
+    super()
     this.state = {
-
+      onSearch: false,
     }
+    this.enableSearch = this.enableSearch.bind(this)
+    this.disableSearch = this.disableSearch.bind(this)
   }
-  // declear context type 
+
   static contextType = TokenContext;
+
+  enableSearch() {
+    this.setState(
+      {
+        onSearch:true
+      }
+    )
+  }
+
+  disableSearch() {
+    this.setState(
+      {
+        onSearch:false
+      }
+    )
+
+  }
+
   render() {
     //console.log(this.context);
     return (
@@ -53,12 +72,15 @@ export default class extends React.Component {
               searchIn=".item-title"   // what is the query
               placeholder="Search Materials"
               clearButton={true}
+              onSearchbarEnable={this.enableSearch}
+              onSearchbarDisable={this.disableSearch}
             ></Searchbar>
           </Subnavbar>
         </Navbar>
 
-        {/* Page content */}
-        <Feed></Feed>
+        {!this.state.onSearch ? <Feed/> : <Core/>}
+
+
       </Page>
     )
   };

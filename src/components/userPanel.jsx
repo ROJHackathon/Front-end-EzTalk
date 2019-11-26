@@ -27,8 +27,8 @@ import ToolBar from './userPanel/toolbar.jsx';
 
 
 class UserPanel extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {}
   }
@@ -39,7 +39,7 @@ class UserPanel extends React.Component {
         <View>
           <Page className="side-panel">
             <Avatar></Avatar>
-            <ToolBar></ToolBar>
+            <ToolBar tabAvtive={this.props.tabActive}></ToolBar>
             <Button fill color="red" className="log-out-btn" onClick={this.handleClick.bind(this)}>Log out</Button>
           </Page>
         </View>

@@ -28,24 +28,28 @@ export default class extends React.Component {
 
     this.state = {
       isDisplay:false,
-      result: "Hello World!"
+      result: ""
     }
 
     this.enableBox = this.enableBox.bind(this)
     this.disableBox = this.disableBox.bind(this)
+    //this.changeResult = this.changeResult.bind(this)
   }
 
-  enableBox(){
+  enableBox(e){
     this.setState(
-      {isDisplay:true}
+      {isDisplay:true,
+      }
     )
   }
 
   disableBox(){
     this.setState(
-      {isDisplay:false}
+      {isDisplay:false, result:""}
     )
   }
+
+  
   render() {
     return (
       <Page name="translate">
@@ -60,15 +64,15 @@ export default class extends React.Component {
               searchContainer=".search-list"  // where does the search happen
               searchIn=".item-title"   // what is the query
               placeholder="Translate Your Sentence"
+              value={this.state.result}
               clearButton={true}
               onSearchbarEnable={this.enableBox}
               onSearchbarDisable={this.disableBox}
+              onInput={(e)=> {this.setState({result:e.target.value})}}
             ></Searchbar>
           </Subnavbar>
         </Navbar>
         <TranslateBox isDisplay={this.state.isDisplay} result={this.state.result}/>
-
-        
         <TranslateTool/>
 
 

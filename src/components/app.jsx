@@ -56,12 +56,42 @@ export default class extends React.Component {
         },
       },
 
-
       // User data
       uid: 0, // test only
       token: 0,
 
+
+      //avtive tab
+      tabActive: "view-home"
     }
+
+    this.tabShowHomeHandler = this.tabShowHomeHandler.bind(this)
+    this.tabShowTranslateHandler = this.tabShowTranslateHandler.bind(this)
+    this.tabShowChatHandler = this.tabShowChatHandler.bind(this)
+  }
+
+  tabShowHomeHandler(e) {
+    this.setState(
+      {
+        tabActive: "view-home"
+      }
+    )
+  }
+
+  tabShowTranslateHandler(e) {
+    this.setState(
+      {
+        tabActive: "view-translate"
+      }
+    )
+  }
+
+  tabShowChatHandler(e) {
+    this.setState(
+      {
+        tabActive: "view-chatroom"
+      }
+    )
   }
 
   render() {
@@ -74,7 +104,11 @@ export default class extends React.Component {
           <Login handleLogin={this.handleLogin.bind(this)}></Login>
 
           {/* Right panel with reveal effect -- for user side panel*/}
-          <UserPanel uid={this.state.uid} token={this.state.token}></UserPanel>
+          <UserPanel
+            uid={this.state.uid}
+            token={this.state.token}
+            tabActive={this.state.tabActive}
+          ></UserPanel>
 
           {/* Views/Tabs container */}
           <Views tabs className="safe-areas">
@@ -86,13 +120,14 @@ export default class extends React.Component {
             </Toolbar>
 
             {/* Your main view/tab, should have "view-main" class. It also has "tabActive" prop */}
-            <View id="view-home" main tab tabActive url="/home/" />
+            <View id="view-home" main tab tabActive url="/home/" onTabShow={this.tabShowHomeHandler} />
 
             {/* Catalog View */}
-            <View id="view-translate" name="translate" tab url="/translate/" />
+            <View id="view-translate" name="translate" tab url="/translate/" onTabShow={this.tabShowTranslateHandler} />
 
             {/* Settings View */}
-            <View id="view-chatroom" name="chatroom" tab url="/chatroom/" />
+            <View id="view-chatroom" name="chatroom" tab url="/chatroom/" onTabShow={this.tabShowChatHandler} />
+
 
           </Views>
         </App>

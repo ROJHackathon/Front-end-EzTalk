@@ -59,7 +59,6 @@ class RatingArea extends React.Component {
                                     />
                                 </div>
                             </Block>
-
                         </AccordionContent>
                     </ListItem>
                 </List>
