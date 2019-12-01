@@ -36,7 +36,7 @@ class MaterialComment extends React.Component {
     }
 
     componentDidMount() {
-        let url = 'http://108.61.221.218:39802/api-fake/material/' + this.props.id + '/get-comment';
+        let url = 'https://eztalk-api-provider.azurewebsites.net/api-fake/material/' + this.props.id + '/get-comment';
         axios.get(url).then(res => {
             this.setState({
                 comments : res.data,

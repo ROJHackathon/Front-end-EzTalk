@@ -54,7 +54,7 @@ class LoginButtonArea extends React.Component {
         //     app.loginScreen.close();
         // });
         
-        let url = "http://108.61.221.218:39802/api-fake/login"
+        let url = "https://eztalk-api-provider.azurewebsites.net/api-fake/login"
         axios.post(url, {
                 userName: this.props.username,
                 password: this.props.password,
@@ -85,7 +85,7 @@ class LoginButtonArea extends React.Component {
     }
 
     signUp() {
-        let url = "http://108.61.221.218:39802/api-fake/sign-up"
+        let url = "https://eztalk-api-provider.azurewebsites.net/sign-up"
 
         axios.post(url, {
             userName: this.props.username,
