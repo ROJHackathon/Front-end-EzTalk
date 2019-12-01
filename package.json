@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "homepage": "https://ROJHackathon.github.io/Front-end-EzTalk",
   "engines": {
-    "node": "12.6.0"
+    "node": "10.0"
   },
   "description": "EzTalk",
   "repository": "",
