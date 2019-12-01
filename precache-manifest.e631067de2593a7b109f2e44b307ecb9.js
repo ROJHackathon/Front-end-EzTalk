@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "./index.html"
   },
   {
-    "revision": "7f1398f34ed7038ab44f",
+    "revision": "8c058f79890b51d286a2",
     "url": "css/app.css"
   },
   {
@@ -44,7 +44,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "images/loginBackground.jpg"
   },
   {
-    "revision": "7f1398f34ed7038ab44f",
+    "revision": "8c058f79890b51d286a2",
     "url": "js/app.js"
   },
   {
@@ -92,7 +92,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "static/icons/favicon.png"
   },
   {
-    "revision": "ab51dfe7f85f3bf4eb988138ef3c382a",
+    "revision": "e86aa13282fceadbbe72e8eeb97fddf3",
     "url": "static/images/.DS_Store"
   },
   {
