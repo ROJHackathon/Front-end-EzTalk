@@ -65,7 +65,7 @@ framework7 generate-assets --ui
 
 ## Documentation & Resources
 
-* [Framework7 Core Documentation](https://framework7.io/docs/)
+* [Framework7 ChatRoom Documentation](https://framework7.io/docs/)
 
 * [Framework7 React Documentation](https://framework7.io/react/)
 * [Framework7 Icons Reference](https://framework7.io/icons/)

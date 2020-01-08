@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import tagOfficial from './tagOfficial'
 import {
     App,
     Panel,
