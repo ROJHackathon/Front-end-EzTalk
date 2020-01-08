@@ -22,8 +22,8 @@ import {
   Button
 } from 'framework7-react';
 
-import Avatar from './userPanel/avatar.jsx';
-import ToolBar from './userPanel/toolbar.jsx';
+import Avatar from './subComponents/avatar.jsx';
+import ToolBar from './subComponents/toolbar.jsx';
 
 
 class UserPanel extends React.Component {

@@ -23,7 +23,7 @@ import {
 
 
 //Self-defined component
-import UserPanel from '../components/userPanel';
+import UserPanel from './userPanel/userPanel';
 import Login from '../components/login.jsx';
 
 

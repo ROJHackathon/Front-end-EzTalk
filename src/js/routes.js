@@ -1,6 +1,6 @@
 
 import HomePage from '../pages/home.jsx';
-import TranslatePage from '../pages/translate.jsx';
+import TranslatePage from '../pages/translatePage.jsx';
 import ChatroomPage from '../pages/chatroom.jsx';
 
 import AboutPage from '../pages/about.jsx';

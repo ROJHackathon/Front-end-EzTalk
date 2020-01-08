@@ -1,5 +1,5 @@
 import React from 'react';
-import ChatRoom from '../components/chatroom/chatRoom'
+import ChatRoom from '../components/chatRoom/chatRoom'
 import {
     Page,
     Navbar,
