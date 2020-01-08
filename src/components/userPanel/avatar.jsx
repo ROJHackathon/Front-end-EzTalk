@@ -12,7 +12,7 @@ class Avatar extends React.Component {
   }
 
   componentDidUpdate(propsPrev){
-    let url = "https://eztalk-api-provider.azurewebsites.net/api-fake/get-user?token=" + this.props.token;
+    let url = "https://ez-talk-api-provider.azurewebsites.net/api-fake/get-user?token=" + this.props.token;
     if(this.props.token != propsPrev.token){
       //console.log("token change")
       axios.get(url).then((res) => {
