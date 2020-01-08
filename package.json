@@ -1,4 +1,5 @@
 {
+  "homepage": "https://rojhackathon.github.io/Front-end-EzTalk/",
   "name": "eztalk",
   "private": true,
   "version": "1.0.0",
@@ -41,7 +42,7 @@
     "build-prod": " node node_modules/cross-env/src/bin/cross-env.js NODE_ENV=production node ./build/build.js",
     "build": " node node_modules/cross-env/src/bin/cross-env.js NODE_ENV=production node ./build/build.js",
     "postinstall": "cpy './node_modules/framework7-icons/fonts/*.*' './src/fonts/'",
-
+    "predeploy":"npm run build-prod",
     "deploy": "gh-pages -d www"
   },
   "browserslist": [
