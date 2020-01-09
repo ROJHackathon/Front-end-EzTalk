@@ -17,7 +17,7 @@
     /* aventar size */
     width: 160px;
     height: 160px;
-    background: url(../static/images/UserInfo.jpeg);
+    background: url(../pages/util/static/images/UserInfo.jpeg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -49,7 +49,7 @@
 .login-screen {
     /* background-repeat: no-repeat ; */
     background-size: cover;
-    background-image: url(../static/images/loginBackground.jpg);
+    background-image: url(../pages/util/static/images/loginBackground.jpg);
     position: relative;
 }
 

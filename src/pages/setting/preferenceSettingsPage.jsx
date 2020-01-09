@@ -1,5 +1,5 @@
 import React from 'react';
-import Preference from '../components/settings/preference'
+import Preference from '../../components/settings/preference'
 import {
   Page,
   Navbar,

@@ -1,21 +1,21 @@
 
-import HomePage from '../pages/home.jsx';
-import TranslatePage from '../pages/translatePage.jsx';
-import ChatroomPage from '../pages/chatroom.jsx';
+import HomePage from '../pages/home/home.jsx';
+import TranslatePage from '../pages/translate/translatePage.jsx';
+import ChatroomPage from '../pages/chatroom/chatroom.jsx';
 
-import AboutPage from '../pages/about.jsx';
-import FormPage from '../pages/form.jsx';
-import ProductPage from '../pages/product.jsx';
-import SettingsPage from '../pages/settingsPage.jsx';
-import PreferenceSettingsPage from '../pages/preferenceSettingsPage.jsx'
-import AccountSettingPage from '../pages/accountSettings'
+import AboutPage from '../pages/util/about.jsx';
+import FormPage from '../pages/util/form.jsx';
+import ProductPage from '../pages/util/product.jsx';
+import SettingsPage from '../pages/setting/settingsPage.jsx';
+import PreferenceSettingsPage from '../pages/setting/preferenceSettingsPage.jsx'
+import AccountSettingPage from '../pages/setting/accountSettings'
 
-import MessagePage from '../pages/Message.jsx'
+import MessagePage from '../pages/chatroom/Message.jsx'
 
 import DynamicRoutePage from '../pages/dynamic-route.jsx';
-import RequestAndLoad from '../pages/request-and-load.jsx';
-import NotFoundPage from '../pages/404.jsx';
-import MaterialPage from '../pages/material.jsx';
+import RequestAndLoad from '../pages/util/request-and-load.jsx';
+import NotFoundPage from '../pages/util/404.jsx';
+import MaterialPage from '../pages/home/material.jsx';
 
 var routes = [
   /* Main pages */

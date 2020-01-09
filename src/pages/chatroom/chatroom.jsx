@@ -1,5 +1,5 @@
 import React from 'react';
-import ChatRoom from '../components/chatRoom/chatRoom'
+import ChatRoom from '../../components/chatRoom/chatRoom'
 import {
     Page,
     Navbar,
@@ -34,9 +34,9 @@ export default class extends React.Component {
     }
 
     componentDidMount() {
-        let urlOfficial = "http://108.61.221.218:39802/api-fake/official-chatroom-list"
+        let urlOfficial = "https://ez-talk-api-provider.azurewebsites.net/api-fake/official-chatroom-list"
 
-        let urlPrivate = "http://108.61.221.218:39802/api-fake/chatroom-list"
+        let urlPrivate = "https://ez-talk-api-provider.azurewebsites.net/api-fake/chatroom-list"
 
         axios.get(urlOfficial).then((res) => {
             this.setState({

@@ -20,11 +20,11 @@ import {
 } from 'framework7-react';
 
 //self-defined component
-import Feed from '../components/feed.jsx';
-import Core from '../components/homePageSearch/core'
+import Feed from '../../components/feed.jsx';
+import Core from '../../components/homePageSearch/core'
 
 //context
-import TokenContext from '../components/tokenContext.jsx'
+import TokenContext from '../../components/tokenContext.jsx'
 
 export default class extends React.Component {
   constructor() {
