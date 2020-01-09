@@ -24,10 +24,10 @@ import {
     Toggle,
     Segmented
 } from 'framework7-react';
-import TagOfficial from './tagOfficial';
-import TagPrivate from './tagPrivate'
+import SingleOfficialRoom from './singleOfficialRoom';
+import SinglePrivateRoom from './singlePrivateRoom'
 
-class Tag extends Component {
+class RoomsBase extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -39,7 +39,6 @@ class Tag extends Component {
     }
     handleItemClick(e) {
         this.setState({ activeItem: e.target.id })
-        //console.log(e.target)
     }
     render() {
         return (
@@ -56,19 +55,13 @@ class Tag extends Component {
                 <List mediaList>
                     {
                     this.state.activeItem === "1" ? 
-                    this.props.officialrooms.map((room, i)=> <TagOfficial key={i} name={room.name} content={room.language} />) : 
-                    this.props.privaterooms.map((room, i)=> <TagPrivate key={i} name={room.name} content={room.language}/>)
+                    this.props.officialrooms.map((room, i)=> <SingleOfficialRoom key={i} name={room.name} content={room.language} />) :
+                    this.props.privaterooms.map((room, i)=> <SinglePrivateRoom key={i} name={room.name} content={room.language}/>)
                     }
                 </List>
-
-
-
-
-
-
             </div>
         )
     };
 
 }
-export default Tag
+export default RoomsBase
