@@ -85,7 +85,7 @@ class LoginButtonArea extends React.Component {
     }
 
     signUp() {
-        let url = "https://ez-talk-api-provider.azurewebsites.net/sign-up"
+        let url = "https://ez-talk-api-provider.azurewebsites.net/api-fake/sign-up"
 
         axios.post(url, {
             userName: this.props.username,
