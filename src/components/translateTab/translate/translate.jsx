@@ -1,6 +1,6 @@
 import React from 'react';
-import TranslateTool from './subComponents/TranslateTool'
-import TranslateBox from './subComponents/TranslateBox'
+import TranslateTool from './subComponents/translateTool'
+import TranslateBox from './subComponents/translateBox'
 import {
     Page,
     Navbar,

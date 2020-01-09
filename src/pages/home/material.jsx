@@ -2,9 +2,9 @@ import React from 'react';
 import { Page, Navbar, Block, Link } from 'framework7-react';
 import axios from 'axios';
 
-import MarterialCard from '../../components/materialInfo/materialCard.jsx';
-import MaterialComment from '../../components/materialInfo/materialComment.jsx';
-import RatingArea from '../../components/materialInfo/ratingArea.jsx';
+import MarterialCard from '../../components/homeTab/materialInfo/materialCard.jsx';
+import MaterialComment from '../../components/homeTab/materialInfo/materialComment.jsx';
+import RatingArea from '../../components/homeTab/materialInfo/ratingArea.jsx';
 
 export default class Material extends React.Component {
 

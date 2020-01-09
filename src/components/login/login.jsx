@@ -22,9 +22,9 @@ import {
     Button
 } from 'framework7-react';
 
-import LoginButtonArea from './login/loginButtonArea.jsx';
-import LoginInputArea from './login/loginInputArea.jsx';
-import LoginTitle from './login/loginTitle.jsx';
+import LoginButtonArea from './loginButtonArea.jsx';
+import LoginInputArea from './loginInputArea.jsx';
+import LoginTitle from './loginTitle.jsx';
 import { throws } from 'assert';
 
 class Login extends React.Component {

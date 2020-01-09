@@ -20,8 +20,8 @@ import {
 } from 'framework7-react';
 
 //self-defined component
-import Feed from '../../components/feed.jsx';
-import Core from '../../components/homePageSearch/core'
+import Feed from '../../components/homeTab/feed.jsx';
+import Core from '../../components/homeTab/homePageSearch/core'
 
 //context
 import TokenContext from '../../components/tokenContext.jsx'

@@ -25,7 +25,7 @@ import {
 
 import axios from 'axios';
 
-import TokenContext from './tokenContext.jsx'
+import TokenContext from '../tokenContext.jsx'
 
 class Feed extends React.Component {
     constructor(props) {
