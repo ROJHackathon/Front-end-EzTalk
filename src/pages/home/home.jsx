@@ -25,6 +25,7 @@ import Search from '../../components/homeTab/homeSearch/Search'
 
 //context
 import TokenContext from '../../components/tokenContext.jsx'
+import axios from "axios";
 
 export default class extends React.Component {
   constructor() {
@@ -55,10 +56,34 @@ export default class extends React.Component {
 
   }
 
+
+  loadMore(done) {
+    const self = this;
+    if (!this.state.onSearch){
+      console.log("hello")
+      setTimeout(() => {
+        const { materials, page } = self.state;
+        let url = 'https://ez-talk-api-provider.azurewebsites.net/api-fake/request-feed?page=' + this.state.page + '&token=' + this.context;;
+        axios.get(url).then(res => {
+          //console.log(res);
+          let prevList = materials;
+          let newList = res.data;
+          newList = newList.concat(prevList);
+          self.setState({
+            materials: newList,
+            page: page+1,
+          });
+          //console.log(this.state.page);
+        });
+        done();
+      }, 1000)
+    }
+  }
+
   render() {
     //console.log(this.context);
     return (
-      <Page name="home">
+      <Page name="home" ptr onPtrRefresh={this.loadMore.bind(this)}>
         {/* Top Navbar */}
         <Navbar sliding={false} large>
           <NavTitle sliding>Home</NavTitle>
