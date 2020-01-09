@@ -33,7 +33,6 @@ class Feed extends React.Component {
 
         this.state = {
             materials: [],
-            page: 1,
         }
     }
 
@@ -41,29 +40,27 @@ class Feed extends React.Component {
 
 
     componentDidMount() {
-
-    }
-
-    componentDidUpdate(prevProps, prevState){
-        if(this.props.token != prevProps.token){
-            let url = 'https://ez-talk-api-provider.azurewebsites.net/api-fake/request-feed?page=' + this.state.page + '&token=' + this.context; // 10 is the user id
+        //console.log(this.context);
+        if(this.context == 0){
+            let url = 'https://ez-talk-api-provider.azurewebsites.net/api-fake/request-feed?page=1&token=' + this.context; // 10 is the user id
             axios.get(url).then(res => {
                 //console.log(res.data);
-                let page = this.state.page;
                 this.setState({
                     materials: res.data,
-                    page: page+1
                 });
             });
+        }else{
+            this.setState({
+                material:this.props.material,
+            })
         }
     }
-
 
     render() {
         return (
             <Page >
                 <List mediaList>
-                    {this.state.materials.map((material, index) => (
+                    {this.props.materials.map((material, index) => (
                         <Card className="feed-card" 
                             key={index}>
                             <CardHeader className="card-header"

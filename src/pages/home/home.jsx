@@ -32,12 +32,34 @@ export default class extends React.Component {
     super()
     this.state = {
       onSearch: false,
+      page:1,
+      materials:[]
     }
     this.enableSearch = this.enableSearch.bind(this)
     this.disableSearch = this.disableSearch.bind(this)
   }
 
   static contextType = TokenContext;
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const self = this;
+    const { materials, page } = self.state;
+    if(this.props !== prevProps){
+      let url = 'https://ez-talk-api-provider.azurewebsites.net/api-fake/request-feed?page=' + this.state.page + '&token=' + this.context;
+      axios.get(url).then(res => {
+        //console.log(res);
+        let prevList = materials;
+        let newList = res.data;
+        newList = newList.concat(prevList);
+        self.setState({
+          materials: newList,
+          page: page+1,
+        });
+        //console.log(this.state.page);
+      });
+    }
+  }
+
 
   enableSearch() {
     this.setState(
@@ -53,35 +75,9 @@ export default class extends React.Component {
         onSearch:false
       }
     )
-
-  }
-
-
-  loadMore(done) {
-    const self = this;
-    if (!this.state.onSearch){
-      console.log("hello")
-      setTimeout(() => {
-        const { materials, page } = self.state;
-        let url = 'https://ez-talk-api-provider.azurewebsites.net/api-fake/request-feed?page=' + this.state.page + '&token=' + this.context;;
-        axios.get(url).then(res => {
-          //console.log(res);
-          let prevList = materials;
-          let newList = res.data;
-          newList = newList.concat(prevList);
-          self.setState({
-            materials: newList,
-            page: page+1,
-          });
-          //console.log(this.state.page);
-        });
-        done();
-      }, 1000)
-    }
   }
 
   render() {
-    //console.log(this.context);
     return (
       <Page name="home" ptr onPtrRefresh={this.loadMore.bind(this)}>
         {/* Top Navbar */}
@@ -99,14 +95,44 @@ export default class extends React.Component {
               clearButton={true}
               onSearchbarEnable={this.enableSearch}
               onSearchbarDisable={this.disableSearch}
-            ></Searchbar>
+            />
           </Subnavbar>
         </Navbar>
 
-        {!this.state.onSearch ? <Feed token={this.context}/> : <Search/>}
+        {!this.state.onSearch ? <Feed materials={this.state.materials}/> : <Search/>}
 
 
       </Page>
     )
   };
+
+
+  loadMore(done) {
+    const self = this;
+
+    // if in feed mode
+    if (!this.state.onSearch){
+      setTimeout(() => {
+        const { materials, page } = self.state;
+        let url = 'https://ez-talk-api-provider.azurewebsites.net/api-fake/request-feed?page=' + this.state.page + '&token=' + this.context;
+        axios.get(url).then(res => {
+          //console.log(res);
+          let prevList = materials;
+          let newList = res.data;
+          newList = newList.concat(prevList);
+          self.setState({
+            materials: newList,
+            page: page+1,
+          });
+          //console.log(this.state.page);
+        });
+        done();
+      }, 1000)
+    }
+    //if in search mode
+    else{
+
+    }
+
+  }
 }
