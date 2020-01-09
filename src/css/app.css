@@ -132,7 +132,7 @@
 
 /* Feed */
 .feed-card .card-header{
-    height: 40vw;
+    height: 35vw;
     background-size: cover;
     background-position: center;
     color: #fff;
@@ -142,8 +142,21 @@
     color: #8e8e93;
 }
 
-
+.feed-card .card-content{
+    height: 35vw;
+}
 /* Material Page */
+.feed-card-inner .card-header{
+    height: 35vw;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+.feed-card-inner .date{
+    color: #8e8e93;
+}
+
 /* Material Comment */
 
 

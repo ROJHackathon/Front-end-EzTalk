@@ -59,7 +59,7 @@ class MaterialCard extends React.Component {
 
         return (
 
-            <Card className="feed-card">
+            <Card className="feed-card-inner">
                 <CardHeader
                     className="card-header"
                     valign="bottom"

@@ -39,24 +39,8 @@ class Feed extends React.Component {
     static contextType = TokenContext;
 
 
-    componentDidMount() {
-        //console.log(this.context);
-        if(this.context == 0){
-            let url = 'https://ez-talk-api-provider.azurewebsites.net/api-fake/request-feed?page=1&token=' + this.context; // 10 is the user id
-            axios.get(url).then(res => {
-                //console.log(res.data);
-                this.setState({
-                    materials: res.data,
-                });
-            });
-        }else{
-            this.setState({
-                material:this.props.material,
-            })
-        }
-    }
-
     render() {
+
         return (
             <Page >
                 <List mediaList>
@@ -71,13 +55,13 @@ class Feed extends React.Component {
                                 className="card-content"
                             >
                                 <p className="date">Posted on January 21, 2019</p>
-                                <p style={{textOverflow:"ellipsis"}}>
-                                    {material.description}
+                                <p className="description" style={{textOverflow:"ellipsis"}}>
+                                    {this.trimStr(material.description)}
                                 </p>
                             </CardContent>
                             <CardFooter>
                                 <div className="like-num">{material.like} Likes</div>
-                                <Link iconF7="ellipsis" href={"/material/" + material.id + "/"} ></Link>
+                                <Link iconF7="ellipsis" href={"/material/" + material.id + "/"} />
                             </CardFooter>
                         </Card>
                     ))}
@@ -86,8 +70,16 @@ class Feed extends React.Component {
         );
     }
 
-
-
+    trimStr(str){
+        if(str == null){
+            return "No Description";
+        }else if(str.length > 150){
+            return str.substring(0, 150) + "...";
+        }else{
+            return str;
+        }
+    }
 }
+
 
 export default Feed;

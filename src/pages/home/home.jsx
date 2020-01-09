@@ -41,6 +41,27 @@ export default class extends React.Component {
 
   static contextType = TokenContext;
 
+  componentDidMount() {
+    if(this.context != 0){
+      const self = this;
+      const { materials, page } = self.state;
+      if(this.props !== prevProps){
+        let url = 'https://ez-talk-api-provider.azurewebsites.net/api-fake/request-feed?page=' + this.state.page + '&token=' + this.context;
+        axios.get(url).then(res => {
+          //console.log(res);
+          let prevList = materials;
+          let newList = res.data;
+          newList = newList.concat(prevList);
+          self.setState({
+            materials: newList,
+            page: page+1,
+          });
+          //console.log(this.state.page);
+        });
+      }
+    }
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
     const self = this;
     const { materials, page } = self.state;
