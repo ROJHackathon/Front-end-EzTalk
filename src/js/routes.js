@@ -12,7 +12,7 @@ import AccountSettingPage from '../pages/setting/accountSettings'
 
 import MessagePage from '../pages/chatroom/Message.jsx'
 
-import DynamicRoutePage from '../pages/dynamic-route.jsx';
+import DynamicRoutePage from '../pages/util/dynamic-route.jsx';
 import RequestAndLoad from '../pages/util/request-and-load.jsx';
 import NotFoundPage from '../pages/util/404.jsx';
 import MaterialPage from '../pages/home/material.jsx';

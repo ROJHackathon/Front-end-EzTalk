@@ -41,34 +41,25 @@ class Feed extends React.Component {
 
 
     componentDidMount() {
-        let url = 'https://ez-talk-api-provider.azurewebsites.net/api-fake/request-feed?page=' + this.state.page + '&token=' + this.context; // 10 is the user id
-        axios.get(url).then(res => {
-            //console.log(res);
-            let page = this.state.page;
-            this.setState({ 
-                materials: res.data,
-                page: page+1
-            });
-        });
+
     }
 
-    // componentDidUpdate(prevProps, prevState){
-    //     if(this.props != prevProps){
-    //         let url = 'https://ez-talk-api-provider.azurewebsites.net/api-fake/request-feed?page=' + this.state.page + '&token=' + this.context; // 10 is the user id
-    //         axios.get(url).then(res => {
-    //             //console.log(res);
-    //             let page = this.state.page;
-    //             this.setState({ 
-    //                 materials: res.data,
-    //             });
-    //         });
-    //     }
-    // }
-
+    componentDidUpdate(prevProps, prevState){
+        if(this.props.token != prevProps.token){
+            let url = 'https://ez-talk-api-provider.azurewebsites.net/api-fake/request-feed?page=' + this.state.page + '&token=' + this.context; // 10 is the user id
+            axios.get(url).then(res => {
+                //console.log(res.data);
+                let page = this.state.page;
+                this.setState({
+                    materials: res.data,
+                    page: page+1
+                });
+            });
+        }
+    }
 
 
     render() {
-
         return (
             <Page ptr onPtrRefresh={this.loadMore.bind(this)}>
                 <List mediaList>

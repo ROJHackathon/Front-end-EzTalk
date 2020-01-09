@@ -78,7 +78,7 @@ export default class extends React.Component {
           </Subnavbar>
         </Navbar>
 
-        {!this.state.onSearch ? <Feed/> : <Search/>}
+        {!this.state.onSearch ? <Feed token={this.context}/> : <Search/>}
 
 
       </Page>
