@@ -38,6 +38,9 @@ Thumbs.db
 .xml
 .iml
 
+# idea directory
+.idea/
+
 
 
 # Production build
