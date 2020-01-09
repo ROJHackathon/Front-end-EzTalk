@@ -1,6 +1,6 @@
 import React from 'react';
 
-import axios from 'axios';
+import axios from 'axios/index';
 
 class Avatar extends React.Component {
   constructor() {

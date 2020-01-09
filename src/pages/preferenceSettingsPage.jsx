@@ -21,7 +21,7 @@ import {
 } from 'framework7-react';
 
 
-class preferenceSettings extends React.Component {
+class preferenceSettingsPage extends React.Component {
 
   constructor() {
     super()
@@ -45,4 +45,4 @@ class preferenceSettings extends React.Component {
   }
 
 }
-export default preferenceSettings
+export default preferenceSettingsPage

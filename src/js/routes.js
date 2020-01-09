@@ -1,13 +1,13 @@
 
 import HomePage from '../pages/home.jsx';
-import TranslatePage from '../pages/translate.jsx';
+import TranslatePage from '../pages/translatePage.jsx';
 import ChatroomPage from '../pages/chatroom.jsx';
 
 import AboutPage from '../pages/about.jsx';
 import FormPage from '../pages/form.jsx';
 import ProductPage from '../pages/product.jsx';
-import SettingsPage from '../pages/settings.jsx';
-import PreferenceSettingsPage from '../pages/preferenceSettings.jsx'
+import SettingsPage from '../pages/settingsPage.jsx';
+import PreferenceSettingsPage from '../pages/preferenceSettingsPage.jsx'
 import AccountSettingPage from '../pages/accountSettings'
 
 import MessagePage from '../pages/Message.jsx'

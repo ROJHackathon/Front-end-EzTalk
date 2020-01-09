@@ -1,5 +1,5 @@
 import React from 'react';
-import Core from '../components/chatroom/core'
+import ChatRoom from '../components/chatRoom/chatRoom'
 import {
     Page,
     Navbar,
@@ -71,7 +71,7 @@ export default class extends React.Component {
                         ></Searchbar>
                     </Subnavbar>
                 </Navbar>
-                <Core officialrooms={this.state.officialrooms} privaterooms={this.state.privaterooms}/>
+                <ChatRoom officialrooms={this.state.officialrooms} privaterooms={this.state.privaterooms}/>
 
                 <Fab position="right-bottom" slot="fixed" color="blue">
                     <Icon f7="plus"></Icon>

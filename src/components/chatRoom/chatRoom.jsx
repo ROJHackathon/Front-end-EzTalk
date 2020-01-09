@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Tag from './tag'
+import Tag from './subComponents/tag'
 import {
     App,
     Panel,
@@ -25,7 +25,7 @@ import {
     Toggle
 } from 'framework7-react';
 
-class Core extends React.Component {
+class ChatRoom extends React.Component {
 
     constructor(props) {
         super(props)
@@ -45,4 +45,4 @@ class Core extends React.Component {
 
 
 
-export default Core
+export default ChatRoom
