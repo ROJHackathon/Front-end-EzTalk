@@ -47,20 +47,10 @@ export default class extends React.Component {
         serviceWorker: {
           path: '/service-worker.js',
         },
-        token: 0,
-
-        data: function () {
-          return {
-            token: this.token,
-          };
-        },
       },
 
       // User data
-      uid: 0, // test only
       token: 0,
-
-
       //avtive tab
       tabActive: "view-home"
     }
@@ -101,14 +91,14 @@ export default class extends React.Component {
         <App params={this.state.f7params} themeDark>
 
           {/* Login screen */}
-          <Login handleLogin={this.handleLogin.bind(this)}></Login>
+          <Login handleLogin={this.handleLogin.bind(this)}/>
 
           {/* Right panel with reveal effect -- for user side panel*/}
           <UserPanel
             uid={this.state.uid}
             token={this.state.token}
             tabActive={this.state.tabActive}
-          ></UserPanel>
+          />
 
           {/* Views/Tabs container */}
           <Views tabs className="safe-areas">
@@ -136,15 +126,12 @@ export default class extends React.Component {
   }
   componentDidMount() {
     this.$f7ready((f7) => {
-
       // Call F7 APIs here
     });
   }
 
   handleLogin(val) {
     this.setState({ token: val })
-    //console.log(this.state.f7params.token);
-    //console.log(this.state.f7params.token);
   }
 
 }
