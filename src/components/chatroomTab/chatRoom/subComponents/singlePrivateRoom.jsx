@@ -25,7 +25,7 @@ import {
     Segmented
 } from 'framework7-react';
 
-class TagPrivate extends Component {
+class SinglePrivateRoom extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -48,4 +48,4 @@ class TagPrivate extends Component {
     };
 
 }
-export default TagPrivate
+export default SinglePrivateRoom

@@ -25,7 +25,7 @@ import {
     Segmented
 } from 'framework7-react';
 
-class TagOfficial extends Component {
+class SingleOfficialRoom extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -41,11 +41,9 @@ class TagOfficial extends Component {
                 link="/message/"
                 subtitle={this.props.content}
                 after="17:00"
-            >
-
-            </ListItem>
+            />
         )
     };
 
 }
-export default TagOfficial
+export default SingleOfficialRoom

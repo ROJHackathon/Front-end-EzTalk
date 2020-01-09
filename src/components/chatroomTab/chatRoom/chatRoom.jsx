@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Tag from './subComponents/tag'
+import RoomsBase from './subComponents/roomsBase'
 import {
     App,
     Panel,
@@ -37,7 +37,7 @@ class ChatRoom extends React.Component {
     render() {
         return (
             <div>
-                <Tag officialrooms={this.props.officialrooms} privaterooms={this.props.privaterooms}/>
+                <RoomsBase officialrooms={this.props.officialrooms} privaterooms={this.props.privaterooms}/>
             </div>   
         )
     };
