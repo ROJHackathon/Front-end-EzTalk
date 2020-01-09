@@ -55,8 +55,8 @@ class RoomsBase extends Component {
                 <List mediaList>
                     {
                     this.state.activeItem === "1" ? 
-                    this.props.officialrooms.map((room, i)=> <SingleOfficialRoom key={i} name={room.name} content={room.language} />) :
-                    this.props.privaterooms.map((room, i)=> <SinglePrivateRoom key={i} name={room.name} content={room.language}/>)
+                    this.props.officialrooms.map((room, i)=> <SingleOfficialRoom key={room.id} id={room.id} name={room.name} content={room.language} />) :
+                    this.props.privaterooms.map((room, i)=> <SinglePrivateRoom key={room.id} id={room.id} name={room.name} content={room.language}/>)
                     }
                 </List>
             </div>

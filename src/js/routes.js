@@ -53,7 +53,7 @@ var routes = [
     component: ProductPage,
   },
   {
-    path: '/message/',
+    path: '/message/:id/',
     component: MessagePage,
   },
 

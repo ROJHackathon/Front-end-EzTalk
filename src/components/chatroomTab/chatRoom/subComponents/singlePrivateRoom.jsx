@@ -38,7 +38,7 @@ class SinglePrivateRoom extends Component {
         return (
             <ListItem
             title={this.props.name}
-            link="/message/"
+            link={"/message/" + this.props.id + "/"}
             subtitle={this.props.content}
             after="5:00"
         >
