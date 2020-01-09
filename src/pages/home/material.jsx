@@ -2,9 +2,9 @@ import React from 'react';
 import { Page, Navbar, Block, Link } from 'framework7-react';
 import axios from 'axios';
 
-import MarterialCard from '../../components/homeTab/materialInfo/materialCard.jsx';
-import MaterialComment from '../../components/homeTab/materialInfo/materialComment.jsx';
-import RatingArea from '../../components/homeTab/materialInfo/ratingArea.jsx';
+import MarterialCard from '../../components/homeTab/materialContent/materialCard.jsx';
+import MaterialComment from '../../components/homeTab/materialContent/materialComment.jsx';
+import RatingArea from '../../components/homeTab/materialContent/ratingArea.jsx';
 
 export default class Material extends React.Component {
 
@@ -19,7 +19,7 @@ export default class Material extends React.Component {
     }
 
     componentDidMount() {
-        let url = ' http://108.61.221.218:39802/api-fake/' + this.$f7route.url; // get the info of one material
+        let url = 'https://ez-talk-api-provider.azurewebsites.net/api-fake/' + this.$f7route.url; // get the info of one material
         //console.log(url);
         axios.get(url).then(res => {
             this.setState({ material: res.data })

@@ -26,7 +26,7 @@ import {
     Toggle
 } from 'framework7-react';
 
-class Core extends React.Component {
+class Search extends React.Component {
 
     constructor(props) {
         super(props)
@@ -51,4 +51,4 @@ class Core extends React.Component {
 
 
 
-export default Core
+export default Search

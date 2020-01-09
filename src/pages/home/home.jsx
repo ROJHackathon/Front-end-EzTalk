@@ -20,8 +20,8 @@ import {
 } from 'framework7-react';
 
 //self-defined component
-import Feed from '../../components/homeTab/feed.jsx';
-import Core from '../../components/homeTab/homePageSearch/core'
+import Feed from '../../components/homeTab/homeFeed/feed.jsx';
+import Search from '../../components/homeTab/homeSearch/Search'
 
 //context
 import TokenContext from '../../components/tokenContext.jsx'
@@ -78,7 +78,7 @@ export default class extends React.Component {
           </Subnavbar>
         </Navbar>
 
-        {!this.state.onSearch ? <Feed/> : <Core/>}
+        {!this.state.onSearch ? <Feed/> : <Search/>}
 
 
       </Page>
