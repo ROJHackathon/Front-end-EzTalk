@@ -35,10 +35,11 @@ class SingleOfficialRoom extends Component {
     }
 
     render() {
+
         return (
             <ListItem
                 title={this.props.name}
-                link="/message/"
+                link = {"/message/" + this.props.id + "/"}
                 subtitle={this.props.content}
                 after="17:00"
             />

@@ -61,7 +61,7 @@ class Feed extends React.Component {
 
     render() {
         return (
-            <Page ptr onPtrRefresh={this.loadMore.bind(this)}>
+            <Page >
                 <List mediaList>
                     {this.state.materials.map((material, index) => (
                         <Card className="feed-card" 
@@ -89,26 +89,7 @@ class Feed extends React.Component {
         );
     }
 
-    loadMore(done) {
-        const self = this;
-        setTimeout(() => {
-            const { materials, page } = self.state;
-            let url = 'https://ez-talk-api-provider.azurewebsites.net/api-fake/request-feed?page=' + this.state.page + '&token=' + this.context;;
-            axios.get(url).then(res => {
-                //console.log(res);
-                let prevList = materials;
-                let newList = res.data;
-                newList = newList.concat(prevList);
-                self.setState({ 
-                    materials: newList, 
-                    page: page+1,
-                });
-                //console.log(this.state.page);
-            });
 
-            done();
-        }, 1000)
-    }
 
 }
 

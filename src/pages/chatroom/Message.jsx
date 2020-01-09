@@ -28,6 +28,7 @@ import {
     MessagebarSheetImage,
     MessagebarSheetItem
 } from 'framework7-react';
+import axios from "axios";
 
 
 class MessagePage extends React.Component {
@@ -35,6 +36,7 @@ class MessagePage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            roomName:"",
             attachments: [],
             sheetVisible: false,
             typingMessage: null,
@@ -132,18 +134,36 @@ class MessagePage extends React.Component {
 
     }
 
+    componentDidMount() {
+        const self = this;
+        self.$f7ready(() => {
+            self.messagebar = self.messagebarComponent.f7Messagebar;
+            self.messages = self.messagesComponent.f7Messages;
+        });
+
+        let specificRoomurl = "https://ez-talk-api-provider.azurewebsites.net/api-fake/chatroom/" + this.$f7route.params.id + "/";
+        axios.get(specificRoomurl).then((res) => {
+            this.setState({
+                roomName: res.data.name,
+            })
+        })
+    }
+
+
 
     render() {
+        //console.log(this.$f7route.params.id);
+
         return (
-          <Page>
-            <Navbar title="Messages" backLink="Back"></Navbar>
+          <Page noToolbar>
+            <Navbar title={this.state.roomName} backLink="Back"></Navbar>
     
             <Messagebar
               placeholder={this.placeholder}
               ref={(el) => {this.messagebarComponent = el}}
               attachmentsVisible={this.attachmentsVisible}
               sheetVisible={this.state.sheetVisible}
-              style = {{marginBottom :"50px"}}
+              style = {{marginBottom :"0px"}}
             >
               <Link
                 iconIos="f7:camera_fill"
@@ -223,13 +243,7 @@ class MessagePage extends React.Component {
         const self = this;
         return self.state.attachments.length > 0 ? 'Add comment or Send' : 'Message';
       }
-      componentDidMount() {
-        const self = this;
-        self.$f7ready(() => {
-          self.messagebar = self.messagebarComponent.f7Messagebar;
-          self.messages = self.messagesComponent.f7Messages;
-        });
-      }
+
       isFirstMessage(message, index) {
         const self = this;
         const previousMessage = self.state.messagesData[index - 1];
