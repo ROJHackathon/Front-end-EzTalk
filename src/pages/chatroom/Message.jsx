@@ -89,14 +89,14 @@ class MessagePage extends React.Component {
         });
 
 
-        let userurl = "https://ez-talk-api-provider.azurewebsites.net/api/get-§/" + this.context;
+        let userurl = "https://ez-talk-api-provider.azurewebsites.net/api/get-user/" + this.context;
         axios.get(userurl).then((res) => {
             this.setState({
                 author: res.data
             })
         });
 
-        this.interval = setInterval(this.testRef.bind(this), 1000)
+        this.interval = setInterval(this.refreshMessageData.bind(this), 1000)
     }
 
 
@@ -203,9 +203,17 @@ class MessagePage extends React.Component {
 
         self.setState((prevState) => ({
               messagesData: prevState.messagesData.concat(messagesToSend)
-        }))
+        }));
 
-          console.log(this.state.messagesData)
+        // post
+          let roomId = this.$f7route.params.id;
+          let url = "https://ez-talk-api-provider.azurewebsites.net/api/chatroom/" + roomId + "/say";
+          axios.post(url, {
+              content: text,
+              token: this.context
+          }).then((res) => {console.log(text)});
+
+        //console.log(this.state.messagesData)
         self.messagebar.clear();
 
         //Focus area
