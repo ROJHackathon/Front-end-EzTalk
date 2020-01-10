@@ -140,7 +140,6 @@ export default class extends React.Component {
 
                 {!this.state.onSearch ? <Feed materials={this.state.materials}/> : <Search searchInput={this.state.searchInput} />}
 
-
             </Page>
         )
     };

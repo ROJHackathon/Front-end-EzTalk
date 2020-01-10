@@ -24,22 +24,21 @@ import {
     Icon,
     Toggle
 } from 'framework7-react';
+import SearchResult from "./SearchResult";
+import axios from "axios";
 
 class Search extends React.Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-
         }
     }
-    
 
     render() {
         return (
             <Page>
-                {this.props.searchInput.length > 0 ?<h1>he</h1> : <Pophis/>}
-
+                {this.props.searchInput.length > 0 ? <SearchResult searchInput={this.props.searchInput}/>: <Pophis/>}
             </Page>
             
         )

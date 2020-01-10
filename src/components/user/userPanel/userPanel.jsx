@@ -25,6 +25,9 @@ import {
 import Avatar from './subComponents/avatar.jsx';
 import ToolBar from './subComponents/toolbar.jsx';
 
+import axios from 'axios';
+import TokenContext from "../../tokenContext";
+
 
 class UserPanel extends React.Component {
   constructor(props) {
@@ -32,6 +35,8 @@ class UserPanel extends React.Component {
 
     this.state = {}
   }
+
+  static contextType = TokenContext;
 
   render() {
     return (
@@ -48,6 +53,11 @@ class UserPanel extends React.Component {
   };
 
   handleClick() {
+    let url ="https://ez-talk-api-provider.azurewebsites.net/api/logout";
+    axios.post(url, {
+        token : this.context,
+    }).then((res) => {});
+
     window.location.reload();
   }
 }
