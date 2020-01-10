@@ -25,6 +25,7 @@ import {
 } from 'framework7-react';
 import axios from 'axios';
 import CommentSheet from './materialCard/commentSheet.jsx'
+import TokenContext from "../../tokenContext";
 
 class MaterialCard extends React.Component {
     constructor(props) {
@@ -39,6 +40,8 @@ class MaterialCard extends React.Component {
         // bind
         this.handleClickLike = this.handleClickLike.bind(this);
     }
+
+    static contextType = TokenContext;
 
     componentDidMount() {
         let url = ' https://ez-talk-api-provider.azurewebsites.net/api/material/' + this.props.id; // get the info of one material
@@ -85,9 +88,14 @@ class MaterialCard extends React.Component {
     }
 
     handleClickLike() {
-        if (this.state.isLiked == false) {
+        if (this.state.isLiked === false) {
             this.setState({ isLiked: true });
             // console.log(this.state.isLiked);
+            let url = "https://ez-talk-api-provider.azurewebsites.net/api/material/" + this.state.material.id + "/love";
+            axios.post(url, {
+                token: this.context,
+            }).then((res) => {console.log("love!")});
+
         } else {
             this.setState({ isLiked: false });
             // console.log(this.state.isLiked);

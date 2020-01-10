@@ -60,7 +60,7 @@ class Feed extends React.Component {
                                 </p>
                             </CardContent>
                             <CardFooter>
-                                <div className="like-num">{material.like} Likes</div>
+                                <div className="like-num">{material.love} Likes</div>
                                 <Link iconF7="ellipsis" href={"/material/" + material.id + "/"} />
                             </CardFooter>
                         </Card>
