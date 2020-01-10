@@ -40,7 +40,7 @@ class PopularTopic extends React.Component {
     }
 
     componentDidMount() {
-        let url = "https://ez-talk-api-provider.azurewebsites.net/api-fake/top-word"
+        let url = "https://ez-talk-api-provider.azurewebsites.net/api/top-word"
         axios.get(url).then(
             (res) => {
                 this.setState({
