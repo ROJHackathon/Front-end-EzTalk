@@ -35,7 +35,7 @@ class OfficialRooms extends Component {
     }
 
     componentDidMount() {
-        let urlOfficial = "https://ez-talk-api-provider.azurewebsites.net/api-fake/official-chatroom-list"
+        let urlOfficial = "https://ez-talk-api-provider.azurewebsites.net/api/chatroom-list"
         axios.get(urlOfficial).then((res) => {
             this.setState({
                 officialRooms: res.data,

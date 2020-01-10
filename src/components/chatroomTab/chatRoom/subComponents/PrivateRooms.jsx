@@ -35,7 +35,7 @@ class PrivateRooms extends Component {
     }
 
     componentDidMount() {
-        let urlPrivate = "https://ez-talk-api-provider.azurewebsites.net/api-fake/chatroom-list";
+        let urlPrivate = "https://ez-talk-api-provider.azurewebsites.net/api/chatroom-list";
 
         axios.get(urlPrivate).then((res) => {
             this.setState({
