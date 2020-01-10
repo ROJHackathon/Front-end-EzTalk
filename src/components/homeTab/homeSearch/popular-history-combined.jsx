@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Pophis from './popular-history-combined'
+import SearchHistory from './searchHistory'
+import PopularTopic from './popularTopic'
 import {
     App,
     Panel,
@@ -25,7 +26,7 @@ import {
     Toggle
 } from 'framework7-react';
 
-class Search extends React.Component {
+class Pophis extends React.Component {
 
     constructor(props) {
         super(props)
@@ -33,15 +34,18 @@ class Search extends React.Component {
 
         }
     }
-    
+
+
+
 
     render() {
         return (
             <Page>
-                {this.props.searchInput.length > 0 ?<h1>he</h1> : <Pophis/>}
+                <SearchHistory/>
+                <PopularTopic/>
 
             </Page>
-            
+
         )
     };
 
@@ -50,4 +54,4 @@ class Search extends React.Component {
 
 
 
-export default Search
+export default Pophis
