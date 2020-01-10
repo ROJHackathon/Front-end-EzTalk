@@ -23,6 +23,7 @@ import {
 } from 'framework7-react';
 import axios from 'axios'
 import RoomsBase from "../../components/chatroomTab/chatRoom/roomsBase";
+import SearchChat from "../../components/chatroomTab/searchChat/SearchChat";
 
 export default class extends React.Component {
     constructor() {
@@ -30,6 +31,7 @@ export default class extends React.Component {
         this.state = {
             activeTag: "1",
             onSearch: false,
+            searchStr: "",
         };
 
         this.handleActiveTag = this.handleActiveTag.bind(this)
@@ -51,19 +53,17 @@ export default class extends React.Component {
                     <Subnavbar inner={false}>
                         <Searchbar
                             searchContainer= {this.state.activeTag === "1" ? ".search-list-official-room" : ".search-list-private-room"}  // where does the search happen
-                            searchItem="li"
                             searchIn=".item-title"   // what is the query
                             placeholder="Search Chatroom"
                             clearButton={true}
                             onSearchbarEnable={this.handleEnableSearch}
                             onSearchbarDisable={this.handleDisableSearch}
+                            onInput={(e)=> {this.setState({searchStr:e.target.value})}}
                         />
                     </Subnavbar>
                 </Navbar>
 
-                {!this.state.onSearch ?  <RoomsBase handleActiveTag={this.handleActiveTag}/> : <div/>}
-
-
+                {!this.state.onSearch ?  <RoomsBase handleActiveTag={this.handleActiveTag}/> : <SearchChat searchStr={this.state.searchStr}/>}
 
                 <Fab position="right-bottom" slot="fixed" color="blue" href="/create-chat/">
                     <Icon f7="plus"/>
@@ -72,6 +72,7 @@ export default class extends React.Component {
             </Page>
         )
     }
+
 
     handleEnableSearch() {
         this.setState(

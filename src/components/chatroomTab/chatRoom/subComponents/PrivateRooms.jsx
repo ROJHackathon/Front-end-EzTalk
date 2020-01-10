@@ -47,7 +47,7 @@ class PrivateRooms extends Component {
 
     render() {
         return (
-                <List mediaList className="search-list-private-room searchbar-found">
+                <List mediaList className="search-list-private-room">
                     {this.state.privateRooms.map((room, i) =>
                         <ListItem
                             key={i}

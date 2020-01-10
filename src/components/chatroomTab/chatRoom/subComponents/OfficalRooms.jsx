@@ -45,7 +45,7 @@ class OfficialRooms extends Component {
 
     render() {
         return (
-                <List mediaList className="search-list-official-room searchbar-found">
+                <List mediaList className="search-list-official-room">
                     {this.state.officialRooms.map((room, i) =>
                         <ListItem
                             key={i}
