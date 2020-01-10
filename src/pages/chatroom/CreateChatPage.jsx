@@ -118,6 +118,17 @@ export default class CreateChatPage extends React.Component {
     handleCreateClick(){
         if(this.state.name === "") {
             this.$f7.dialog.alert("Please Input a Chat Room Name");
+        }else{
+            let url = "https://ez-talk-api-provider.azurewebsites.net/api/create-chatroom";
+
+            axios.post(url,{
+                name: this.state.name,
+                language: this.state.language,
+                description: this.state.description,
+                type: "public"
+            }).then((res) => {console.log("created!")});
+
+            this.$f7router.back();
         }
     }
 }
