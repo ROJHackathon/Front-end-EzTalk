@@ -106,6 +106,8 @@
 }
 
 .login-screen .login-btn-area .login-btn {
+    margin-left:40px;
+    margin-right:40px;
     font-size: 15px;
     height: 35px;
     width: auto;
@@ -122,6 +124,8 @@
 }
 
 .login-screen .login-btn-area .sign-up-btn {
+    margin-left: 40px;
+    margin-right:40px ;
     font-size: 15px;
     height: 35px;
     width: auto;
@@ -176,4 +180,17 @@
     margin-top: 40px;
     margin-inline: 100px;
     margin-bottom: 40px;
+}
+
+
+/* Create Chat room button */
+.create-chat-btn {
+    margin-left: 50px;
+    margin-right:50px ;
+    font-size: 15px;
+    height: 35px;
+    width: auto;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
 }
