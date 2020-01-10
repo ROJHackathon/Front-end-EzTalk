@@ -54,38 +54,49 @@ class LoginButtonArea extends React.Component {
         //     app.loginScreen.close();
         // });
         
-        let url = "https://ez-talk-api-provider.azurewebsites.net/api-fake/login"
+        let url = "https://ez-talk-api-provider.azurewebsites.net/api/login";
         axios.post(url, {
                 userName: this.props.username,
                 password: this.props.password,
             }).then((res) => {
-                console.log(res)
-                let message = res.data.message
-                let token = res.data.token
-                if(message === "Login success"){
+                console.log(res);
+
+                let code = res.status;
+
+                let message = res.data.message;
+                let token = res.data.token;
+
+                if(code === 200){
                     this.setState({isSuccess: true})
-                    //console.log(this.state.isSuccess);
-                    // app.loginScreen.close();
                     this.props.handleIsSuccess(this.state.isSuccess);
                     this.props.handleToken(token);
-                }else if(message === "User Name Does Not Exist"){
-                    this.setState({isSuccess: false})
-                    this.props.handleIsSuccess(this.state.isSuccess);
-                    this.$f7.dialog.alert("Login Fail: User name does not exits");
-                }else if(message === "Invalid Password"){
-                    this.setState({isSuccess: false})
-                    this.props.handleIsSuccess(this.state.isSuccess);
-                    this.$f7.dialog.alert("Login Fail: Check your password");
+                }else if(code === 400){
+                    if(message === "Login success"){
+                        this.setState({isSuccess: true})
+                        //console.log(this.state.isSuccess);
+                        // app.loginScreen.close();
+                        this.props.handleIsSuccess(this.state.isSuccess);
+                        this.props.handleToken(token);
+                    }else if(message === "User Name Does Not Exist"){
+                        this.setState({isSuccess: false})
+                        this.props.handleIsSuccess(this.state.isSuccess);
+                        this.$f7.dialog.alert("Login Fail: User name does not exits");
+                    }else if(message === "Invalid Password") {
+                        this.setState({isSuccess: false})
+                        this.props.handleIsSuccess(this.state.isSuccess);
+                        this.$f7.dialog.alert("Login Fail: Check your password");
+                    }
                 }else{
                     this.setState({isSuccess: false})
                     this.props.handleIsSuccess(this.state.isSuccess);
                     this.$f7.dialog.alert("Unknown Error");
                 }
-            });    
+
+            });
     }
 
     signUp() {
-        let url = "https://ez-talk-api-provider.azurewebsites.net/api-fake/sign-up"
+        let url = "https://ez-talk-api-provider.azurewebsites.net/api/register";
 
         axios.post(url, {
             userName: this.props.username,

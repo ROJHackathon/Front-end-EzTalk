@@ -49,8 +49,11 @@ export default class extends React.Component {
         if (this.context != 0) {
             const self = this;
             const {materials, page} = self.state;
-            let url = 'https://ez-talk-api-provider.azurewebsites.net/api-fake/request-feed?page=' + this.state.page + '&token=' + this.context;
-            axios.get(url).then(res => {
+            let url = 'https://ez-talk-api-provider.azurewebsites.net/api/feed';
+            axios.post(url, {
+                token : this.context,
+                page: this.state.page
+            }).then(res => {
                 //console.log(res);
                 let prevList = materials;
                 let newList = res.data;
@@ -74,8 +77,11 @@ export default class extends React.Component {
             });
 
             // get new context
-            let url = 'https://ez-talk-api-provider.azurewebsites.net/api-fake/request-feed?page=' + this.state.page + '&token=' + this.context;
-            axios.get(url).then(res => {
+            let url = 'https://ez-talk-api-provider.azurewebsites.net/api/feed';
+            axios.post(url, {
+                token : this.context,
+                page: this.state.page
+            }).then(res => {
                 //console.log(res);
                 let prevList = materials;
                 let newList = res.data;
@@ -146,8 +152,11 @@ export default class extends React.Component {
         if (!this.state.onSearch) {
             setTimeout(() => {
                 const {materials, page} = self.state;
-                let url = 'https://ez-talk-api-provider.azurewebsites.net/api-fake/request-feed?page=' + this.state.page + '&token=' + this.context;
-                axios.get(url).then(res => {
+                let url = 'https://ez-talk-api-provider.azurewebsites.net/api/feed';
+                axios.post(url, {
+                    token : this.context,
+                    page: this.state.page
+                }).then(res => {
                     //console.log(res);
                     let prevList = materials;
                     let newList = res.data;
