@@ -41,7 +41,7 @@ class MaterialCard extends React.Component {
     }
 
     componentDidMount() {
-        let url = ' https://ez-talk-api-provider.azurewebsites.net/api-fake/material/' + this.props.id; // get the info of one material
+        let url = ' https://ez-talk-api-provider.azurewebsites.net/api/material/' + this.props.id; // get the info of one material
         //console.log(url);
         axios.get(url).then(res => {
             this.setState({ material: res.data })
