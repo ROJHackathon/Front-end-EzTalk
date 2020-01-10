@@ -29,6 +29,9 @@ export default class CreateChatPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            name: "",
+            language:"English",
+            description: "",
         }
     }
 
@@ -36,6 +39,7 @@ export default class CreateChatPage extends React.Component {
     };
 
     render() {
+        //console.log(this.state);
         return (
             <Page>
                 <Navbar title="Create Your Chat Room" backLink="Back" />
@@ -43,7 +47,7 @@ export default class CreateChatPage extends React.Component {
                 <BlockTitle large>Chat Room Info</BlockTitle>
                 <Block>
                     <p> This page will only a create private chat room, which cannot be accessed without permission.
-                        Public chat room cannot be created by the administrator.
+                        Public chat room can only be created by the administrator.
                     </p>
                 </Block>
 
@@ -57,6 +61,7 @@ export default class CreateChatPage extends React.Component {
                             info="Make a nice name for your chat room"
                             required
                             validate
+                            onChange ={this.handleNameChange.bind(this)}
                         >
                         </ListInput>
 
@@ -65,6 +70,7 @@ export default class CreateChatPage extends React.Component {
                             type="select"
                             defaultValue="English"
                             placeholder="Please choose..."
+                            onChange ={this.handleLanguageChange.bind(this)}
                         >
                             <option value="Arabic">Arabic</option>
                             <option value="Chinese">Chinese</option>
@@ -79,13 +85,39 @@ export default class CreateChatPage extends React.Component {
                             type="textarea"
                             resizable
                             placeholder="Bio"
+                            onChange ={this.handleDescriptionChange.bind(this)}
                         >
                         </ListInput>
                     </List>
 
-                <Button raised fill round className="create-chat-btn">Create</Button>
+                <Button raised fill round className="create-chat-btn" onClick={this.handleCreateClick.bind(this)}>Create</Button>
 
             </Page>
         );
     };
+
+    handleNameChange(e){
+        this.setState({
+            name: e.target.value,
+        })
+    }
+
+    handleLanguageChange(e){
+        this.setState({
+            language: e.target.value,
+        })
+
+    }
+
+    handleDescriptionChange(e){
+        this.setState({
+            description: e.target.value,
+        })
+    }
+
+    handleCreateClick(){
+        if(this.state.name === "") {
+            this.$f7.dialog.alert("Please Input a Chat Room Name");
+        }
+    }
 }
