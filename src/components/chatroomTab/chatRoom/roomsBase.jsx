@@ -54,10 +54,10 @@ class RoomsBase extends Component {
                     </button>
                 </Segmented>
 
-
                 <List className = "searchbar-not-found">
                     <ListItem title="Nothing found" />
                 </List>
+
                 {
                     this.state.activeItem === "1" ?
                         <OfficialRooms/> :

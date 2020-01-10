@@ -45,7 +45,6 @@ class OfficialRooms extends Component {
 
     render() {
         return (
-            <div>
                 <List mediaList className="search-list-official-room searchbar-found">
                     {this.state.officialRooms.map((room, i) =>
                         <ListItem
@@ -59,7 +58,6 @@ class OfficialRooms extends Component {
                     )
                     }
                 </List>
-            </div>
         )
     };
 

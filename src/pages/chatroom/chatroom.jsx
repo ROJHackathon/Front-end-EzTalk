@@ -47,6 +47,7 @@ export default class extends React.Component {
                     <Subnavbar inner={false}>
                         <Searchbar
                             searchContainer= {this.state.activeTag === "1" ? ".search-list-official-room" : ".search-list-private-room"}  // where does the search happen
+                            searchItem="li"
                             searchIn=".item-title"   // what is the query
                             placeholder="Search Chatroom"
                             clearButton={true}

@@ -47,19 +47,19 @@ class PrivateRooms extends Component {
 
     render() {
         return (
-            <List mediaList className="search-list-private-room searchbar-found">
-                {this.state.privateRooms.map((room, i) =>
-                    <ListItem
-                        key={i}
-                        title={room.name}
-                        link={"/message/" + room.id + "/"}
-                        subtitle={room.language}
-                        after="17:00"
-                        text="New message"
-                    />
-                )
-                }
-            </List>
+                <List mediaList className="search-list-private-room searchbar-found">
+                    {this.state.privateRooms.map((room, i) =>
+                        <ListItem
+                            key={i}
+                            title={room.name}
+                            link={"/message/" + room.id + "/"}
+                            subtitle={room.language}
+                            after="17:00"
+                            text="New message"
+                        />
+                    )
+                    }
+                </List>
         )
     };
 
