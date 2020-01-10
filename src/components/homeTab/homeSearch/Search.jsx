@@ -36,6 +36,7 @@ class Search extends React.Component {
     }
 
     render() {
+        //console.log(this.props.searchInput);
         return (
             <Page>
                 {this.props.searchInput.length > 0 ? <SearchResult searchInput={this.props.searchInput}/>: <Pophis/>}

@@ -108,9 +108,11 @@ export default class extends React.Component {
     disableSearch() {
         this.setState(
             {
-                onSearch: false
+                onSearch: false,
+                searchInput:""
             }
         )
+
     }
 
     render() {
