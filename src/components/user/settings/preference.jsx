@@ -24,18 +24,22 @@ import {
     Toggle,
     Segmented
 } from 'framework7-react';
+import axios from 'axios';
+import TokenContext from "../../tokenContext";
 
 class Preference extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            motherValue: "English",
-            targetvalue: "Chinese"
+            motherValue: "Chinese",
+            targetValue: "English"
 
         }
-        this.handleChangeMother = this.handleChangeMother.bind(this)
 
     }
+
+    static contextType = TokenContext;
+
 
     handleChangeMother(e) {
         this.setState(
@@ -43,6 +47,39 @@ class Preference extends Component {
         )
 
     }
+
+    handleChangeTarget(e) {
+        let url = "https://ez-talk-api-provider.azurewebsites.net/api-fake/set-preference"
+        this.setState({
+            targetValue:e.target.value,
+        })
+
+        // post the target value as preference to do feed
+        axios.post(url,
+            {targetLanguage:e.target.value,
+                toke:this.context
+            }).then(()=>{console.log("target")});
+
+    }
+
+    componentDidMount() {
+        let userurl = "https://ez-talk-api-provider.azurewebsites.net/api-fake/get-user/" + this.context;
+        axios.get(userurl).then((res) => {
+            if (res.data.targetLanguage!== null) {
+                this.setState({
+                    targetValue:res.data.targetLanguage
+                })
+            }else if(res.data.language !== null){
+                this.setState({
+                    motherValue:res.data.language
+                })
+
+            }
+
+        })
+
+    }
+
 
 
     render() {
@@ -56,7 +93,7 @@ class Preference extends Component {
                         smartSelect
                         smartSelectParams={{ openIn: 'sheet' }}
                     >
-                        <select name="motherlanguage" defaultValue="English" onChange={this.handleChangeMother}>
+                        <select name="motherlanguage" defaultValue={this.state.motherValue} onChange={this.handleChangeMother.bind(this)}>
                             <option value="English">English</option>
                             <option value="Chinese">Chinese</option>
                             <option value="Dutch">Dutch</option>
@@ -69,7 +106,7 @@ class Preference extends Component {
                         smartSelect
                         smartSelectParams={{ openIn: 'sheet' }}
                     >
-                        <select name="targetLanguage" defaultValue="Chinese" onChange={this.handleChangeMother}>
+                        <select name="targetLanguage" defaultValue={this.state.targetValue} onChange={this.handleChangeTarget.bind(this)}>
                             <option value="English">English</option>
                             <option value="Chinese">Chinese</option>
                             <option value="Dutch">Dutch</option>

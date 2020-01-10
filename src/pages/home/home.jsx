@@ -34,6 +34,7 @@ export default class extends React.Component {
             onSearch: false,
             page: 1,
             materials: [],
+            searchInput:"",
 
             init: true,
         }
@@ -125,11 +126,12 @@ export default class extends React.Component {
                             clearButton={true}
                             onSearchbarEnable={this.enableSearch}
                             onSearchbarDisable={this.disableSearch}
+                            onInput={(e)=> {this.setState({searchInput:e.target.value})}}
                         />
                     </Subnavbar>
                 </Navbar>
 
-                {!this.state.onSearch ? <Feed materials={this.state.materials}/> : <Search/>}
+                {!this.state.onSearch ? <Feed materials={this.state.materials}/> : <Search searchInput={this.state.searchInput} />}
 
 
             </Page>

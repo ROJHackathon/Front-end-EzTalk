@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import {
     App,
     Panel,
@@ -22,25 +22,56 @@ import {
     Button,
     Icon,
     Toggle,
-    Card
+    Card,
+    Row,
+    Col,
+
+
 } from 'framework7-react';
+import axios from "axios";
 
 class PopularTopic extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            content:"content here"
+            contents: []
         }
+    }
+
+    componentDidMount() {
+        let url = "https://ez-talk-api-provider.azurewebsites.net/api-fake/top-word"
+        axios.get(url).then(
+            (res) => {
+                this.setState({
+                    contents: res.data
+                }
+                )
+            }
+        )
+
+
     }
 
 
     render() {
         return (
-            <Card
-                title="Top 10"
-                content={this.state.content}
-            ></Card>
+            <Block>
+                <BlockTitle>Top 10</BlockTitle>
+                {this.state.contents.map(
+                    (content, index) => {
+                        return  <Row key={index}>
+                                    <Col/>
+                                    <Col>
+                                        {content}
+                                    </Col>
+                                    <Col/>
+                                </Row>
+
+                    }
+                )}
+
+            </Block>
         )
     };
 
