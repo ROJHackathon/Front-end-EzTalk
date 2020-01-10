@@ -96,7 +96,7 @@ class MessagePage extends React.Component {
             })
         });
 
-        this.interval = setInterval(this.refreshMessageData.bind(this), 1000)
+        this.interval = setInterval(this.refreshMessageData.bind(this), 800)
     }
 
 
