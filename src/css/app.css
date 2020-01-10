@@ -131,6 +131,10 @@
 }
 
 /* Feed */
+.media-list {
+    margin-top: 10px;
+}
+
 .feed-card .card-header{
     height: 35vw;
     background-size: cover;
