@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import {
     App,
     Panel,
@@ -44,23 +44,25 @@ class OfficialRooms extends Component {
     }
 
     render() {
-
         return (
-            <List mediaList>
-                {this.state.officialRooms.map((room, i) =>
-                    <ListItem
-                        key= {i}
-                        title={room.name}
-                        link = {"/message/" + room.id + "/"}
-                        subtitle={room.language}
-                        after="17:00"
-                        text="New message"
-                    />
+            <div>
+                <List mediaList className="search-list-official-room searchbar-found">
+                    {this.state.officialRooms.map((room, i) =>
+                        <ListItem
+                            key={i}
+                            title={room.name}
+                            link={"/message/" + room.id + "/"}
+                            subtitle={room.language}
+                            after="17:00"
+                            text="New message"
+                        />
                     )
-                }
-            </List>
+                    }
+                </List>
+            </div>
         )
     };
 
 }
+
 export default OfficialRooms

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import {
     App,
     Panel,
@@ -47,20 +47,22 @@ class PrivateRooms extends Component {
 
     render() {
         return (
-            <List mediaList>
+            <List mediaList className="search-list-private-room searchbar-found">
                 {this.state.privateRooms.map((room, i) =>
                     <ListItem
-                        key = {i}
+                        key={i}
                         title={room.name}
-                        link = {"/message/" + room.id + "/"}
+                        link={"/message/" + room.id + "/"}
                         subtitle={room.language}
                         after="17:00"
                         text="New message"
-                    />)
+                    />
+                )
                 }
             </List>
         )
     };
 
 }
+
 export default PrivateRooms

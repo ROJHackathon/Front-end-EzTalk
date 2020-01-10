@@ -1,5 +1,4 @@
 import React from 'react';
-import ChatRoom from '../../components/chatroomTab/chatRoom/chatRoom'
 import {
     Page,
     Navbar,
@@ -23,18 +22,20 @@ import {
 
 } from 'framework7-react';
 import axios from 'axios'
+import RoomsBase from "../../components/chatroomTab/chatRoom/roomsBase";
 
 export default class extends React.Component {
     constructor() {
         super();
         this.state = {
-            officialrooms : [],
-            privaterooms : [],
-        }
+            activeTag: "1",
+        };
+
+        this.handleActiveTag = this.handleActiveTag.bind(this)
     }
 
     render() {
-        //console.log(this.state.officialrooms);
+        console.log(this.state.activeTag);
         return (
             <Page name="chatroom">
                 <Navbar sliding={false} large>
@@ -45,20 +46,26 @@ export default class extends React.Component {
                     <NavTitleLarge>Chatroom</NavTitleLarge>
                     <Subnavbar inner={false}>
                         <Searchbar
-                            searchContainer=".search-list"  // where does the search happen
+                            searchContainer= {this.state.activeTag === "1" ? ".search-list-official-room" : ".search-list-private-room"}  // where does the search happen
                             searchIn=".item-title"   // what is the query
                             placeholder="Search Chatroom"
                             clearButton={true}
                         />
                     </Subnavbar>
                 </Navbar>
-                <ChatRoom/>
-
+                <RoomsBase handleActiveTag={this.handleActiveTag}/>
                 <Fab position="right-bottom" slot="fixed" color="blue" href="/create-chat/">
                     <Icon f7="plus"/>
                 </Fab>
 
             </Page>
         )
+    }
+
+
+    handleActiveTag(state){
+        this.setState({
+            activeTag : state,
+        })
     }
 }

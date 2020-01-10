@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import RoomsBase from './subComponents/roomsBase'
+import RoomsBase from './roomsBase'
 import {
     App,
     Panel,
