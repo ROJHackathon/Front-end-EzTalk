@@ -52,7 +52,7 @@ class MaterialComment extends React.Component {
                 {this.state.comments.map((comment, index) => (
                     <ListItem
                         key = {index}
-                        title = {comment.user.name}
+                        title = {comment.author.name}
                         subtitle="English/Chinese"
                         text= {comment.content}
                     >
