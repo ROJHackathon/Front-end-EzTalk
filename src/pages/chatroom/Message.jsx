@@ -38,7 +38,7 @@ class MessagePage extends React.Component {
         super(props)
         this.state = {
             roomName:"",
-            user:{},
+            author:{},
             attachments: [],
             typingMessage: null,
             messagesData: [],
@@ -49,7 +49,8 @@ class MessagePage extends React.Component {
     static contextType = TokenContext;
 
     refreshMessageData(){
-        let messageListurl = "https://ez-talk-api-provider.azurewebsites.net/api-fake/chatroom/" + roomId + "/" + "get-messages" + "/"
+        let roomId = this.$f7route.params.id;
+        let messageListurl = "https://ez-talk-api-provider.azurewebsites.net/api/chatroom/" + roomId + "/" + "get-messages";
         axios.get(messageListurl).then((res) => {
             this.setState({
                 messagesData: res.data,
@@ -61,7 +62,7 @@ class MessagePage extends React.Component {
     testRef(){
         let u = {id:9, name:"yangtao", password:null, avatarUrl:"http://placeimg.com/80/80/people/39",email:null,language:null,preference:null  }
         this.setState((prevState) => ({
-            messagesData: prevState.messagesData.concat([{content:"test", user:u}])
+            messagesData: prevState.messagesData.concat([{content:"test", author:u}])
         }))
     }
 
@@ -73,27 +74,27 @@ class MessagePage extends React.Component {
         });
 
         let roomId = this.$f7route.params.id
-        let specificRoomurl = "https://ez-talk-api-provider.azurewebsites.net/api-fake/chatroom/" + roomId + "/";
+        let specificRoomurl = "https://ez-talk-api-provider.azurewebsites.net/api/chatroom/" + roomId;
         axios.get(specificRoomurl).then((res) => {
             this.setState({
                 roomName: res.data.name,
             })
-        })
+        });
 
-        let messageListurl = "https://ez-talk-api-provider.azurewebsites.net/api-fake/chatroom/" + roomId + "/" + "get-messages" + "/"
+        let messageListurl = "https://ez-talk-api-provider.azurewebsites.net/api/chatroom/" + roomId + "/" + "get-messages";
         axios.get(messageListurl).then((res) => {
             this.setState({
                 messagesData: res.data,
             })
-        })
+        });
 
 
-        let userurl = "https://ez-talk-api-provider.azurewebsites.net/api-fake/get-user?token=" + this.context;
+        let userurl = "https://ez-talk-api-provider.azurewebsites.net/api/get-§/" + this.context;
         axios.get(userurl).then((res) => {
             this.setState({
-                user: res.data
+                author: res.data
             })
-        })
+        });
 
         this.interval = setInterval(this.testRef.bind(this), 1000)
     }
@@ -131,13 +132,13 @@ class MessagePage extends React.Component {
               <MessagesTitle><b>Sunday, Feb 9,</b> 12:58</MessagesTitle>
     
               {this.state.messagesData.map((message, index) => {
-                  console.log(message)
+                  //console.log(message)
 
                   return <Message
                       key={index}
-                      type={this.state.user.id === message.user.id ? "sent" : "received"}
-                      name={message.user.name}
-                      avatar={message.user.avatarUrl === null ? 'http://placeimg.com/80/80/people/35' : message.user.avatarUrl}
+                      type={this.state.author.id === message.author.id ? "sent" : "received"}
+                      name={message.author.name}
+                      avatar={message.author.avatarUrl === null ? 'http://placeimg.com/80/80/people/35' : message.author.avatarUrl}
                       first={this.isFirstMessage(message, index)}
                       last={this.isLastMessage(message, index)}
                       tail={this.isTailMessage(message, index)}
@@ -165,7 +166,7 @@ class MessagePage extends React.Component {
         const self = this;
         const previousMessage = self.state.messagesData[index - 1];
         if (message.isTitle) return false;
-        if ((!previousMessage || previousMessage.user.id !== message.user.id) && this.state.user.id !== message.user.id) return true;
+        if ((!previousMessage || previousMessage.author.id !== message.author.id) && this.state.author.id !== message.author.id) return true;
         return false;
     }
 
@@ -173,7 +174,7 @@ class MessagePage extends React.Component {
         const self = this;
         const nextMessage = self.state.messagesData[index + 1];
         if (message.isTitle) return false;
-        if (!nextMessage || nextMessage.user.id !== message.user.id) return true;
+        if (!nextMessage || nextMessage.author.id !== message.author.id) return true;
         return false;
     }
       isTailMessage(message, index) {
@@ -192,7 +193,7 @@ class MessagePage extends React.Component {
         if (text.trim().length) {
           messagesToSend.push({
               content : text,
-              user : this.state.user
+              author : this.state.author
           });
         }
         if (messagesToSend.length === 0) {
