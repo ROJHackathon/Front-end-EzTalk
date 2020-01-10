@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "./index.html"
   },
   {
-    "revision": "8d59bf8eb8cb2566314f",
+    "revision": "d60ad63429d595b56801",
     "url": "css/app.css"
   },
   {
@@ -44,7 +44,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "images/loginBackground.jpg"
   },
   {
-    "revision": "8d59bf8eb8cb2566314f",
+    "revision": "d60ad63429d595b56801",
     "url": "js/app.js"
   },
   {
