@@ -19,7 +19,7 @@ export default class Material extends React.Component {
     }
 
     componentDidMount() {
-        let url = 'https://ez-talk-api-provider.azurewebsites.net/api/' + this.$f7route.url; // get the info of one material
+        let url = 'https://ez-talk-api-provider.azurewebsites.net/api'+ this.$f7route.url; // get the info of one material
         //console.log(url);
         axios.get(url).then(res => {
             this.setState({ material: res.data })
@@ -27,6 +27,7 @@ export default class Material extends React.Component {
     };
 
     render() {
+        //console.log(this.state.material);
         return (
             <Page
                 infinite
