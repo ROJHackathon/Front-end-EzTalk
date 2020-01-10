@@ -54,7 +54,7 @@ export default class extends React.Component {
                 </Navbar>
                 <ChatRoom/>
 
-                <Fab position="right-bottom" slot="fixed" color="blue">
+                <Fab position="right-bottom" slot="fixed" color="blue" href="/create-chat/">
                     <Icon f7="plus"/>
                 </Fab>
 

@@ -50,6 +50,7 @@ class PrivateRooms extends Component {
             <List mediaList>
                 {this.state.privateRooms.map((room, i) =>
                     <ListItem
+                        key = {i}
                         title={room.name}
                         link = {"/message/" + room.id + "/"}
                         subtitle={room.language}

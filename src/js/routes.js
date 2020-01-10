@@ -16,6 +16,7 @@ import DynamicRoutePage from '../pages/util/dynamic-route.jsx';
 import RequestAndLoad from '../pages/util/request-and-load.jsx';
 import NotFoundPage from '../pages/util/404.jsx';
 import MaterialPage from '../pages/home/material.jsx';
+import CreateChatPage from "../pages/chatroom/CreateChatPage";
 
 var routes = [
   /* Main pages */
@@ -33,6 +34,12 @@ var routes = [
   },
 
   /* subpages */
+  // createChat Page
+  {
+    path: '/create-chat/',
+    component: CreateChatPage,
+  },
+    
   // Feed
   {
     path: '/material/:id/',

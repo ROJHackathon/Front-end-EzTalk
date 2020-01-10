@@ -49,6 +49,7 @@ class OfficialRooms extends Component {
             <List mediaList>
                 {this.state.officialRooms.map((room, i) =>
                     <ListItem
+                        key= {i}
                         title={room.name}
                         link = {"/message/" + room.id + "/"}
                         subtitle={room.language}

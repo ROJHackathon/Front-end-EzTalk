@@ -24,8 +24,6 @@ import {
     Toggle,
     Segmented
 } from 'framework7-react';
-import SingleOfficialRoom from './singleOfficialRoom';
-import SinglePrivateRoom from './singlePrivateRoom'
 import OfficialRooms from "./OfficalRooms";
 import PrivateRooms from "./PrivateRooms";
 
