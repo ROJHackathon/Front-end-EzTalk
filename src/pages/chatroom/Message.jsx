@@ -48,6 +48,23 @@ class MessagePage extends React.Component {
 
     static contextType = TokenContext;
 
+    refreshMessageData(){
+        let messageListurl = "https://ez-talk-api-provider.azurewebsites.net/api-fake/chatroom/" + roomId + "/" + "get-messages" + "/"
+        axios.get(messageListurl).then((res) => {
+            this.setState({
+                messagesData: res.data,
+            })
+        })
+
+    }
+
+    testRef(){
+        let u = {id:9, name:"yangtao", password:null, avatarUrl:"http://placeimg.com/80/80/people/39",email:null,language:null,preference:null  }
+        this.setState((prevState) => ({
+            messagesData: prevState.messagesData.concat([{content:"test", user:u}])
+        }))
+    }
+
     componentDidMount() {
         const self = this;
         self.$f7ready(() => {
@@ -77,8 +94,15 @@ class MessagePage extends React.Component {
                 user: res.data
             })
         })
+
+        this.interval = setInterval(this.testRef.bind(this), 1000)
     }
 
+
+
+    componentWillUnmount() {
+        clearInterval(this.interval)
+    }
 
 
     render() {
@@ -107,6 +131,7 @@ class MessagePage extends React.Component {
               <MessagesTitle><b>Sunday, Feb 9,</b> 12:58</MessagesTitle>
     
               {this.state.messagesData.map((message, index) => {
+                  console.log(message)
 
                   return <Message
                       key={index}
@@ -116,7 +141,10 @@ class MessagePage extends React.Component {
                       first={this.isFirstMessage(message, index)}
                       last={this.isLastMessage(message, index)}
                       tail={this.isTailMessage(message, index)}
-                      last={true}
+                      // first={true}
+                      // last={true}
+                      // tail={true}
+
                   >
                       {message.content && (
                           <span slot="text" dangerouslySetInnerHTML={{__html: message.content}}/>
