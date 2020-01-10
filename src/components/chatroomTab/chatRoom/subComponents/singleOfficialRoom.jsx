@@ -30,9 +30,11 @@ class SingleOfficialRoom extends Component {
         super(props)
         this.state = {
         }
-
-
     }
+
+
+
+
 
     render() {
 
@@ -42,6 +44,7 @@ class SingleOfficialRoom extends Component {
                 link = {"/message/" + this.props.id + "/"}
                 subtitle={this.props.content}
                 after="17:00"
+                text="New message"
             />
         )
     };

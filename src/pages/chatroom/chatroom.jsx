@@ -33,25 +33,6 @@ export default class extends React.Component {
         }
     }
 
-    componentDidMount() {
-        let urlOfficial = "https://ez-talk-api-provider.azurewebsites.net/api-fake/official-chatroom-list"
-
-        let urlPrivate = "https://ez-talk-api-provider.azurewebsites.net/api-fake/chatroom-list"
-
-        axios.get(urlOfficial).then((res) => {
-            this.setState({
-                officialrooms: res.data,
-            })
-        })
-
-        axios.get(urlPrivate).then((res) => {
-            this.setState({
-                privaterooms: res.data,
-            })
-        })
-        
-    }
-
     render() {
         //console.log(this.state.officialrooms);
         return (
@@ -68,13 +49,13 @@ export default class extends React.Component {
                             searchIn=".item-title"   // what is the query
                             placeholder="Search Chatroom"
                             clearButton={true}
-                        ></Searchbar>
+                        />
                     </Subnavbar>
                 </Navbar>
-                <ChatRoom officialrooms={this.state.officialrooms} privaterooms={this.state.privaterooms}/>
+                <ChatRoom/>
 
                 <Fab position="right-bottom" slot="fixed" color="blue">
-                    <Icon f7="plus"></Icon>
+                    <Icon f7="plus"/>
                 </Fab>
 
             </Page>

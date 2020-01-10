@@ -37,7 +37,7 @@ class ChatRoom extends React.Component {
     render() {
         return (
             <div>
-                <RoomsBase officialrooms={this.props.officialrooms} privaterooms={this.props.privaterooms}/>
+                <RoomsBase/>
             </div>   
         )
     };
