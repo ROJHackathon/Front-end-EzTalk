@@ -17,8 +17,13 @@ import RequestAndLoad from '../pages/util/request-and-load.jsx';
 import NotFoundPage from '../pages/util/404.jsx';
 import MaterialPage from '../pages/home/material.jsx';
 import CreateChatPage from "../pages/chatroom/CreateChatPage";
+import LoginPage from "../pages/login/LoginPage";
 
 var routes = [
+  {
+    path: '/login-page/',
+    component: LoginPage,
+  },
   /* Main pages */
   {
     path: '/home/',

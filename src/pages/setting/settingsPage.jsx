@@ -48,10 +48,10 @@ class Setting extends React.Component {
 
 
 
-        <BlockTitle>Test</BlockTitle>
+        <BlockTitle>Tool</BlockTitle>
         <List>
-          <ListItem title="setting1" link="#"></ListItem>
-          <ListItem title="setting2" link="#"></ListItem>
+          <ListItem title="Login Page" link="/login-page/"></ListItem>
+          <ListItem title="Tool1" link="#"></ListItem>
         </List>
 
         <BlockTitle>Test</BlockTitle>
