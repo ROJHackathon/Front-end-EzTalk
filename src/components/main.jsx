@@ -78,7 +78,7 @@ class Main extends React.Component{
                 </Toolbar>
 
                 {/* Your main view/tab, should have "view-main" class. It also has "tabActive" prop */}
-                <View id="view-home" main tab tabActive url="/home/" onTabShow={this.tabShowHomeHandler} />
+                <View id="view-home" tab tabActive url="/home/" onTabShow={this.tabShowHomeHandler} />
 
                 {/* Catalog View */}
                 <View id="view-translate" name="translate" tab url="/translate/" onTabShow={this.tabShowTranslateHandler} />

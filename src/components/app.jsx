@@ -1,24 +1,24 @@
 import React from 'react';
 import {
-  App,
-  Panel,
-  Views,
-  View,
-  Popup,
-  Page,
-  Navbar,
-  Toolbar,
-  NavRight,
-  Link,
-  Block,
-  BlockTitle,
-  LoginScreen,
-  LoginScreenTitle,
-  List,
-  ListItem,
-  ListInput,
-  ListButton,
-  BlockFooter
+    App,
+    Panel,
+    Views,
+    View,
+    Popup,
+    Page,
+    Navbar,
+    Toolbar,
+    NavRight,
+    Link,
+    Block,
+    BlockTitle,
+    LoginScreen,
+    LoginScreenTitle,
+    List,
+    ListItem,
+    ListInput,
+    ListButton,
+    BlockFooter
 } from 'framework7-react';
 
 
@@ -26,8 +26,7 @@ import {
 import UserPanel from './user/userPanel/userPanel';
 import Login from './login/login.jsx';
 import Main from './main.jsx';
-
-
+import Entry from './entry/entry.jsx';
 
 
 import routes from '../js/routes';
@@ -36,112 +35,114 @@ import routes from '../js/routes';
 import TokenContext from './tokenContext.jsx'
 
 export default class extends React.Component {
-  constructor() {
-    super();
+    constructor() {
+        super();
 
-    this.state = {
-      // Framework7 Parameters
-      f7params: {
-        name: 'EzTalk', // App name
-        theme: 'ios', // Automatic theme detection
-        // App routes
-        routes: routes,
-        // Register service worker
-        serviceWorker: {
-          path: '/service-worker.js',
-        },
-      },
+        this.state = {
+            // Framework7 Parameters
+            f7params: {
+                name: 'EzTalk', // App name
+                theme: 'ios', // Automatic theme detection
+                // App routes
+                routes: routes,
+                // Register service worker
+                serviceWorker: {
+                    path: '/service-worker.js',
+                },
+            },
 
-      // User data
-      token: 0,
-      //avtive tab
-      tabActive: "view-home"
-    };
+            // User data
+            token: 0,
+            //avtive tab
+            tabActive: "view-home"
+        };
 
-    this.tabShowHomeHandler = this.tabShowHomeHandler.bind(this)
-    this.tabShowTranslateHandler = this.tabShowTranslateHandler.bind(this)
-    this.tabShowChatHandler = this.tabShowChatHandler.bind(this)
-  }
+        this.tabShowHomeHandler = this.tabShowHomeHandler.bind(this)
+        this.tabShowTranslateHandler = this.tabShowTranslateHandler.bind(this)
+        this.tabShowChatHandler = this.tabShowChatHandler.bind(this)
+    }
 
-  tabShowHomeHandler(e) {
-    this.setState(
-        {
-          tabActive: "view-home"
-        }
-    )
-  }
+    tabShowHomeHandler(e) {
+        this.setState(
+            {
+                tabActive: "view-home"
+            }
+        )
+    }
 
-  tabShowTranslateHandler(e) {
-    this.setState(
-        {
-          tabActive: "view-translate"
-        }
-    )
-  }
+    tabShowTranslateHandler(e) {
+        this.setState(
+            {
+                tabActive: "view-translate"
+            }
+        )
+    }
 
-  tabShowChatHandler(e) {
-    this.setState(
-        {
-          tabActive: "view-chatroom"
-        }
-    )
-  }
-
-
-
-  render() {
-    //console.log(this.state.token);
-    return (
-      <TokenContext.Provider value={this.state.token}>
-        <App params={this.state.f7params} themeDark>
-
-          {/* Login screen */}
-          <Login handleLogin={this.handleLogin.bind(this)}/>
-
-          {/* Views/Tabs container */}
-          {/*<Views tabs className="safe-areas">*/}
-
-          {/*  /!* Right panel with reveal effect -- for user side panel*!/*/}
-          {/*  <UserPanel*/}
-          {/*      uid={this.state.uid}*/}
-          {/*      token={this.state.token}*/}
-          {/*      tabActive={this.state.tabActive}*/}
-          {/*  />*/}
-
-          {/*  /!* Tabbar for switching views-tabs *!/*/}
-          {/*  <Toolbar tabbar labels bottom>*/}
-          {/*    <Link tabLink="#view-home" tabLinkActive iconIos="f7:house_fill" iconAurora="f7:house_fill" iconMd="material:home" text="Home" />*/}
-          {/*    <Link tabLink="#view-translate" iconIos="f7:search" iconAurora="f7:search" iconMd="material:view_list" text="Translate" />*/}
-          {/*    <Link tabLink="#view-chatroom" iconIos="f7:chat_bubble_2_fill" iconAurora="f7:chat_bubble_2_fill" iconMd="material:settings" text="Chatroom" />*/}
-          {/*  </Toolbar>*/}
-
-          {/*  /!* Your main view/tab, should have "view-main" class. It also has "tabActive" prop *!/*/}
-          {/*  <View id="view-home" main tab tabActive url="/home/" onTabShow={this.tabShowHomeHandler} />*/}
-
-          {/*  /!* Catalog View *!/*/}
-          {/*  <View id="view-translate" name="translate" tab url="/translate/" onTabShow={this.tabShowTranslateHandler} />*/}
-
-          {/*  /!* Settings View *!/*/}
-          {/*  <View id="view-chatroom" name="chatroom" tab url="/chatroom/" onTabShow={this.tabShowChatHandler} />*/}
+    tabShowChatHandler(e) {
+        this.setState(
+            {
+                tabActive: "view-chatroom"
+            }
+        )
+    }
 
 
-          {/*</Views>*/}
+    render() {
+        //console.log(this.state.token);
+        return (
+            <TokenContext.Provider value={this.state.token}>
+                <App params={this.state.f7params} themeDark>
 
-          <Main token={this.state.token}/>
+                    {/* Login screen */}
+                    <Login handleLogin={this.handleLogin.bind(this)}/>
+
+                    {/*<Entry></Entry>*/}
+
+                    {/* Views/Tabs container */}
+                    {/*<Views tabs className="safe-areas">*/}
+
+                    {/*  /!* Right panel with reveal effect -- for user side panel*!/*/}
+                    {/*  <UserPanel*/}
+                    {/*      uid={this.state.uid}*/}
+                    {/*      token={this.state.token}*/}
+                    {/*      tabActive={this.state.tabActive}*/}
+                    {/*  />*/}
+
+                    {/*  /!* Tabbar for switching views-tabs *!/*/}
+                    {/*  <Toolbar tabbar labels bottom>*/}
+                    {/*    <Link tabLink="#view-home" tabLinkActive iconIos="f7:house_fill" iconAurora="f7:house_fill" iconMd="material:home" text="Home" />*/}
+                    {/*    <Link tabLink="#view-translate" iconIos="f7:search" iconAurora="f7:search" iconMd="material:view_list" text="Translate" />*/}
+                    {/*    <Link tabLink="#view-chatroom" iconIos="f7:chat_bubble_2_fill" iconAurora="f7:chat_bubble_2_fill" iconMd="material:settings" text="Chatroom" />*/}
+                    {/*  </Toolbar>*/}
+
+                    {/*  /!* Your main view/tab, should have "view-main" class. It also has "tabActive" prop *!/*/}
+                    {/*  <View id="view-home" main tab tabActive url="/home/" onTabShow={this.tabShowHomeHandler} />*/}
+
+                    {/*  /!* Catalog View *!/*/}
+                    {/*  <View id="view-translate" name="translate" tab url="/translate/" onTabShow={this.tabShowTranslateHandler} />*/}
+
+                    {/*  /!* Settings View *!/*/}
+                    {/*  <View id="view-chatroom" name="chatroom" tab url="/chatroom/" onTabShow={this.tabShowChatHandler} />*/}
 
 
-        </App>
-      </TokenContext.Provider>
-    )
-  }
-  componentDidMount() {
-    this.$f7ready((f7) => {
-      // Call F7 APIs here
-    });
-  }
+                    {/*</Views>*/}
 
-  handleLogin(val) {
-    this.setState({ token: val })
-  }
+                    <Main token={this.state.token}/>
+
+
+                </App>
+            </TokenContext.Provider>
+        )
+    }
+
+    componentDidMount() {
+        this.$f7ready((f7) => {
+            // Call F7 APIs here
+        });
+    }
+
+    handleLogin(val) {
+        this.setState({token: val})
+    }
 
 }
