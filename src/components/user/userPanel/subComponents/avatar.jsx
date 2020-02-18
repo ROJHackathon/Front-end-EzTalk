@@ -9,7 +9,9 @@ class Avatar extends React.Component {
     this.state = {
       username: ""
     }
+
   }
+
 
   componentDidUpdate(propsPrev){
     let url = "https://ez-talk-api-provider.azurewebsites.net/api/get-user/" + this.props.token;
