@@ -17,12 +17,12 @@ import RequestAndLoad from '../pages/util/request-and-load.jsx';
 import NotFoundPage from '../pages/util/404.jsx';
 import MaterialPage from '../pages/home/material.jsx';
 import CreateChatPage from "../pages/chatroom/CreateChatPage";
-import LoginPage from "../pages/login/LoginPage";
+import TestLoginPage from "../pages/login/TestLoginPage";
 
 var routes = [
   {
-    path: '/login-page/',
-    component: LoginPage,
+    path: '/test-login-page/',
+    component: TestLoginPage,
   },
   /* Main pages */
   {

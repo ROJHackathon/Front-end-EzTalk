@@ -50,7 +50,7 @@ class Setting extends React.Component {
 
         <BlockTitle>Tool</BlockTitle>
         <List>
-          <ListItem title="Login Page" link="/login-page/"></ListItem>
+          <ListItem title="Login Page" link="/test-login-page/"></ListItem>
           <ListItem title="Tool1" link="#"></ListItem>
         </List>
 

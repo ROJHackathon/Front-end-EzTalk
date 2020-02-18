@@ -32,8 +32,8 @@ class Entry extends React.Component{
 
     render() {
         return(
-            <View main url={"/login-page/"}></View>
-        )
+            <View main url={"/test-login-page/"}/>
+        );
     }
 
 
