@@ -40,7 +40,7 @@ export default class extends React.Component {
       // Framework7 Parameters
       f7params: {
         name: 'EzTalk', // App name
-        theme: 'auto', // Automatic theme detection
+        theme: 'ios', // Automatic theme detection
         // App routes
         routes: routes,
         // Register service worker
@@ -53,7 +53,7 @@ export default class extends React.Component {
       token: 0,
       //avtive tab
       tabActive: "view-home"
-    }
+    };
 
     this.tabShowHomeHandler = this.tabShowHomeHandler.bind(this)
     this.tabShowTranslateHandler = this.tabShowTranslateHandler.bind(this)

@@ -69,7 +69,7 @@ export default class extends React.Component {
         const app = self.$f7;
         const router = self.$f7router;
         app.dialog.alert(`Username: ${self.state.username}<br>Password: ${self.state.password}`, () => {
-            router.back();
+            router.navigate("/home/");
         });
     }
 }
