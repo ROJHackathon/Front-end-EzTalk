@@ -17,9 +17,14 @@ import RequestAndLoad from '../pages/util/request-and-load.jsx';
 import NotFoundPage from '../pages/util/404.jsx';
 import MaterialPage from '../pages/home/material.jsx';
 import CreateChatPage from "../pages/chatroom/CreateChatPage";
-import TestLoginPage from "../pages/login/TestLoginPage";
+import TestLoginPage from "../pages/entry/loginTest/TestLoginPage";
+import Entry from "../components/entry/entry";
 
 var routes = [
+  {
+    path: '/',
+    component: Entry
+  },
   {
     path: '/test-login-page/',
     component: TestLoginPage,

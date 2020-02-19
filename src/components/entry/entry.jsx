@@ -18,7 +18,8 @@ import {
     ListItem,
     ListInput,
     ListButton,
-    BlockFooter
+    BlockFooter,
+    Button,
 } from 'framework7-react';
 
 class Entry extends React.Component{
@@ -31,8 +32,17 @@ class Entry extends React.Component{
     }
 
     render() {
+        const style={
+            backgroundColor: "#282c34",
+        };
+
+
         return(
-            <View main url={"/test-login-page/"}/>
+            <Page style={style}>
+                <div slot="fixed">Fixed element</div>
+                <p>Page content goes here</p>
+                <ListButton text={"To Main"} href={"/home/"}/>
+            </Page>
         );
     }
 
