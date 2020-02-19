@@ -18,7 +18,6 @@ import {
     ListInput,
     ListButton,
     BlockFooter,
-    Button,
 } from 'framework7-react';
 
 import{
@@ -26,8 +25,9 @@ import{
     View,
     Image,
     TouchableHighlight,
-} from 'react-native-web'
+} from 'react-native-web';
 
+import {Button} from 'semantic-ui-react';
 
 import colors from '../../css/colour.js';
 import RoundButton from './RoundButton.jsx';
@@ -130,7 +130,7 @@ class Entry extends React.Component{
 
                     {/*Buttons*/}
                     <RoundButton
-                        text="Continue with Facebook"
+                        text="Sign In Your Account"
                         textColor={colors.green01}
                         background={colors.white}
                         handleOnPress={this.onFacebookPress}

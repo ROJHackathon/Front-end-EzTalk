@@ -99,7 +99,6 @@ export default class RoundButton extends Component {
 
 
         const ButtonComponent = (buttonProps) => {
-            if (Platform.OS === 'ios') {
                 return (
                     <TouchableOpacity
                         style={[{ opacity: opacityStyle, backgroundColor, borderColor: border }, styles.iosWrapper]}
@@ -110,21 +109,7 @@ export default class RoundButton extends Component {
                         {buttonProps.children}
                     </TouchableOpacity>
                 );
-            }
 
-            return (
-                <View style={[styles.androidWrapper, {borderColor: border}]}>
-                    <TouchableNativeFeedback
-                        useForeground={true}
-                        onPress={handleOnPress}
-                        disabled={disabled || loading}
-                    >
-                        <View style={[{opacity: opacityStyle, backgroundColor }, styles.androidButtonText]}>
-                            {buttonProps.children}
-                        </View>
-                    </TouchableNativeFeedback>
-                </View>
-            );
         };
 
         return (
