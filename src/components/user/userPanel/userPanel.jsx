@@ -22,6 +22,8 @@ import {
   Button
 } from 'framework7-react';
 
+import Cookies from 'js-cookie';
+
 import Avatar from './subComponents/avatar.jsx';
 import ToolBar from './subComponents/toolbar.jsx';
 
@@ -43,9 +45,11 @@ class UserPanel extends React.Component {
       <Panel right reveal themeDark>
         <View>
           <Page className="side-panel">
-            <Avatar token={this.props.token}></Avatar>
-            <ToolBar tabAvtive={this.props.tabActive}></ToolBar>
+            <Avatar token={this.props.token}/>
+            <ToolBar tabAvtive={this.props.tabActive}/>
             <Button fill color="red" className="log-out-btn" onClick={this.handleClick.bind(this)}>Log out</Button>
+            {/*<Button fill color={"green"} className={"log-out-btn"} onClick={this.handleSetCookies.bind(this)}>Set Cookies</Button>*/}
+            <Button fill color={"green"} className={"log-out-btn"} onClick={this.handleGetCookies.bind(this)}>Get Cookies</Button>
           </Page>
         </View>
       </Panel>
@@ -60,6 +64,19 @@ class UserPanel extends React.Component {
 
     window.location.reload();
   }
+
+  handleSetCookies(){
+    let url="https://ez-talk-api-provider.azurewebsites.net/api/hi";  // cookie url
+    axios.get(url).then(res => {
+    })
+
+  }
+
+  handleGetCookies(){
+    console.log(Cookies.get());
+  }
+
+
 }
 
 export default UserPanel;
