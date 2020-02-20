@@ -12,6 +12,9 @@ import {
     Easing,
 } from 'react-native-web';
 
+
+import {Icon} from 'framework7-react';
+
 import colors from '../../css/colour.js';
 
 export default class InputField extends Component {
@@ -82,11 +85,11 @@ export default class InputField extends Component {
                     )
                     : null }
                 <Animated.View style={[{ transform: [{ scale: iconScale }] }, styles.checkmarkWrapper]}>
-                    {/*<Icon*/}
-                    {/*    name="check"*/}
-                    {/*    color={colors.white}*/}
-                    {/*    size={20}*/}
-                    {/*/>*/}
+                    <Icon
+                        f7={"checkmark_alt"}
+                        size={"20px"}
+                        color={"white"}
+                    />
                 </Animated.View>
                 <TextInput
                     style={[{ color: inputColor, borderBottomColor: borderBottom }, inputStyle, styles.inputField]}
@@ -121,7 +124,7 @@ export default class InputField extends Component {
             {
                 toValue: value,
                 duration: 400,
-                easing: Easing.out,  // ease style
+                easing: Easing.in,  // ease style
             },
         ).start();
     }
@@ -158,7 +161,7 @@ const styles = {
     inputField: {
         borderBottomWidth: 1,
         paddingTop: 5,
-        paddingBottom: 5,
+        paddingBottom: 10,
         borderBottom: '1px solid #ffffff'
     },
     showButton: {
