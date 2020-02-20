@@ -17,6 +17,7 @@ import RequestAndLoad from '../pages/util/request-and-load.jsx';
 import NotFoundPage from '../pages/util/404.jsx';
 import MaterialPage from '../pages/home/material.jsx';
 import CreateChatPage from "../pages/chatroom/CreateChatPage";
+import VideoPage from '../pages/home/video'
 
 var routes = [
   /* Main pages */
@@ -44,6 +45,11 @@ var routes = [
   {
     path: '/material/:id/',
     component: MaterialPage,
+  },
+  //video
+  {
+    path: '/video/:id/',
+    component: VideoPage,
   },
   // About
   {

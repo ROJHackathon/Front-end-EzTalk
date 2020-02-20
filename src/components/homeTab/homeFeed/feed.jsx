@@ -40,6 +40,7 @@ class Feed extends React.Component {
 
 
     render() {
+        let isVideo = true
 
         return (
             <Page >
@@ -61,7 +62,7 @@ class Feed extends React.Component {
                             </CardContent>
                             <CardFooter>
                                 <div className="like-num">{material.love} Likes</div>
-                                <Link iconF7="ellipsis" href={"/material/" + material.id + "/"} />
+                               {isVideo ? <Link iconF7="ellipsis" href={"/video/" + material.id + "/"} /> :  <Link iconF7="ellipsis" href={"/material/" + material.id + "/"} />}
                             </CardFooter>
                         </Card>
                     ))}
