@@ -30,6 +30,7 @@ import {
 
 import colors from '../../css/colour.js';
 import InputField from './InputField.jsx';
+import NextArrowButton from './NextArrowButton.jsx'
 
 class Login extends React.Component {
     constructor(props) {
@@ -46,6 +47,8 @@ class Login extends React.Component {
 
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleNextButton = this.handleNextButton.bind(this);
+        this.toggleNextButtonState = this.toggleNextButtonState.bind(this);
     }
 
 
@@ -128,6 +131,13 @@ class Login extends React.Component {
                         />
 
                     </ScrollView>
+
+                    <NextArrowButton
+                        handleNextButton={this.handleNextButton}
+                        disabled={this.toggleNextButtonState()}
+                    />
+
+
                 </View>
             </Page>
         )
@@ -163,6 +173,30 @@ class Login extends React.Component {
         } else if (password <= 4) {
             this.setState({ validPassword: false });
         }
+    }
+
+    handleNextButton() {
+        this.setState({ loadingVisible: true });
+        const { logIn, navigation } = this.props;
+        const { navigate } = navigation;
+
+        setTimeout(() => {
+            const { emailAddress, password } = this.state;
+            if (logIn(emailAddress, password)) {
+                this.setState({ formValid: true, loadingVisible: false });
+                navigate('TurnOnNotifications');
+            } else {
+                this.setState({ formValid: false, loadingVisible: false });
+            }
+        }, 2000);
+    }
+
+    toggleNextButtonState() {
+        const { validEmail, validPassword } = this.state;
+        if (validEmail && validPassword) {
+            return false;
+        }
+        return true;
     }
 
 
