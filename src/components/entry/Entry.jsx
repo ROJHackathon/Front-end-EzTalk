@@ -27,8 +27,6 @@ import{
     TouchableHighlight,
 } from 'react-native-web';
 
-import {Button} from 'semantic-ui-react';
-
 import colors from '../../css/colour.js';
 import RoundButton from './RoundButton.jsx';
 
@@ -204,7 +202,10 @@ class Entry extends React.Component{
     }
 
     onFacebookPress() {
-        alert('Facebook button pressed');
+        const self = this;
+        const app = self.$f7;
+        const router = self.$f7router;
+        router.navigate("/sign-in/");
     }
 
     onCreateAccountPress() {

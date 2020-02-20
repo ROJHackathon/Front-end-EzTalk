@@ -26,7 +26,7 @@ import {
 import UserPanel from './user/userPanel/userPanel';
 import Login from './login/login.jsx';
 import Main from './main.jsx';
-import Entry from './entry/entry.jsx';
+import Entry from './entry/Entry.jsx';
 
 
 import routes from '../js/routes';

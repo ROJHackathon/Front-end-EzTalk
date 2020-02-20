@@ -18,12 +18,19 @@ import NotFoundPage from '../pages/util/404.jsx';
 import MaterialPage from '../pages/home/material.jsx';
 import CreateChatPage from "../pages/chatroom/CreateChatPage";
 import TestLoginPage from "../pages/entry/loginTest/TestLoginPage";
-import Entry from "../components/entry/entry";
+
+
+import Entry from "../components/entry/Entry";
+import Login from "../components/entry/Login.jsx"
 
 var routes = [
   {
     path: '/',
     component: Entry
+  },
+  {
+    path: '/sign-in/',
+    component: Login
   },
   {
     path: '/test-login-page/',
