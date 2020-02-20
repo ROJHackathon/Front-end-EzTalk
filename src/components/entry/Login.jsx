@@ -192,7 +192,11 @@ class Login extends React.Component {
         //     }
         // }, 2000);
 
-        this.setState({formValid: false})
+        this.setState({formValid: false})  // test it change to read background
+        this.$f7.dialog.alert("Those credential don't look right, Please try again", ()=> {
+            this.setState({formValid: true})
+        })
+
     }
 
     toggleNextButtonState() {
