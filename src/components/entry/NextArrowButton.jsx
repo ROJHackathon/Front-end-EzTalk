@@ -31,8 +31,6 @@ export default class NextArrowButton extends Component {
                         f7={"chevron_right"}
                         size={"32px"}
                         color={"blue"}
-                        style={styles.icon}
-
                     />
                 </TouchableHighlight>
             </View>

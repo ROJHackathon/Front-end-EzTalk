@@ -31,6 +31,8 @@ import {
 import colors from '../../css/colour.js';
 import InputField from './InputField.jsx';
 import NextArrowButton from './NextArrowButton.jsx'
+import Loader from './Loader.jsx'
+import Notification from './Notification.jsx'
 
 class Login extends React.Component {
     constructor(props) {
@@ -49,6 +51,7 @@ class Login extends React.Component {
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleNextButton = this.handleNextButton.bind(this);
         this.toggleNextButtonState = this.toggleNextButtonState.bind(this);
+        this.handleCloseNotification = this.handleCloseNotification.bind(this);
     }
 
 
@@ -137,7 +140,6 @@ class Login extends React.Component {
                         disabled={this.toggleNextButtonState()}
                     />
 
-
                 </View>
             </Page>
         )
@@ -176,19 +178,21 @@ class Login extends React.Component {
     }
 
     handleNextButton() {
-        this.setState({ loadingVisible: true });
-        const { logIn, navigation } = this.props;
-        const { navigate } = navigation;
+        // this.setState({ loadingVisible: true });
+        // const { logIn, navigation } = this.props;
+        // const { navigate } = navigation;
+        //
+        // setTimeout(() => {
+        //     const { emailAddress, password } = this.state;
+        //     if (logIn(emailAddress, password)) {
+        //         this.setState({ formValid: true, loadingVisible: false });
+        //         navigate('TurnOnNotifications');
+        //     } else {
+        //         this.setState({ formValid: false, loadingVisible: false });
+        //     }
+        // }, 2000);
 
-        setTimeout(() => {
-            const { emailAddress, password } = this.state;
-            if (logIn(emailAddress, password)) {
-                this.setState({ formValid: true, loadingVisible: false });
-                navigate('TurnOnNotifications');
-            } else {
-                this.setState({ formValid: false, loadingVisible: false });
-            }
-        }, 2000);
+        this.setState({formValid: false})
     }
 
     toggleNextButtonState() {
@@ -197,6 +201,10 @@ class Login extends React.Component {
             return false;
         }
         return true;
+    }
+
+    handleCloseNotification() {
+        this.setState({ formValid: true });
     }
 
 
