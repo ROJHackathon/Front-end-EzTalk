@@ -31,9 +31,8 @@ class Preference extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            motherValue: "Chinese",
-            targetValue: "English"
-
+            motherValue: localStorage.getItem("mother") === null ? "Chinese" : localStorage.getItem("mother"),
+            targetValue: localStorage.getItem("target") === null ? "English" : localStorage.getItem("target")
         }
 
     }
@@ -45,7 +44,7 @@ class Preference extends Component {
         this.setState(
             { motherValue: e.target.value }
         )
-
+        localStorage.setItem("mother", e.target.value)
     }
 
     handleChangeTarget(e) {
@@ -53,12 +52,14 @@ class Preference extends Component {
         this.setState({
             targetValue:e.target.value,
         })
+        localStorage.setItem("target", e.target.value)
 
         // post the target value as preference to do feed
         axios.post(url,
             {targetLanguage:e.target.value,
                 toke:this.context
             }).then(()=>{console.log("target")});
+        
 
     }
 
@@ -69,11 +70,12 @@ class Preference extends Component {
                 this.setState({
                     targetValue:res.data.targetLanguage
                 })
+                localStorage.setItem("target", res.data.targetLanguage)
             }else if(res.data.language !== null){
                 this.setState({
                     motherValue:res.data.language
                 })
-
+                localStorage.setItem("mother", res.data.language)
             }
 
         })
