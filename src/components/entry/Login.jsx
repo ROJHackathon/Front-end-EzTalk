@@ -8,6 +8,7 @@ import {
     Navbar,
     Toolbar,
     NavRight,
+    NavLeft,
     Link,
     Block,
     BlockTitle,
@@ -27,8 +28,12 @@ import {
     KeyboardAvoidingView,
 } from 'react-native-web';
 
+import {Icon} from 'framework7-react';
 
 import colors from '../../css/colour.js';
+import transparentHeaderStyle from '../../css/headerStyle.js'
+
+import NavBarButton from './NavBarButton.jsx';
 import InputField from './InputField.jsx';
 import NextArrowButton from './NextArrowButton.jsx'
 import Loader from './Loader.jsx'
@@ -47,6 +52,10 @@ class Login extends React.Component {
             loadingVisible: false,
         };
 
+
+        this.toggleForgotButton = this.toggleForgotButton.bind(this);
+        this.toggleBackButton = this.toggleBackButton.bind(this);
+
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleNextButton = this.handleNextButton.bind(this);
@@ -61,6 +70,9 @@ class Login extends React.Component {
             wrapper: {
                 display: 'flex',
                 flex: 1,
+            },
+            headerWrapper:{
+                marginTop: 20,
             },
             scrollViewWrapper: {
                 marginTop: 70,
@@ -84,6 +96,9 @@ class Login extends React.Component {
                 fontWeight: '300',
                 marginBottom: 40,
             },
+            forgotWrapper:{
+                marginTop: 5,
+            },
             notificationWrapper: {
                 position: 'absolute',
                 bottom: 0,
@@ -99,8 +114,20 @@ class Login extends React.Component {
         const background = formValid ? colors.green01 : colors.darkOrange;
         const notificationMarginTop = showNotification ? 10 : 0;
 
+
         return (
             <Page style={{backgroundColor: background, display: 'inline'}}>
+
+
+                <View style={styles.headerWrapper}>
+                    <NavBarButton
+                        handleButtonPress={this.toggleBackButton}
+                        location="left"
+                        icon={<Icon f7="chevron_left" color={"white"} size={"30px"} />}
+                    />
+                </View>
+
+
                 <View style={styles.scrollViewWrapper}>
                     <ScrollView style={styles.scrollView}>
                         <Text style={styles.loginHeader}>
@@ -133,6 +160,15 @@ class Login extends React.Component {
                             placeholder={"Your password"}
                         />
 
+                        <View style={styles.forgotWrapper}>
+                            <NavBarButton
+                            handleButtonPress={this.toggleForgotButton}
+                            location="right"
+                            color={colors.white}
+                            text="Forgot Password"
+                            />
+                        </View>
+
                     </ScrollView>
 
                     <NextArrowButton
@@ -146,6 +182,14 @@ class Login extends React.Component {
 
     }
 
+    toggleForgotButton(){
+
+    }
+
+    toggleBackButton(){
+        const router = this.$f7router;
+        router.back()
+    }
 
     handleEmailChange(email) {
         // eslint-disable-next-line
