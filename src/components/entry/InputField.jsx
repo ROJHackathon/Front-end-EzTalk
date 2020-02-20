@@ -121,7 +121,7 @@ export default class InputField extends Component {
             {
                 toValue: value,
                 duration: 400,
-                easing: Easing.inOut,  // ease style
+                easing: Easing.out,  // ease style
             },
         ).start();
     }
@@ -158,6 +158,8 @@ const styles = {
     inputField: {
         borderBottomWidth: 1,
         paddingTop: 5,
+        paddingBottom: 5,
+        borderBottom: '1px solid #ffffff'
     },
     showButton: {
         position: 'absolute',

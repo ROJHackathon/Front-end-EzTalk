@@ -94,7 +94,7 @@ class Login extends React.Component {
         const notificationMarginTop = showNotification ? 10 : 0;
 
         return (
-            <Page style={{backgroundColor: background,}}>
+            <Page style={{backgroundColor: background, display: 'inline'}}>
                 <View style={styles.scrollViewWrapper}>
                     <ScrollView style={styles.scrollView}>
                         <Text style={styles.loginHeader}>
@@ -102,7 +102,7 @@ class Login extends React.Component {
                         </Text>
 
                         <InputField
-                            labelText="EMAIL ADDRESS"
+                            labelText="USER NAME"
                             labelTextSize={14}
                             labelColor={colors.white}
                             textColor={colors.white}
@@ -111,6 +111,7 @@ class Login extends React.Component {
                             customStyle={{ marginBottom: 30 }}
                             onChangeText={this.handleEmailChange}
                             showCheckmark={validEmail}
+                            placeholder={"Your username"}
                             autoFocus
                         />
                         <InputField
@@ -123,6 +124,7 @@ class Login extends React.Component {
                             customStyle={{ marginBottom: 30 }}
                             onChangeText={this.handlePasswordChange}
                             showCheckmark={validPassword}
+                            placeholder={"Your password"}
                         />
 
                     </ScrollView>
