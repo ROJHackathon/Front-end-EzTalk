@@ -49,11 +49,18 @@ export default class SignUp extends React.Component{
             validEmail: false,
             emailAddress: '',
             password: '',
+            repeatPassword: '',
             validPassword: false,
             loadingVisible: false,
         };
 
         this.toggleBackButton = this.toggleBackButton.bind(this);
+
+        this.handleUserNameChange = this.handleUserNameChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleRepeatPasswordChange = this.handleRepeatPasswordChange.bind(this);
+        this.handleNextButton = this.handleNextButton.bind(this);
+        this.toggleNextButtonState = this.toggleNextButtonState.bind(this);
 
 
 
@@ -86,7 +93,7 @@ export default class SignUp extends React.Component{
                 paddingTop: 20,
                 flex: 1,
             },
-            loginHeader: {
+            signUpHeader: {
                 fontSize: headingTextSize,
                 color: colors.white,
                 fontWeight: '300',
@@ -121,6 +128,63 @@ export default class SignUp extends React.Component{
                     />
                 </View>
 
+                <View style={styles.scrollViewWrapper}>
+                    <ScrollView style={styles.scrollView}>
+                        <Text style={styles.signUpHeader}>
+                            Sign Up
+                        </Text>
+
+                        <InputField
+                            labelText="USER NAME"
+                            labelTextSize={14}
+                            labelColor={colors.white}
+                            textColor={colors.white}
+                            borderBottomColor={colors.white}
+                            inputType="email"
+                            customStyle={{ marginBottom: 30 }}
+                            onChangeText={this.handleUserNameChange}
+                            showCheckmark={validEmail}
+                            placeholder={"Your username"}
+                            autoFocus
+                        />
+
+                        <InputField
+                            labelText="PASSWORD"
+                            labelTextSize={14}
+                            labelColor={colors.white}
+                            textColor={colors.white}
+                            borderBottomColor={colors.white}
+                            inputType="password"
+                            customStyle={{ marginBottom: 30 }}
+                            onChangeText={this.handlePasswordChange}
+                            showCheckmark={validPassword}
+                            placeholder={"Your password"}
+                        />
+
+                        <InputField
+                            labelText="REPEAT PASSWORD"
+                            labelTextSize={14}
+                            labelColor={colors.white}
+                            textColor={colors.white}
+                            borderBottomColor={colors.white}
+                            inputType="password"
+                            customStyle={{ marginBottom: 30 }}
+                            onChangeText={this.handleRepeatPasswordChange}
+                            showCheckmark={validPassword}
+                            placeholder={"Repeat your password"}
+                        />
+
+
+
+                    </ScrollView>
+
+                    <NextArrowButton
+                        handleNextButton={this.handleNextButton}
+                        disabled={this.toggleNextButtonState()}
+                    />
+
+                </View>
+
             </Page>
         );
     }
@@ -130,6 +194,66 @@ export default class SignUp extends React.Component{
         const router = this.$f7router;
         router.back()
     }
+
+    toggleNextButtonState() {
+        const { validEmail, validPassword } = this.state;
+        if (validEmail && validPassword) {
+            return false;
+        }
+        return true;
+    }
+
+    handleUserNameChange(email) {
+        // eslint-disable-next-line
+        const emailCheckRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const { validEmail } = this.state;
+        this.setState({ emailAddress: email });
+
+        if (!validEmail) {
+            if (emailCheckRegex.test(email)) {
+                this.setState({ validEmail: true });
+            }
+        } else if (!emailCheckRegex.test(email)) {
+            this.setState({ validEmail: false });
+        }
+    }
+
+    handlePasswordChange(password){
+        const { validPassword } = this.state;
+
+        this.setState({ password: password});
+
+        if (!validPassword) {
+            if (password.length > 4) {
+                // Password has to be at least 4 characters long
+                this.setState({ validPassword: true });
+            }
+        } else if (password <= 4) {
+            this.setState({ validPassword: false });
+        }
+    }
+
+    handleRepeatPasswordChange(password){
+        const { validPassword, repeatPassword } = this.state;
+
+        this.setState({repeatPassword: password});
+
+        if (!validPassword) {
+            if (password.length > 4) {
+                // Password has to be at least 4 characters long
+                this.setState({ validPassword: true });
+            }
+        } else if (password <= 4) {
+            this.setState({ validPassword: false });
+        }
+
+        console.log(this.state.repeatPassword);
+    }
+
+    handleNextButton(){
+
+    }
+
 }
 
 
