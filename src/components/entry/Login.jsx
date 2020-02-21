@@ -28,6 +28,10 @@ import {
     KeyboardAvoidingView,
 } from 'react-native-web';
 
+import {connect} from 'react-redux';
+import {bindActionCreators} from "redux";
+import {ActionCreators} from "../../redux/actions";
+
 import {Icon} from 'framework7-react';
 
 import colors from '../../css/colour.js';
@@ -114,6 +118,7 @@ class Login extends React.Component {
         const background = formValid ? colors.green01 : colors.darkOrange;
         const notificationMarginTop = showNotification ? 10 : 0;
 
+        console.log(this.props.loggedInStatus);
 
         return (
             <Page style={{backgroundColor: background, display: 'inline'}}>
@@ -222,25 +227,22 @@ class Login extends React.Component {
     }
 
     handleNextButton() {
-        // this.setState({ loadingVisible: true });
-        // const { logIn, navigation } = this.props;
-        // const { navigate } = navigation;
-        //
-        // setTimeout(() => {
-        //     const { emailAddress, password } = this.state;
-        //     if (logIn(emailAddress, password)) {
-        //         this.setState({ formValid: true, loadingVisible: false });
-        //         navigate('TurnOnNotifications');
-        //     } else {
-        //         this.setState({ formValid: false, loadingVisible: false });
-        //     }
-        // }, 2000);
+        this.setState({ loadingVisible: true });
+        const {logIn} = this.props;
 
-        this.setState({formValid: false})  // test it change to read background
-        this.$f7.dialog.alert("Those credential don't look right, Please try again", ()=> {
-            this.setState({formValid: true})
-        })
+        setTimeout(() => {
+            const { emailAddress, password } = this.state;
+            if (logIn(emailAddress, password)) {
+                this.setState({ formValid: true, loadingVisible: false });
+            } else {
+                this.setState({ formValid: false, loadingVisible: false });
+            }
+        }, 2000);
 
+        // this.setState({formValid: false})  // test it change to read background
+        // this.$f7.dialog.alert("Those credential don't look right, Please try again", ()=> {
+        //     this.setState({formValid: true})
+        // })
     }
 
     toggleNextButtonState() {
@@ -258,4 +260,12 @@ class Login extends React.Component {
 
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+    return {
+        loggedInStatus: state.loggedInStatus,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => bindActionCreators(ActionCreators, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
