@@ -209,7 +209,10 @@ class Entry extends React.Component{
     }
 
     onCreateAccountPress() {
-        alert('Create Account button pressed');
+        const self = this;
+        const app = self.$f7;
+        const router = self.$f7router;
+        router.navigate("/sign-up/");
     }
 
     onMoreOptionsPress() {

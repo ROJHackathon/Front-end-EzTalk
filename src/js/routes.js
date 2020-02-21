@@ -21,7 +21,8 @@ import TestLoginPage from "../pages/entry/loginTest/TestLoginPage";
 
 
 import Entry from "../components/entry/Entry";
-import Login from "../components/entry/Login.jsx"
+import Login from "../components/entry/Login.jsx";
+import SignUp from "../components/entry/SignUp.jsx";
 
 var routes = [
   {
@@ -31,6 +32,10 @@ var routes = [
   {
     path: '/sign-in/',
     component: Login
+  },
+  {
+    path: '/sign-up/',
+    component: SignUp
   },
   {
     path: '/test-login-page/',
