@@ -21,6 +21,8 @@ import {
     BlockFooter
 } from 'framework7-react';
 
+import {Provider} from 'react-redux';
+import store from '../redux/store.js'
 
 //Self-defined component
 import UserPanel from './user/userPanel/userPanel';
@@ -91,17 +93,19 @@ export default class extends React.Component {
         //console.log(this.state.token);
         return (
             <TokenContext.Provider value={this.state.token}>
-                <App params={this.state.f7params} themeDark>
+                <Provider store={store}>
+                    <App params={this.state.f7params} themeDark>
 
-                    {/* Login screen */}
-                    {/*<Login handleLogin={this.handleLogin.bind(this)}/>*/}
+                        {/* Login screen */}
+                        {/*<Login handleLogin={this.handleLogin.bind(this)}/>*/}
 
-                    <View url={"/"}/>
+                        <View url={"/"}/>
 
-                    {/* Views/Tabs container */}
-                    <Main token={this.state.token}/>
+                        {/* Views/Tabs container */}
+                        <Main token={this.state.token}/>
 
-                </App>
+                    </App>
+                </Provider>
             </TokenContext.Provider>
         )
     }
