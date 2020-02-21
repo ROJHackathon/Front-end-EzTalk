@@ -251,7 +251,10 @@ export default class SignUp extends React.Component{
     }
 
     handleNextButton(){
-
+        const self = this;
+        const app = self.$f7;
+        const router = self.$f7router;
+        router.navigate("/set-preference/");
     }
 
 }
