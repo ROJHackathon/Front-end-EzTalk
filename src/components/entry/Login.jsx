@@ -118,7 +118,7 @@ class Login extends React.Component {
         const background = formValid ? colors.green01 : colors.darkOrange;
         const notificationMarginTop = showNotification ? 10 : 0;
 
-        console.log(this.props.loggedInStatus);
+        // console.log(this.props.loggedInStatus);
 
         return (
             <Page style={{backgroundColor: background, display: 'inline'}}>
