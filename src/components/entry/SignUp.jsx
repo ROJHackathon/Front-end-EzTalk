@@ -51,6 +51,7 @@ export default class SignUp extends React.Component{
             password: '',
             repeatPassword: '',
             validPassword: false,
+            samePassword: false,
             loadingVisible: false,
         };
 
@@ -111,7 +112,7 @@ export default class SignUp extends React.Component{
         };
 
         const {
-            formValid, loadingVisible, validEmail, validPassword,
+            formValid, loadingVisible, validEmail, validPassword, samePassword
         } = this.state;
         const showNotification = !formValid;
         const background = formValid ? colors.green01 : colors.darkOrange;
@@ -170,7 +171,7 @@ export default class SignUp extends React.Component{
                             inputType="password"
                             customStyle={{ marginBottom: 30 }}
                             onChangeText={this.handleRepeatPasswordChange}
-                            showCheckmark={validPassword}
+                            showCheckmark={samePassword}
                             placeholder={"Repeat your password"}
                         />
 
@@ -196,8 +197,8 @@ export default class SignUp extends React.Component{
     }
 
     toggleNextButtonState() {
-        const { validEmail, validPassword } = this.state;
-        if (validEmail && validPassword) {
+        const { validEmail, validPassword, samePassword } = this.state;
+        if (validEmail && validPassword && samePassword) {
             return false;
         }
         return true;
@@ -233,21 +234,20 @@ export default class SignUp extends React.Component{
         }
     }
 
-    handleRepeatPasswordChange(password){
-        const { validPassword, repeatPassword } = this.state;
+    handleRepeatPasswordChange(repeatPassword){
+        const { validPassword, password } = this.state;
 
-        this.setState({repeatPassword: password});
+        this.setState({repeatPassword: repeatPassword});
 
-        if (!validPassword) {
-            if (password.length > 4) {
-                // Password has to be at least 4 characters long
-                this.setState({ validPassword: true });
+        if(validPassword){
+            if(repeatPassword === password){
+                this.setState({samePassword: true})
+            }else {
+                this.setState({samePassword: false})
             }
-        } else if (password <= 4) {
-            this.setState({ validPassword: false });
+        } else {
+            this.setState({samePassword: false})
         }
-
-        console.log(this.state.repeatPassword);
     }
 
     handleNextButton(){

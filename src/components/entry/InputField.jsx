@@ -101,7 +101,6 @@ export default class InputField extends Component {
                     autoCorrect={false}
                     underlineColorAndroid="transparent"
                     placeholder={placeholder}
-                    defaultValue={inputValue}
                     value={inputValue}
                 />
             </View>
