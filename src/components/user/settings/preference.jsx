@@ -41,14 +41,21 @@ class Preference extends Component {
 
 
     handleChangeMother(e) {
+        let url = "https://ez-talk-api-provider.azurewebsites.net/api/set-language/"
         this.setState(
             { motherValue: e.target.value }
         )
         localStorage.setItem("mother", e.target.value)
+        print(e.target.value)
+        axios.post(url,
+            {
+                "language":e.target.value,
+                "token":this.context
+            }).then(()=>{console.log("mother-language")});
     }
 
     handleChangeTarget(e) {
-        let url = "https://ez-talk-api-provider.azurewebsites.net/api-fake/set-preference"
+        let url = "https://ez-talk-api-provider.azurewebsites.net/api/set-target-language/"
         this.setState({
             targetValue:e.target.value,
         })
@@ -56,15 +63,15 @@ class Preference extends Component {
 
         // post the target value as preference to do feed
         axios.post(url,
-            {targetLanguage:e.target.value,
-                toke:this.context
+            {
+                "targetLanguage":e.target.value,
+                "token":this.context
             }).then(()=>{console.log("target")});
         
-
     }
 
     componentDidMount() {
-        let userurl = "https://ez-talk-api-provider.azurewebsites.net/api-fake/get-user/" + this.context;
+        let userurl = "https://ez-talk-api-provider.azurewebsites.net/api/get-user/" + this.context;
         axios.get(userurl).then((res) => {
             if (res.data.targetLanguage!== null) {
                 this.setState({
