@@ -22,6 +22,7 @@ import {
 //self-defined component
 import Feed from '../../components/homeTab/homeFeed/feed.jsx';
 import Search from '../../components/homeTab/homeSearch/Search'
+import FeedSkeleton from '../../components/homeTab/homeFeed/feedSkeleton.jsx'
 
 //context
 import TokenContext from '../../components/tokenContext.jsx'
@@ -140,8 +141,8 @@ export default class extends React.Component {
                     </Subnavbar>
                 </Navbar>
 
-                {!this.state.onSearch ? <Feed materials={this.state.materials}/> : <Search searchInput={this.state.searchInput} />}
-
+                {!this.state.onSearch ? (this.state.materials.length > 0 ? <Feed materials={this.state.materials}/> : <FeedSkeleton/>) : <Search searchInput={this.state.searchInput} />}
+                
             </Page>
         )
     };
