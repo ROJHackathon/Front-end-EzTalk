@@ -45,10 +45,16 @@ class Login extends React.Component {
 
         this.state = {
             formValid: true,
+
             validEmail: false,
             emailAddress: '',
-            password: '',
+
+            validName: false,
+            userName: '',
+
             validPassword: false,
+            password: '',
+
             loadingVisible: false,
         };
 
@@ -57,6 +63,7 @@ class Login extends React.Component {
         this.toggleBackButton = this.toggleBackButton.bind(this);
 
         this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handleUserNameChange = this.handleUserNameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleNextButton = this.handleNextButton.bind(this);
         this.toggleNextButtonState = this.toggleNextButtonState.bind(this);
@@ -108,7 +115,7 @@ class Login extends React.Component {
         };
 
         const {
-            formValid, loadingVisible, validEmail, validPassword,
+            formValid, loadingVisible, validEmail, validPassword, validName
         } = this.state;
         const showNotification = !formValid;
         const background = formValid ? colors.green01 : colors.darkOrange;
@@ -142,8 +149,8 @@ class Login extends React.Component {
                             borderBottomColor={colors.white}
                             inputType="email"
                             customStyle={{ marginBottom: 30 }}
-                            onChangeText={this.handleEmailChange}
-                            showCheckmark={validEmail}
+                            onChangeText={this.handleUserNameChange}
+                            showCheckmark={validName}
                             placeholder={"Your username"}
                             autoFocus
                         />
@@ -189,6 +196,20 @@ class Login extends React.Component {
     toggleBackButton(){
         const router = this.$f7router;
         router.back()
+    }
+
+    handleUserNameChange(name){
+        const {validName} = this.state;
+
+        this.setState({userName: name});
+
+        if(!validName){
+            if(name.length > 4) {
+                this.setState({validName: true})
+            }
+        } else if(name <= 4){
+            this.setState({validName: false})
+        }
     }
 
     handleEmailChange(email) {
@@ -244,8 +265,8 @@ class Login extends React.Component {
     }
 
     toggleNextButtonState() {
-        const { validEmail, validPassword } = this.state;
-        if (validEmail && validPassword) {
+        const { validEmail, validPassword, validName } = this.state;
+        if (validName && validPassword) {
             return false;
         }
         return true;
