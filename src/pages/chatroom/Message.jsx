@@ -109,7 +109,7 @@ class MessagePage extends React.Component {
     render() {
         return (
           <Page noToolbar>
-            <Navbar title={this.state.roomName} backLink="Back"/>
+            <Navbar title={this.state.roomName} backLink="Back" backLinkForce/>
     
             <Messagebar
               placeholder="Message"

@@ -54,7 +54,7 @@ class PrivateRooms extends Component {
                             title={room.name}
                             link={"/message/" + room.id + "/"}
                             subtitle={room.language}
-                            after="17:00"
+                            after={room.lastUpdated}
                             text="New message"
                         />
                     )
