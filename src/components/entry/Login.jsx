@@ -121,6 +121,7 @@ class Login extends React.Component {
         const background = formValid ? colors.green01 : colors.darkOrange;
         const notificationMarginTop = showNotification ? 10 : 0;
 
+        console.log(this.state.userName);
 
         return (
             <Page style={{backgroundColor: background, display: 'inline'}}>
@@ -147,7 +148,7 @@ class Login extends React.Component {
                             labelColor={colors.white}
                             textColor={colors.white}
                             borderBottomColor={colors.white}
-                            inputType="email"
+                            inputType="text"
                             customStyle={{ marginBottom: 30 }}
                             onChangeText={this.handleUserNameChange}
                             showCheckmark={validName}

@@ -46,6 +46,8 @@ export default class SignUp extends React.Component{
 
         this.state = {
             formValid: true,
+            validName: false,
+            userName: '',
             validEmail: false,
             emailAddress: '',
             password: '',
@@ -58,6 +60,7 @@ export default class SignUp extends React.Component{
         this.toggleBackButton = this.toggleBackButton.bind(this);
 
         this.handleUserNameChange = this.handleUserNameChange.bind(this);
+        this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleRepeatPasswordChange = this.handleRepeatPasswordChange.bind(this);
         this.handleNextButton = this.handleNextButton.bind(this);
@@ -112,7 +115,7 @@ export default class SignUp extends React.Component{
         };
 
         const {
-            formValid, loadingVisible, validEmail, validPassword, samePassword
+            formValid, loadingVisible, validEmail, validPassword, samePassword, validName
         } = this.state;
         const showNotification = !formValid;
         const background = formValid ? colors.green01 : colors.darkOrange;
@@ -141,11 +144,25 @@ export default class SignUp extends React.Component{
                             labelColor={colors.white}
                             textColor={colors.white}
                             borderBottomColor={colors.white}
-                            inputType="email"
+                            inputType="text"
                             customStyle={{ marginBottom: 30 }}
                             onChangeText={this.handleUserNameChange}
-                            showCheckmark={validEmail}
+                            showCheckmark={validName}
                             placeholder={"Your username"}
+                            autoFocus
+                        />
+
+                        <InputField
+                            labelText="EMAIL"
+                            labelTextSize={14}
+                            labelColor={colors.white}
+                            textColor={colors.white}
+                            borderBottomColor={colors.white}
+                            inputType="email"
+                            customStyle={{ marginBottom: 30 }}
+                            onChangeText={this.handleEmailChange}
+                            showCheckmark={validEmail}
+                            placeholder={"Your email"}
                             autoFocus
                         />
 
@@ -197,14 +214,28 @@ export default class SignUp extends React.Component{
     }
 
     toggleNextButtonState() {
-        const { validEmail, validPassword, samePassword } = this.state;
-        if (validEmail && validPassword && samePassword) {
+        const { validEmail, validPassword, samePassword, validName } = this.state;
+        if (validEmail && validPassword && samePassword && validName) {
             return false;
         }
         return true;
     }
 
-    handleUserNameChange(email) {
+    handleUserNameChange(name){
+        const {validName} = this.state;
+
+        this.setState({userName: name});
+
+        if(!validName){
+            if(name.length > 4) {
+                this.setState({validName: true})
+            }
+        } else if(name <= 4){
+            this.setState({validName: false})
+        }
+    }
+
+    handleEmailChange(email) {
         // eslint-disable-next-line
         const emailCheckRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         const { validEmail } = this.state;
