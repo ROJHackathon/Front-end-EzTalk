@@ -65,16 +65,17 @@ class Main extends React.Component{
         return(
             <Views tabs className="safe-areas">
                 {/* Right panel with reveal effect -- for user side panel*/}
-                <UserPanel
-                    token={this.props.token}
-                    tabActive={this.state.tabActive}
-                />
+                {/*<UserPanel*/}
+                {/*    token={this.props.token}*/}
+                {/*    tabActive={this.state.tabActive}*/}
+                {/*/>*/}
 
                 {/* Tabbar for switching views-tabs */}
                 <Toolbar tabbar labels bottom>
                     <Link tabLink="#view-home" tabLinkActive iconIos="f7:house_fill" iconAurora="f7:house_fill" iconMd="material:home" text="Home" />
                     <Link tabLink="#view-translate" iconIos="f7:search" iconAurora="f7:search" iconMd="material:view_list" text="Translate" />
                     <Link tabLink="#view-chatroom" iconIos="f7:chat_bubble_2_fill" iconAurora="f7:chat_bubble_2_fill" iconMd="material:settings" text="Chatroom" />
+                    <Link tabLink="#view-user" iconIos={"f7:person_crop_circle"} text={"Me"} />
                 </Toolbar>
 
                 {/* Your main view/tab, should have "view-main" class. It also has "tabActive" prop */}
@@ -85,6 +86,9 @@ class Main extends React.Component{
 
                 {/* Settings View */}
                 <View id="view-chatroom" name="chatroom" tab url="/chatroom/" onTabShow={this.tabShowChatHandler} />
+
+                {/*User View*/}
+                <View id="view-user" name="user" tab url="/me/" />
 
             </Views>
         );

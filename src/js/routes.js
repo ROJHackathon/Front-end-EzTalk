@@ -2,6 +2,7 @@
 import HomePage from '../pages/home/home.jsx';
 import TranslatePage from '../pages/translate/translatePage.jsx';
 import ChatroomPage from '../pages/chatroom/chatroom.jsx';
+import UserPage from '../pages/me/user.jsx'
 
 import AboutPage from '../pages/util/about.jsx';
 import FormPage from '../pages/util/form.jsx';
@@ -57,7 +58,11 @@ var routes = [
   },
   { 
     path: '/chatroom/',
-    component: ChatroomPage
+    component: ChatroomPage,
+  },
+  {
+    path: '/me/',
+    component: UserPage,
   },
 
   /* subpages */
