@@ -41,7 +41,6 @@ class Pophis extends React.Component {
     render() {
         return (
             <Page>
-                <SearchHistory/>
                 <PopularTopic/>
 
             </Page>
