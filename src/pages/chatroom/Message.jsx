@@ -26,7 +26,11 @@ import {
     MessagebarAttachments,
     MessagebarSheet,
     MessagebarSheetImage,
-    MessagebarSheetItem
+    MessagebarSheetItem,
+    Actions,
+    ActionsGroup,
+    ActionsButton,
+    ActionsLabel
 } from 'framework7-react';
 import axios from "axios";
 import TokenContext from "../../components/tokenContext";
@@ -37,8 +41,8 @@ class MessagePage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            roomName:"",
-            author:{},
+            roomName: "",
+            author: {},
             attachments: [],
             typingMessage: null,
             messagesData: [],
@@ -48,7 +52,7 @@ class MessagePage extends React.Component {
 
     static contextType = TokenContext;
 
-    refreshMessageData(){
+    refreshMessageData() {
         let roomId = this.$f7route.params.id;
         let messageListurl = "https://ez-talk-api-provider.azurewebsites.net/api/chatroom/" + roomId + "/" + "get-messages";
         axios.get(messageListurl).then((res) => {
@@ -59,10 +63,10 @@ class MessagePage extends React.Component {
 
     }
 
-    testRef(){
-        let u = {id:9, name:"yangtao", password:null, avatarUrl:"http://placeimg.com/80/80/people/39",email:null,language:null,preference:null  }
+    testRef() {
+        let u = { id: 9, name: "yangtao", password: null, avatarUrl: "http://placeimg.com/80/80/people/39", email: null, language: null, preference: null }
         this.setState((prevState) => ({
-            messagesData: prevState.messagesData.concat([{content:"test", author:u}])
+            messagesData: prevState.messagesData.concat([{ content: "test", author: u }])
         }))
     }
 
@@ -108,55 +112,71 @@ class MessagePage extends React.Component {
 
     render() {
         return (
-          <Page noToolbar>
-            <Navbar title={this.state.roomName} backLink="Back" backLinkForce/>
-    
-            <Messagebar
-              placeholder="Message"
-              ref={(el) => {this.messagebarComponent = el}}
-              style = {{marginBottom :"0px"}}
-            >
+            <Page noToolbar>
+                <Navbar title={this.state.roomName} backLink="Back" backLinkForce />
 
-              <Link
-                iconIos="f7:arrow_up_fill"
-                iconAurora="f7:arrow_up_fill"
-                iconMd="material:send"
-                slot="inner-end"
-                onClick={this.sendMessage.bind(this)}
-              />
-            </Messagebar>
+                <Messagebar
+                    placeholder="Message"
+                    ref={(el) => { this.messagebarComponent = el }}
+                    style={{ marginBottom: "0px" }}
+                >
+
+                    <Link
+                        iconIos="f7:arrow_up_fill"
+                        iconAurora="f7:arrow_up_fill"
+                        iconMd="material:send"
+                        slot="inner-end"
+                        onClick={this.sendMessage.bind(this)}
+                    />
+                </Messagebar>
 
 
-    
-            <Messages ref={(el) => {this.messagesComponent = el}}>
-              <MessagesTitle><b>Sunday, Feb 9,</b> 12:58</MessagesTitle>
-    
-              {this.state.messagesData.map((message, index) => {
-                  //console.log(message)
 
-                  return <Message
-                      key={index}
-                      type={this.state.author.id === message.author.id ? "sent" : "received"}
-                      name={message.author.name}
-                      avatar={message.author.avatarUrl === null ? 'http://placeimg.com/80/80/people/35' : message.author.avatarUrl}
-                      first={this.isFirstMessage(message, index)}
-                      last={this.isLastMessage(message, index)}
-                      tail={this.isTailMessage(message, index)}
-                      // first={true}
-                      // last={true}
-                      // tail={true}
+                <Messages ref={(el) => { this.messagesComponent = el }}>
+                    <MessagesTitle><b>Sunday, Feb 9,</b> 12:58</MessagesTitle>
 
-                  >
-                      {message.content && (
-                          <span slot="text" dangerouslySetInnerHTML={{__html: message.content}}/>
-                      )}
-                  </Message>
-              })}
+                    {this.state.messagesData.map((message, index) => {
+                        //console.log(message)
 
-            </Messages>
-          </Page>
+                        return <Message
+                            key={index}
+                            type={this.state.author.id === message.author.id ? "sent" : "received"}
+                            name={message.author.name}
+                            avatar={message.author.avatarUrl === null ? 'http://placeimg.com/80/80/people/35' : message.author.avatarUrl}
+                            first={this.isFirstMessage(message, index)}
+                            last={this.isLastMessage(message, index)}
+                            tail={this.isTailMessage(message, index)}
+                            // first={true}
+                            // last={true}
+                            // tail={true}
+                            onClick={this.state.author.id !== message.author.id ? () => this.refs.actionsOneGroup.open() : () => { }}
+                            className="button-to-popover"
+
+                        >
+                            {message.content && (
+                                <span slot="text" dangerouslySetInnerHTML={{ __html: message.content }} />
+                            )}
+                        </Message>
+                    })}
+
+                </Messages>
+
+                <Actions ref="actionsOneGroup">
+                    <ActionsGroup>
+                        <ActionsLabel>Do you want to add her/him to be your friends?</ActionsLabel>
+                        <ActionsButton bold onClick={() => {console.log("hahaha")}}>Add</ActionsButton>
+                        <ActionsButton color="red">Cancel</ActionsButton>
+                    </ActionsGroup>
+                </Actions>
+
+
+
+
+
+
+            </Page>
         )
-      }
+    }
 
 
 
@@ -177,51 +197,57 @@ class MessagePage extends React.Component {
         if (!nextMessage || nextMessage.author.id !== message.author.id) return true;
         return false;
     }
-      isTailMessage(message, index) {
+    isTailMessage(message, index) {
         return this.isLastMessage(message, index);
-      }
+    }
 
 
 
 
-      sendMessage() {
+    sendMessage() {
         const self = this;
         const text = self.messagebar.getValue().replace(/\n/g, '<br>').trim();
 
 
         const messagesToSend = [];
         if (text.trim().length) {
-          messagesToSend.push({
-              content : text,
-              author : this.state.author
-          });
+            messagesToSend.push({
+                content: text,
+                author: this.state.author
+            });
         }
         if (messagesToSend.length === 0) {
-          return;
+            return;
         }
 
 
         self.setState((prevState) => ({
-              messagesData: prevState.messagesData.concat(messagesToSend)
+            messagesData: prevState.messagesData.concat(messagesToSend)
         }));
 
         // post
-          let roomId = this.$f7route.params.id;
-          let url = "https://ez-talk-api-provider.azurewebsites.net/api/chatroom/" + roomId + "/say";
-          axios.post(url, {
-              content: text,
-              token: this.context
-          }).then((res) => {console.log(text)});
+        let roomId = this.$f7route.params.id;
+        let url = "https://ez-talk-api-provider.azurewebsites.net/api/chatroom/" + roomId + "/say";
+        axios.post(url, {
+            content: text,
+            token: this.context
+        }).then((res) => { console.log(text) });
 
         //console.log(this.state.messagesData)
         self.messagebar.clear();
 
         //Focus area
         if (text.length) self.messagebar.focus();
-    
 
-      }
-    
+
+    }
+
+    componentWillUnmount() {
+        if (this.actionsToPopover) {
+            this.actionsToPopover.destroy();
+        }
+    }
+
 
 }
 export default MessagePage
