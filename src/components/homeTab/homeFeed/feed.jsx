@@ -38,10 +38,7 @@ class Feed extends React.Component {
 
     static contextType = TokenContext;
 
-
     render() {
-        let isVideo = true
-
         return (
             <Page >
                 <List mediaList>
@@ -62,7 +59,7 @@ class Feed extends React.Component {
                             </CardContent>
                             <CardFooter>
                                 <div className="like-num">{material.love} Likes</div>
-                               {isVideo ? <Link iconF7="ellipsis" href={"/video/" + material.id + "/"} /> :  <Link iconF7="ellipsis" href={"/material/" + material.id + "/"} />}
+                               {material.mimetype.includes("video") ? <Link iconF7="ellipsis" href={"/video/" + material.id + "/"} /> :  <Link iconF7="ellipsis" href={"/material/" + material.id + "/"} />}
                             </CardFooter>
                         </Card>
                     ))}

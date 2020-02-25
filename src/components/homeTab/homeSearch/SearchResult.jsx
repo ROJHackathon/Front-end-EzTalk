@@ -102,7 +102,7 @@ class SearchResult extends React.Component {
                             </CardContent>
                             <CardFooter>
                                 <div className="like-num">{material.love} Likes</div>
-                                <Link iconF7="ellipsis" href={"/material/" + material.id + "/"} />
+                                {material.mimetype.includes("video") ? <Link iconF7="ellipsis" href={"/video/" + material.id + "/"} /> :  <Link iconF7="ellipsis" href={"/material/" + material.id + "/"} />}
                             </CardFooter>
                         </Card>
                     ))}

@@ -39,8 +39,8 @@ export default class VideoPage extends React.Component {
     static contextType = TokenContext;
 
     componentDidMount() {
-        // let url = 'https://ez-talk-api-provider.azurewebsites.net/api' + this.$f7route.url.replace("video", "material"); // get the info of one material
-        let url = 'https://ez-talk-api-provider.azurewebsites.net/api/material/85622/'
+        let url = 'https://ez-talk-api-provider.azurewebsites.net/api' + this.$f7route.url.replace("video", "material"); // get the info of one material
+        //let url = 'https://ez-talk-api-provider.azurewebsites.net/api/material/85622/'
         axios.get(url).then(res => {
             this.setState({ material: res.data })
         });
