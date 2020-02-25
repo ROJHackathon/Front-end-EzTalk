@@ -28,6 +28,8 @@ import {
     KeyboardAvoidingView,
 } from 'react-native-web';
 
+import Cookies from 'js-cookie'
+
 
 import axios from 'axios';
 
@@ -278,10 +280,18 @@ class Login extends React.Component {
             let token = res.data.token;
 
             if (code === 200) {
+                // set cookie
+                Cookies.set('token', token, {expires: 7});
+
+                // redirect to main page
                 const self = this;
-                const app = self.$f7;
                 const router = self.$f7router;
                 router.navigate("/main/");
+            }else{
+                this.setState({formValid: false}) ; // test it change to read background
+                this.$f7.dialog.alert("Unexpected Error", ()=> {
+                    this.setState({formValid: true})
+                })
             }
 
         }).catch(error => {
