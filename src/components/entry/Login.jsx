@@ -152,7 +152,7 @@ class Login extends React.Component {
                             labelColor={colors.white}
                             textColor={colors.white}
                             borderBottomColor={colors.white}
-                            inputType="email"
+                            inputType="text"
                             customStyle={{marginBottom: 30}}
                             onChangeText={this.handleUserNameChange}
                             showCheckmark={validName}
