@@ -40,6 +40,8 @@ import InputField from './InputField.jsx';
 import NextArrowButton from './NextArrowButton.jsx'
 import Loader from './Loader.jsx'
 import Notification from './Notification.jsx'
+import axios from "axios";
+import Cookies from "js-cookie";
 
 export default class SetPreference extends React.Component {
     constructor(props) {
@@ -52,12 +54,6 @@ export default class SetPreference extends React.Component {
 
             tag: '',
             prefList: [
-                'tag1',
-                'tag2',
-                'tag3',
-                'tag4',
-                'tag5',
-                'tag6',
             ],
         };
 
@@ -66,6 +62,7 @@ export default class SetPreference extends React.Component {
         this.handleAddTag = this.handleAddTag.bind(this);
 
         this.deleteChip = this.deleteChip.bind(this);
+        this.handleNextButton = this.handleNextButton.bind(this);
 
     }
 
@@ -184,6 +181,11 @@ export default class SetPreference extends React.Component {
                         </Block>
 
                     </ScrollView>
+
+                    <NextArrowButton
+                        handleNextButton={this.handleNextButton}
+                        disabled={this.toggleNextButtonState()}
+                    />
                 </View>
 
             </Page>
@@ -214,6 +216,26 @@ export default class SetPreference extends React.Component {
 
 
         this.setState({prefList:list})
+    }
+
+
+    handleNextButton() {
+        const self = this;
+        const router = self.$f7router;
+
+        this.$f7.dialog.alert("You have successfully set your preference", ()=> {
+            router.navigate("/");
+        });
+
+    }
+
+    toggleNextButtonState() {
+        const {prefList} = this.state;
+        if(prefList.length === 0){
+            return true
+        }else{
+            return false
+        }
     }
 }
 
