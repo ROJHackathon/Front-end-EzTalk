@@ -19,6 +19,7 @@ import {
     ListInput,
     ListButton,
     BlockFooter,
+    Chip,
 } from 'framework7-react';
 
 import {
@@ -47,9 +48,20 @@ export default class SetPreference extends React.Component{
             loadingVisible: false,
             validEmail: false,
             emailAddress: '',
+
+            prefList: [
+                'tag1',
+                'tag2',
+                'tag3',
+                'tag4',
+                'tag5',
+                'tag6',
+            ],
         };
 
         this.toggleBackButton = this.toggleBackButton.bind(this);
+
+        this.deleteChip = this.deleteChip.bind(this);
 
     }
 
@@ -123,6 +135,15 @@ export default class SetPreference extends React.Component{
                         </Text>
 
 
+                        {
+                            this.state.prefList.map((text, index) => (
+                                <Chip text={text} deleteable onClick={ this.deleteChip } />
+                            ))
+                        }
+
+
+
+
 
                     </ScrollView>
 
@@ -140,6 +161,14 @@ export default class SetPreference extends React.Component{
         router.back()
     }
 
+    deleteChip(e) {
+        const $$ = this.$$;
+        const app = this.$f7;
+        const target = e.target;
+        app.dialog.confirm('Do you want to delete this tiny demo Chip?', () => {
+            $$(target).parents('.chip').remove();
+        });
+    }
 
 
 }
