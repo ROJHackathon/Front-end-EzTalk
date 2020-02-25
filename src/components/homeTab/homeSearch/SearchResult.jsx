@@ -37,14 +37,32 @@ class SearchResult extends React.Component {
             isClicked: false,
             effect: "blink"
         }
+        this.handleClick = this.handleClick.bind(this)
     }
 
     static contextType = TokenContext;
 
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.state.isClicked) {
-            let url = "https://ez-talk-api-provider.azurewebsites.net/api/search-material";
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     if (this.state.isClicked) {
+    //         let url = "https://ez-talk-api-provider.azurewebsites.net/api/search-material";
+    //         axios.post(url, {
+    //             token: this.context,
+    //             text: this.props.searchInput,
+    //         }).then((res) => {
+    //             //console.log(this.props.searchInput);
+    //             this.setState({
+    //                 materials: res.data,
+    //             });
+
+    //         })
+    //     }
+
+
+    // }
+
+    handleClick(){
+        let url = "https://ez-talk-api-provider.azurewebsites.net/api/search-material";
             axios.post(url, {
                 token: this.context,
                 text: this.props.searchInput,
@@ -55,9 +73,8 @@ class SearchResult extends React.Component {
                 });
 
             })
-        }
-
-
+            this.setState({ isClicked: true })
+        
     }
 
 
@@ -67,7 +84,7 @@ class SearchResult extends React.Component {
         if (this.state.materials.length === 0) {
             return (
                 <div>
-                    {!this.state.isClicked && <Button onClick={() => (this.setState({ isClicked: true }))}>Search</Button>}
+                    {!this.state.isClicked && <Button onClick={this.handleClick}>Search</Button>}
                     {this.state.isClicked && <List mediaList className="skeleton-text">
                         {[1, 2, 3].map(n => (
                             <Card
