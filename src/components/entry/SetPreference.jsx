@@ -49,6 +49,7 @@ export default class SetPreference extends React.Component{
             validEmail: false,
             emailAddress: '',
 
+            tag: '',
             prefList: [
                 'tag1',
                 'tag2',
@@ -60,6 +61,7 @@ export default class SetPreference extends React.Component{
         };
 
         this.toggleBackButton = this.toggleBackButton.bind(this);
+        this.handleTagChange = this.handleTagChange(this);
 
         this.deleteChip = this.deleteChip.bind(this);
 
@@ -108,6 +110,11 @@ export default class SetPreference extends React.Component{
                 left: 0,
                 right: 0,
             },
+            checkmarkWrapper: {
+                position: 'absolute',
+                right: 0,
+                bottom: 12,
+            },
         };
 
         const { loadingVisible, formValid, validEmail } = this.state;
@@ -135,19 +142,40 @@ export default class SetPreference extends React.Component{
                         </Text>
 
 
-                        {
-                            this.state.prefList.map((text, index) => (
-                                <Chip text={text} deleteable onClick={ this.deleteChip } />
-                            ))
-                        }
+                        <View>
+                            <Icon
+                                f7={'checkmark_alt_circle_fill'}
+                                style={styles.checkmarkWrapper}
+                            />
+                            <InputField
+                                labelText="Your tag"
+                                labelTextSize={14}
+                                labelColor={colors.white}
+                                textColor={colors.white}
+                                borderBottomColor={colors.white}
+                                inputType="text"
+                                customStyle={{marginBottom: -10}}
+                                showCheckmark={false}
+                                onChangeText={this.handleTagChange}
+                                placeholder={"Things you want to learn"}
+                                autoFocus
+                            />
+                        </View>
 
 
+
+                        <Block>
+                            {
+                                this.state.prefList.map((text, index) => (
+                                    <Chip key={index} text={text} deleteable onClick={ this.deleteChip } />
+                                ))
+                            }
+
+                        </Block>
 
 
 
                     </ScrollView>
-
-
                 </View>
 
             </Page>
@@ -165,9 +193,11 @@ export default class SetPreference extends React.Component{
         const $$ = this.$$;
         const app = this.$f7;
         const target = e.target;
-        app.dialog.confirm('Do you want to delete this tiny demo Chip?', () => {
-            $$(target).parents('.chip').remove();
-        });
+        $$(target).parents('.chip').remove();
+    }
+
+    handleTagChange(tag){
+        this.setState({tag: tag});
     }
 
 
