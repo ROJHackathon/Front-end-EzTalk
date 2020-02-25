@@ -124,7 +124,7 @@ export default class extends React.Component {
         if(token !== undefined ){
             return <Main/>
         } else{
-            return <View url={'/set-preference/'}/>
+            return <View url={'/'}/>
         }
 
     }
