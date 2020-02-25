@@ -110,7 +110,8 @@ export default class extends React.Component {
         this.setState(
             {
                 onSearch: false,
-                searchInput:""
+                searchInput:"",
+                isClear:false
             }
         )
 
@@ -123,10 +124,10 @@ export default class extends React.Component {
                 {/* Top Navbar */}
                 <Navbar sliding={false} large>
                     <NavTitle sliding>Home</NavTitle>
-                    <NavRight>
+                    {/* <NavRight>
                         <Link iconIos="f7:person_crop_circle" iconAurora="f7:person_crop_circle" iconMd="material:menu"
                               panelOpen="right"/>
-                    </NavRight>
+                    </NavRight> */}
                     <NavTitleLarge>Home</NavTitleLarge>
                     <Subnavbar inner={false}>
                         <Searchbar
@@ -137,11 +138,12 @@ export default class extends React.Component {
                             onSearchbarEnable={this.enableSearch}
                             onSearchbarDisable={this.disableSearch}
                             onInput={(e)=> {this.setState({searchInput:e.target.value})}}
+                            clickClear={e => {this.setState({isClear:true})}}
                         />
                     </Subnavbar>
                 </Navbar>
 
-                {!this.state.onSearch ? (this.state.materials.length > 0 ? <Feed materials={this.state.materials}/> : <FeedSkeleton/>) : <Search searchInput={this.state.searchInput} />}
+                {!this.state.onSearch ? (this.state.materials.length > 0 ? <Feed materials={this.state.materials}/> : <FeedSkeleton/>) : <Search searchInput={this.state.searchInput} isClear={this.state.isClear}/>}
                 
             </Page>
         )

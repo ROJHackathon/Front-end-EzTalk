@@ -56,9 +56,9 @@ class Translate extends React.Component {
 
                 <Navbar sliding={false} large>
                     <NavTitle sliding>Translate</NavTitle>
-                    <NavRight>
+                    {/* <NavRight>
                         <Link iconIos="f7:person_crop_circle" iconAurora="f7:person_crop_circle" iconMd="material:menu" panelOpen="right" />
-                    </NavRight>
+                    </NavRight> */}
                     <NavTitleLarge>Translate</NavTitleLarge>
                     <Subnavbar inner={false}>
                         <Searchbar
