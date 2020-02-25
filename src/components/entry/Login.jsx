@@ -121,7 +121,6 @@ class Login extends React.Component {
         const background = formValid ? colors.green01 : colors.darkOrange;
         const notificationMarginTop = showNotification ? 10 : 0;
 
-        console.log(this.state.userName);
 
         return (
             <Page style={{backgroundColor: background, display: 'inline'}}>
@@ -231,7 +230,7 @@ class Login extends React.Component {
     handlePasswordChange(password) {
         const { validPassword } = this.state;
 
-        this.setState({ password });
+        this.setState({ password: password });
 
         if (!validPassword) {
             if (password.length > 4) {
