@@ -30,17 +30,21 @@ class SearchHistory extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            history:"Your search history"
+            
         }
     }
 
 
     render() {
+        
         return (
-            <Card
-                title="Search History"
-                content={this.state.history}
-            ></Card>
+            <List>
+                {localStorage.getItem("h5") !== null && <ListItem>{localStorage.getItem("h5")}</ListItem>}
+                {localStorage.getItem("h4") !== null && <ListItem>{localStorage.getItem("h4")}</ListItem>}
+                {localStorage.getItem("h3") !== null && <ListItem>{localStorage.getItem("h3")}</ListItem>}
+                {localStorage.getItem("h2") !== null && <ListItem>{localStorage.getItem("h2")}</ListItem>}
+                {localStorage.getItem("h1") !== null && <ListItem>{localStorage.getItem("h1")}</ListItem>}
+            </List>
         )
     };
 

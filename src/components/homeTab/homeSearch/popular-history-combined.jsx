@@ -43,7 +43,6 @@ class Pophis extends React.Component {
             <Page>
                 <SearchHistory/>
                 <PopularTopic/>
-
             </Page>
 
         )

@@ -46,9 +46,9 @@ export default class extends React.Component {
             <Page name="chatroom">
                 <Navbar sliding={false} large>
                     <NavTitle sliding>Chatroom</NavTitle>
-                    <NavRight>
+                    {/* <NavRight>
                         <Link iconIos="f7:person_crop_circle" iconAurora="f7:person_crop_circle" iconMd="material:menu" panelOpen="right" />
-                    </NavRight>
+                    </NavRight> */}
                     <NavTitleLarge>Chatroom</NavTitleLarge>
                     <Subnavbar inner={false}>
                         <Searchbar

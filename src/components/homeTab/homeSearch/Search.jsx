@@ -33,7 +33,7 @@ class Search extends React.Component {
         super(props);
 
         this.state = {
-        
+
         }
     }
 
@@ -41,9 +41,11 @@ class Search extends React.Component {
         //console.log(this.props.searchInput);
         return (
             <Page>
-                {this.props.searchInput.length > 0  ? <SearchResult searchInput={this.props.searchInput}/>: <Pophis/>}
+                
+                <SearchResult searchInput={this.props.searchInput} isClear={this.props.isClear}/>
+
             </Page>
-            
+
         )
     };
 
