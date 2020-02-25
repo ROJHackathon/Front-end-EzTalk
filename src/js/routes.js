@@ -2,6 +2,7 @@
 import HomePage from '../pages/home/home.jsx';
 import TranslatePage from '../pages/translate/translatePage.jsx';
 import ChatroomPage from '../pages/chatroom/chatroom.jsx';
+import UserPage from '../pages/me/user.jsx'
 
 import AboutPage from '../pages/util/about.jsx';
 import FormPage from '../pages/util/form.jsx';
@@ -18,9 +19,42 @@ import NotFoundPage from '../pages/util/404.jsx';
 import MaterialPage from '../pages/home/material.jsx';
 import CreateChatPage from "../pages/chatroom/CreateChatPage";
 import VideoPage from '../pages/home/video'
+import TestLoginPage from "../pages/entry/loginTest/TestLoginPage";
+
+
+import Entry from "../components/entry/Entry";
+import Login from "../components/entry/Login.jsx";
+import SignUp from "../components/entry/SignUp.jsx";
+import SetPreference from "../components/entry/SetPreference.jsx"
+
+import Main from "../components/main.jsx";
 
 var routes = [
+  {
+    path: '/',
+    component: Entry
+  },
+  {
+    path: '/sign-in/',
+    component: Login
+  },
+  {
+    path: '/sign-up/',
+    component: SignUp
+  },
+  {
+    path: '/set-preference/',
+    component: SetPreference
+  },
+  {
+    path: '/test-login-page/',
+    component: TestLoginPage,
+  },
   /* Main pages */
+  {
+    path: '/main/',
+    component: Main,
+  },
   {
     path: '/home/',
     component: HomePage,
@@ -31,7 +65,11 @@ var routes = [
   },
   { 
     path: '/chatroom/',
-    component: ChatroomPage
+    component: ChatroomPage,
+  },
+  {
+    path: '/me/',
+    component: UserPage,
   },
 
   /* subpages */
