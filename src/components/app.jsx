@@ -96,10 +96,10 @@ export default class extends React.Component {
                     {/* Login screen */}
                     {/*<Login handleLogin={this.handleLogin.bind(this)}/>*/}
 
-                    {/*<View url={"/"}/>*/}
+                    <View url={"/"}/>
 
                     {/* Views/Tabs container */}
-                    <Main token={this.state.token}/>
+                    {/*<Main token={this.state.token}/>*/}
 
                 </App>
             </TokenContext.Provider>

@@ -28,6 +28,9 @@ import {
     KeyboardAvoidingView,
 } from 'react-native-web';
 
+
+import axios from 'axios';
+
 import {Icon} from 'framework7-react';
 
 import colors from '../../css/colour.js';
@@ -78,7 +81,7 @@ class Login extends React.Component {
                 display: 'flex',
                 flex: 1,
             },
-            headerWrapper:{
+            headerWrapper: {
                 marginTop: 20,
             },
             scrollViewWrapper: {
@@ -103,7 +106,7 @@ class Login extends React.Component {
                 fontWeight: '300',
                 marginBottom: 40,
             },
-            forgotWrapper:{
+            forgotWrapper: {
                 marginTop: 5,
             },
             notificationWrapper: {
@@ -130,7 +133,7 @@ class Login extends React.Component {
                     <NavBarButton
                         handleButtonPress={this.toggleBackButton}
                         location="left"
-                        icon={<Icon f7="chevron_left" color={"white"} size={"30px"} />}
+                        icon={<Icon f7="chevron_left" color={"white"} size={"30px"}/>}
                     />
                 </View>
 
@@ -148,7 +151,7 @@ class Login extends React.Component {
                             textColor={colors.white}
                             borderBottomColor={colors.white}
                             inputType="email"
-                            customStyle={{ marginBottom: 30 }}
+                            customStyle={{marginBottom: 30}}
                             onChangeText={this.handleUserNameChange}
                             showCheckmark={validName}
                             placeholder={"Your username"}
@@ -161,7 +164,7 @@ class Login extends React.Component {
                             textColor={colors.white}
                             borderBottomColor={colors.white}
                             inputType="password"
-                            customStyle={{ marginBottom: 30 }}
+                            customStyle={{marginBottom: 30}}
                             onChangeText={this.handlePasswordChange}
                             showCheckmark={validPassword}
                             placeholder={"Your password"}
@@ -169,10 +172,10 @@ class Login extends React.Component {
 
                         <View style={styles.forgotWrapper}>
                             <NavBarButton
-                            handleButtonPress={this.toggleForgotButton}
-                            location="right"
-                            color={colors.white}
-                            text="Forgot Password"
+                                handleButtonPress={this.toggleForgotButton}
+                                location="right"
+                                color={colors.white}
+                                text="Forgot Password"
                             />
                         </View>
 
@@ -189,25 +192,25 @@ class Login extends React.Component {
 
     }
 
-    toggleForgotButton(){
+    toggleForgotButton() {
 
     }
 
-    toggleBackButton(){
+    toggleBackButton() {
         const router = this.$f7router;
         router.back()
     }
 
-    handleUserNameChange(name){
+    handleUserNameChange(name) {
         const {validName} = this.state;
 
         this.setState({userName: name});
 
-        if(!validName){
-            if(name.length > 4) {
+        if (!validName) {
+            if (name.length > 4) {
                 this.setState({validName: true})
             }
-        } else if(name <= 4){
+        } else if (name <= 4) {
             this.setState({validName: false})
         }
     }
@@ -215,30 +218,30 @@ class Login extends React.Component {
     handleEmailChange(email) {
         // eslint-disable-next-line
         const emailCheckRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        const { validEmail } = this.state;
-        this.setState({ emailAddress: email });
+        const {validEmail} = this.state;
+        this.setState({emailAddress: email});
 
         if (!validEmail) {
             if (emailCheckRegex.test(email)) {
-                this.setState({ validEmail: true });
+                this.setState({validEmail: true});
             }
         } else if (!emailCheckRegex.test(email)) {
-            this.setState({ validEmail: false });
+            this.setState({validEmail: false});
         }
     }
 
     handlePasswordChange(password) {
-        const { validPassword } = this.state;
+        const {validPassword} = this.state;
 
-        this.setState({ password });
+        this.setState({password});
 
         if (!validPassword) {
             if (password.length > 4) {
                 // Password has to be at least 4 characters long
-                this.setState({ validPassword: true });
+                this.setState({validPassword: true});
             }
         } else if (password <= 4) {
-            this.setState({ validPassword: false });
+            this.setState({validPassword: false});
         }
     }
 
@@ -257,15 +260,42 @@ class Login extends React.Component {
         //     }
         // }, 2000);
 
-        this.setState({formValid: false})  // test it change to read background
-        this.$f7.dialog.alert("Those credential don't look right, Please try again", ()=> {
-            this.setState({formValid: true})
-        })
+        // this.setState({formValid: false})  // test it change to read background
+        // this.$f7.dialog.alert("Those credential don't look right, Please try again", ()=> {
+        //     this.setState({formValid: true})
+        // })
+
+        let url = "https://ez-talk-api-provider.azurewebsites.net/api/login";
+
+        axios.post(url, {
+            userName: this.state.userName,
+            password: this.state.password,
+        }).then((res) => {
+            // console.log(res);
+
+            let code = res.status;
+            let message = res.data.message;
+            let token = res.data.token;
+
+            if (code === 200) {
+                const self = this;
+                const app = self.$f7;
+                const router = self.$f7router;
+                router.navigate("/main/");
+            }
+
+        }).catch(error => {
+            this.setState({formValid: false})  // test it change to read background
+            this.$f7.dialog.alert("Those credential don't look right, Please try again", ()=> {
+                this.setState({formValid: true})
+            })
+        });
+
 
     }
 
     toggleNextButtonState() {
-        const { validEmail, validPassword, validName } = this.state;
+        const {validEmail, validPassword, validName} = this.state;
         if (validName && validPassword) {
             return false;
         }
@@ -273,7 +303,7 @@ class Login extends React.Component {
     }
 
     handleCloseNotification() {
-        this.setState({ formValid: true });
+        this.setState({formValid: true});
     }
 
 

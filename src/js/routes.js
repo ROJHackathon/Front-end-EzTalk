@@ -26,6 +26,8 @@ import Login from "../components/entry/Login.jsx";
 import SignUp from "../components/entry/SignUp.jsx";
 import SetPreference from "../components/entry/SetPreference.jsx"
 
+import Main from "../components/main.jsx";
+
 var routes = [
   {
     path: '/',
@@ -48,6 +50,10 @@ var routes = [
     component: TestLoginPage,
   },
   /* Main pages */
+  {
+    path: '/main/',
+    component: Main,
+  },
   {
     path: '/home/',
     component: HomePage,
