@@ -21,6 +21,8 @@ import {
     BlockFooter
 } from 'framework7-react';
 
+import Cookies from 'js-cookie';
+
 
 //Self-defined component
 import UserPanel from './user/userPanel/userPanel';
@@ -60,6 +62,7 @@ export default class extends React.Component {
         this.tabShowHomeHandler = this.tabShowHomeHandler.bind(this)
         this.tabShowTranslateHandler = this.tabShowTranslateHandler.bind(this)
         this.tabShowChatHandler = this.tabShowChatHandler.bind(this)
+        this.authToken = this.authToken.bind(this)
     }
 
     tabShowHomeHandler(e) {
@@ -89,22 +92,23 @@ export default class extends React.Component {
 
     render() {
         //console.log(this.state.token);
+        let token = Cookies.get("token");
         return (
-            <TokenContext.Provider value={this.state.token}>
                 <App params={this.state.f7params} themeDark>
 
                     {/* Login screen */}
                     {/*<Login handleLogin={this.handleLogin.bind(this)}/>*/}
 
-                    <View url={"/"}/>
+                    {/*<View url={"/"}/>*/}
+                    {this.authToken(token)}
 
                     {/* Views/Tabs container */}
                     {/*<Main token={this.state.token}/>*/}
 
                 </App>
-            </TokenContext.Provider>
         )
     }
+
 
     componentDidMount() {
         this.$f7ready((f7) => {
@@ -115,5 +119,16 @@ export default class extends React.Component {
     handleLogin(val) {
         this.setState({token: val})
     }
+
+    authToken(token) {
+        if(token !== undefined ){
+            return <Main/>
+        } else{
+            return <View url={'/'}/>
+        }
+
+    }
+
+
 
 }

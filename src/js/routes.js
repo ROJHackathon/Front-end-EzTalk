@@ -32,19 +32,31 @@ import Main from "../components/main.jsx";
 var routes = [
   {
     path: '/',
-    component: Entry
+    component: Entry,
+    options: {
+      transition: 'f7-push',
+    },
   },
   {
     path: '/sign-in/',
-    component: Login
+    component: Login,
+    options: {
+      transition: 'f7-push',
+    },
   },
   {
     path: '/sign-up/',
-    component: SignUp
+    component: SignUp,
+    options: {
+      transition: 'f7-push',
+    },
   },
   {
     path: '/set-preference/',
-    component: SetPreference
+    component: SetPreference,
+    options: {
+      transition: 'f7-push',
+    },
   },
   {
     path: '/test-login-page/',
@@ -54,6 +66,9 @@ var routes = [
   {
     path: '/main/',
     component: Main,
+    options: {
+      transition: 'f7-flip',
+    },
   },
   {
     path: '/home/',
