@@ -114,8 +114,8 @@ export default class SetPreference extends React.Component {
             },
             checkmarkWrapper: {
                 position: 'absolute',
-                right: 0,
-                bottom: 12,
+                right: -30,
+                bottom: 9,
             },
         };
 
@@ -148,8 +148,10 @@ export default class SetPreference extends React.Component {
 
                             <Button
                                 iconF7={'checkmark_alt_circle_fill'}
-                                style={styles.checkmarkWrapper}
+
                                 color={'white'}
+                                onClick={this.handleAddTag}
+                                style={styles.checkmarkWrapper}
                             />
                             {/*<Icon*/}
                             {/*    f7={'checkmark_alt_circle_fill'}*/}
@@ -207,8 +209,11 @@ export default class SetPreference extends React.Component {
     }
 
     handleAddTag() {
-        console.log(this.state.tag)
+        let list = this.state.prefList;
+        list.push(this.state.tag);
 
+
+        this.setState({prefList:list})
     }
 }
 
