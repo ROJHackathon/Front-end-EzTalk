@@ -20,13 +20,14 @@ import {
     ListButton,
     BlockFooter,
     Chip,
+    Button,
 } from 'framework7-react';
 
 import {
     View,
     Text,
     ScrollView,
-    KeyboardAvoidingView,
+    KeyboardAvoidingView, TouchableHighlight,
 } from 'react-native-web';
 
 import {Icon} from 'framework7-react';
@@ -40,7 +41,7 @@ import NextArrowButton from './NextArrowButton.jsx'
 import Loader from './Loader.jsx'
 import Notification from './Notification.jsx'
 
-export default class SetPreference extends React.Component{
+export default class SetPreference extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -61,20 +62,21 @@ export default class SetPreference extends React.Component{
         };
 
         this.toggleBackButton = this.toggleBackButton.bind(this);
-        this.handleTagChange = this.handleTagChange(this);
+        this.handleTagChange = this.handleTagChange.bind(this);
+        this.handleAddTag = this.handleAddTag.bind(this);
 
         this.deleteChip = this.deleteChip.bind(this);
 
     }
 
-    render(){
+    render() {
         let headingTextSize = 30;
         const styles = {
             wrapper: {
                 display: 'flex',
                 flex: 1,
             },
-            headerWrapper:{
+            headerWrapper: {
                 marginTop: 20,
             },
             scrollViewWrapper: {
@@ -117,17 +119,17 @@ export default class SetPreference extends React.Component{
             },
         };
 
-        const { loadingVisible, formValid, validEmail } = this.state;
+        const {loadingVisible, formValid, validEmail} = this.state;
         const background = formValid ? colors.green01 : colors.darkOrange;
         const showNotification = !formValid;
 
-        return(
+        return (
             <Page style={{backgroundColor: background, display: 'inline'}}>
                 <View style={styles.headerWrapper}>
                     <NavBarButton
                         handleButtonPress={this.toggleBackButton}
                         location="left"
-                        icon={<Icon f7="chevron_left" color={"white"} size={"30px"} />}
+                        icon={<Icon f7="chevron_left" color={"white"} size={"30px"}/>}
                     />
                 </View>
 
@@ -143,10 +145,17 @@ export default class SetPreference extends React.Component{
 
 
                         <View>
-                            <Icon
-                                f7={'checkmark_alt_circle_fill'}
+
+                            <Button
+                                iconF7={'checkmark_alt_circle_fill'}
                                 style={styles.checkmarkWrapper}
+                                color={'white'}
                             />
+                            {/*<Icon*/}
+                            {/*    f7={'checkmark_alt_circle_fill'}*/}
+                            {/*    style={styles.checkmarkWrapper}*/}
+                            {/*/>*/}
+
                             <InputField
                                 labelText="Your tag"
                                 labelTextSize={14}
@@ -163,17 +172,14 @@ export default class SetPreference extends React.Component{
                         </View>
 
 
-
                         <Block>
                             {
                                 this.state.prefList.map((text, index) => (
-                                    <Chip key={index} text={text} deleteable onClick={ this.deleteChip } />
+                                    <Chip key={index} text={text} deleteable onClick={this.deleteChip}/>
                                 ))
                             }
 
                         </Block>
-
-
 
                     </ScrollView>
                 </View>
@@ -184,7 +190,7 @@ export default class SetPreference extends React.Component{
 
     }
 
-    toggleBackButton(){
+    toggleBackButton() {
         const router = this.$f7router;
         router.back()
     }
@@ -196,9 +202,14 @@ export default class SetPreference extends React.Component{
         $$(target).parents('.chip').remove();
     }
 
-    handleTagChange(tag){
+    handleTagChange(tag) {
         this.setState({tag: tag});
     }
 
+    handleAddTag() {
+        console.log(this.state.tag)
 
+    }
 }
+
+
