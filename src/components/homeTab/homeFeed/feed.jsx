@@ -59,7 +59,7 @@ class Feed extends React.Component {
                             </CardContent>
                             <CardFooter>
                                 <div className="like-num">{material.love} Likes</div>
-                               {material.mimetype !== null && (material.mimetype.includes("video") ? <Link iconF7="ellipsis" href={"/video/" + material.id + "/"} /> :  <Link iconF7="ellipsis" href={"/material/" + material.id + "/"} />)}
+                               {material.mimetype !== null && (material.mimetype.includes("video")) ? <Link iconF7="ellipsis" href={"/video/" + material.id + "/"} /> :  <Link iconF7="ellipsis" href={"/material/" + material.id + "/"} />}
                             </CardFooter>
                         </Card>
                     ))}

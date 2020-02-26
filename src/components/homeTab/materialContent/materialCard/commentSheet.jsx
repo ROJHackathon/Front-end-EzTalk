@@ -98,6 +98,8 @@ class CommentSheet extends React.Component {
         }).then((res) => {
             // console.log(this.state.comment);
         });
+
+        this.forceUpdate();
     }
 }
 

@@ -48,7 +48,7 @@ class OfficialRooms extends Component {
     }
 
     render() {
-        console.log(this.state.officialRooms)
+        // console.log(this.state.officialRooms)
         return (
                 <List mediaList className="search-list-official-room">
                     {this.state.officialRooms.map((room, i) =>

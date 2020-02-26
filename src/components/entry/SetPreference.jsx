@@ -236,7 +236,7 @@ export default class SetPreference extends React.Component {
         );
 
         this.$f7.dialog.alert("You have successfully set your preference", ()=> {
-            router.navigate("/");
+            router.navigate("/main/");
         });
 
     }
