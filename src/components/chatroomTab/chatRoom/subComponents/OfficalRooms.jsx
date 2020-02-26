@@ -32,18 +32,23 @@ class OfficialRooms extends Component {
         this.state = {
             officialRooms: [],
         }
-    }
 
-    componentDidMount() {
         let urlOfficial = "https://ez-talk-api-provider.azurewebsites.net/api/chatroom-list"
         axios.get(urlOfficial).then((res) => {
             this.setState({
                 officialRooms: res.data,
             })
         })
+
+        
+    }
+
+    componentDidMount() {
+        
     }
 
     render() {
+        console.log(this.state.officialRooms)
         return (
                 <List mediaList className="search-list-official-room">
                     {this.state.officialRooms.map((room, i) =>
@@ -52,7 +57,8 @@ class OfficialRooms extends Component {
                             title={room.name}
                             link={"/message/" + room.id + "/"}
                             subtitle={room.language}
-                            after={room.lastUpdated}
+                            after={room.lastUpdated === null ? "" : room.lastUpdated.slice(5, 10) + " " + room.lastUpdated.slice(11, 16) }
+                            //after={room.lastUpdated}
                             text="New message"
                         />
                     )

@@ -223,6 +223,18 @@ export default class SetPreference extends React.Component {
         const self = this;
         const router = self.$f7router;
 
+        const token = null
+
+
+        let url = "https://ez-talk-api-provider.azurewebsites.net/api/set-preference";
+
+        axios.post(url, {
+            "preference": this.state.prefList[0],
+            "token": Cookies.get("token"),
+        }).then(
+            console.log(token)
+        );
+
         this.$f7.dialog.alert("You have successfully set your preference", ()=> {
             router.navigate("/");
         });

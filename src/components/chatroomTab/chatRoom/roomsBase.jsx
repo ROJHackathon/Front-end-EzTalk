@@ -47,10 +47,10 @@ class RoomsBase extends Component {
             <div>
                 <Segmented strong tag="p">
                     <button id="1" className={"1" === this.state.activeItem ? "button button-active" : "button"}
-                            onClick={this.handleItemClick}>Official
+                            onClick={this.handleItemClick}>Study Group
                     </button>
                     <button id="2" className={"2" === this.state.activeItem ? "button button-active" : "button"}
-                            onClick={this.handleItemClick}>Private
+                            onClick={this.handleItemClick}>Chats
                     </button>
                 </Segmented>
 

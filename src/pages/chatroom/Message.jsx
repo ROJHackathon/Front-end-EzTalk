@@ -47,7 +47,6 @@ class MessagePage extends React.Component {
             typingMessage: null,
             messagesData: [],
         }
-
     }
 
     static contextType = TokenContext;
@@ -149,7 +148,7 @@ class MessagePage extends React.Component {
                             // first={true}
                             // last={true}
                             // tail={true}
-                            onClick={this.state.author.id !== message.author.id ? () => this.refs.actionsOneGroup.open() : () => { }}
+                            onClick={this.state.author.id !== message.author.id ? () => {this.refs.actionsOneGroup.open(); localStorage.setItem("selectedUser", message.author.id)}  : () => { }}
                             className="button-to-popover"
 
                         >
@@ -164,7 +163,7 @@ class MessagePage extends React.Component {
                 <Actions ref="actionsOneGroup">
                     <ActionsGroup>
                         <ActionsLabel>Do you want to add her/him to be your friends?</ActionsLabel>
-                        <ActionsButton bold onClick={() => {console.log("hahaha")}}>Add</ActionsButton>
+                        <ActionsButton bold onClick={this.hadleAddFriends.bind(this)}>Add</ActionsButton>
                         <ActionsButton color="red">Cancel</ActionsButton>
                     </ActionsGroup>
                 </Actions>
@@ -176,6 +175,14 @@ class MessagePage extends React.Component {
 
             </Page>
         )
+    }
+
+    hadleAddFriends(){
+        let url = 'https://ez-talk-api-provider.azurewebsites.net/api/user/'+ localStorage.getItem("selectedUser") +'/friend';
+            axios.post(url, {
+                token : this.context
+            }).then(console.log(this.context));
+
     }
 
 

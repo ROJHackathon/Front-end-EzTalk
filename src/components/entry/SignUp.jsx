@@ -28,7 +28,7 @@ import {
     KeyboardAvoidingView,
 } from 'react-native-web';
 
-import {Icon} from 'framework7-react';
+import { Icon } from 'framework7-react';
 
 import colors from '../../css/colour.js';
 import transparentHeaderStyle from '../../css/headerStyle.js'
@@ -38,10 +38,12 @@ import InputField from './InputField.jsx';
 import NextArrowButton from './NextArrowButton.jsx'
 import Loader from './Loader.jsx'
 import Notification from './Notification.jsx'
+import axios from "axios";
+import Cookies from 'js-cookie'
 
 
-export default class SignUp extends React.Component{
-    constructor(props){
+export default class SignUp extends React.Component {
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -78,7 +80,7 @@ export default class SignUp extends React.Component{
                 display: 'flex',
                 flex: 1,
             },
-            headerWrapper:{
+            headerWrapper: {
                 marginTop: 20,
             },
             scrollViewWrapper: {
@@ -103,7 +105,7 @@ export default class SignUp extends React.Component{
                 fontWeight: '300',
                 marginBottom: 40,
             },
-            forgotWrapper:{
+            forgotWrapper: {
                 marginTop: 5,
             },
             notificationWrapper: {
@@ -122,8 +124,8 @@ export default class SignUp extends React.Component{
         const notificationMarginTop = showNotification ? 10 : 0;
 
 
-        return(
-            <Page style={{backgroundColor: background, display: 'inline'}}>
+        return (
+            <Page style={{ backgroundColor: background, display: 'inline' }}>
                 <View style={styles.headerWrapper}>
                     <NavBarButton
                         handleButtonPress={this.toggleBackButton}
@@ -208,7 +210,7 @@ export default class SignUp extends React.Component{
     }
 
 
-    toggleBackButton(){
+    toggleBackButton() {
         const router = this.$f7router;
         router.back()
     }
@@ -223,38 +225,38 @@ export default class SignUp extends React.Component{
 
     handleUserNameChange(name) {
         // eslint-disable-next-line
-        const {validName} = this.state;
+        const { validName } = this.state;
 
-        this.setState({userName: name});
+        this.setState({ userName: name });
 
         if (!validName) {
             if (name.length > 4) {
-                this.setState({validName: true})
+                this.setState({ validName: true })
             }
         } else if (name <= 4) {
-            this.setState({validName: false})
+            this.setState({ validName: false })
         }
     }
 
     handleEmailChange(email) {
         // eslint-disable-next-line
         const emailCheckRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        const {validEmail} = this.state;
-        this.setState({emailAddress: email});
+        const { validEmail } = this.state;
+        this.setState({ emailAddress: email });
 
         if (!validEmail) {
             if (emailCheckRegex.test(email)) {
-                this.setState({validEmail: true});
+                this.setState({ validEmail: true });
             }
         } else if (!emailCheckRegex.test(email)) {
-            this.setState({validEmail: false});
+            this.setState({ validEmail: false });
         }
     }
 
-    handlePasswordChange(password){
+    handlePasswordChange(password) {
         const { validPassword } = this.state;
 
-        this.setState({ password: password});
+        this.setState({ password: password });
 
         if (!validPassword) {
             if (password.length > 4) {
@@ -266,27 +268,76 @@ export default class SignUp extends React.Component{
         }
     }
 
-    handleRepeatPasswordChange(repeatPassword){
+    handleRepeatPasswordChange(repeatPassword) {
         const { validPassword, password } = this.state;
 
-        this.setState({repeatPassword: repeatPassword});
+        this.setState({ repeatPassword: repeatPassword });
 
-        if(validPassword){
-            if(repeatPassword === password){
-                this.setState({samePassword: true})
-            }else {
-                this.setState({samePassword: false})
+        if (validPassword) {
+            if (repeatPassword === password) {
+                this.setState({ samePassword: true })
+            } else {
+                this.setState({ samePassword: false })
             }
         } else {
-            this.setState({samePassword: false})
+            this.setState({ samePassword: false })
         }
     }
 
-    handleNextButton(){
+    handleNextButton() {
         const self = this;
         const app = self.$f7;
         const router = self.$f7router;
-        router.navigate("/set-preference/");
+
+        let url = "https://ez-talk-api-provider.azurewebsites.net/api/register";
+
+        axios.post(url, {
+            userName: this.state.userName,
+            password: this.state.password,
+        }).then((res) => {
+            
+
+            url = "https://ez-talk-api-provider.azurewebsites.net/api/login";
+
+            axios.post(url, {
+                userName: this.state.userName,
+                password: this.state.password,
+            }).then((res) => {
+                // console.log(res);
+
+                let code = res.status;
+                let message = res.data.message;
+                let token = res.data.token;
+                console.log(code)
+
+                if (code === 200) {
+                    // set cookie
+                    Cookies.set('token', token, { expires: 7 });
+
+                    // redirect to main page
+                    const self = this;
+                    const router = self.$f7router;
+                    router.navigate("/set-preference/");
+                } else {
+                    this.setState({ formValid: false }); // test it change to read background
+                    this.$f7.dialog.alert("Unexpected Error", () => {
+                        this.setState({ formValid: true })
+                    })
+                }
+
+            }).catch(error => {
+                this.setState({ formValid: false })  // test it change to read background
+                this.$f7.dialog.alert("Those credential don't look right, Please try again", () => {
+                    this.setState({ formValid: true })
+                })
+            });
+
+        }
+        );
+
+
+
+
     }
 
 }
