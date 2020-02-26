@@ -49,7 +49,7 @@ export default class extends React.Component {
                     {/* <NavRight>
                         <Link iconIos="f7:person_crop_circle" iconAurora="f7:person_crop_circle" iconMd="material:menu" panelOpen="right" />
                     </NavRight> */}
-                    <NavTitleLarge>Chatroom</NavTitleLarge>
+                    <NavTitleLarge>Social</NavTitleLarge>
                     <Subnavbar inner={false}>
                         <Searchbar
                             searchContainer= {this.state.activeTag === "1" ? ".search-list-official-room" : ".search-list-private-room"}  // where does the search happen
