@@ -21,6 +21,8 @@ import {
     Searchbar
 } from 'framework7-react';
 
+import axios from 'axios';
+import TokenContext from "../../tokenContext";
 
 class Translate extends React.Component {
     constructor() {
@@ -28,13 +30,18 @@ class Translate extends React.Component {
 
         this.state = {
             isDisplay:false,
-            result: ""
+            input: "",
+            result: "",
         }
 
         this.enableBox = this.enableBox.bind(this)
         this.disableBox = this.disableBox.bind(this)
         //this.changeResult = this.changeResult.bind(this)
+
+        this.translate = this.translate.bind(this)
     }
+
+    static contextType = TokenContext;
 
     enableBox(e){
         this.setState(
@@ -65,11 +72,11 @@ class Translate extends React.Component {
                             searchContainer=".search-list"  // where does the search happen
                             searchIn=".item-title"   // what is the query
                             placeholder="Translate Your Sentence"
-                            value={this.state.result}
+                            value={this.state.input}
                             clearButton={true}
                             onSearchbarEnable={this.enableBox}
                             onSearchbarDisable={this.disableBox}
-                            onInput={(e)=> {this.setState({result:e.target.value})}}
+                            onInput={(e)=> {this.setState({input:e.target.value}); this.translate(e.target.value)}}
                         />
                     </Subnavbar>
                 </Navbar>
@@ -77,6 +84,17 @@ class Translate extends React.Component {
                 <TranslateTool/>
             </Page>
         );
+    }
+
+    translate(text){
+
+        let url = "https://ez-talk-api-provider.azurewebsites.net/api/translate";
+        axios.post(url, {
+            token: this.context,
+            text: text
+        }).then((res) => {
+            this.setState({result: res.data});
+        });
     }
 }
 
