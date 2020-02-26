@@ -35,10 +35,10 @@ export default class Material extends React.Component {
                 onInfinite={this.loadMoreComment.bind(this)}
             >
                 <Navbar title={this.state.material.title} backLink="Back" />
-                <MarterialCard id={this.$f7route.params.id}></MarterialCard>
-                <RatingArea></RatingArea>
+                <MarterialCard id={this.$f7route.params.id}/>
+                <RatingArea material={this.state.material}/>
 
-                <MaterialComment id={this.$f7route.params.id}></MaterialComment>
+                <MaterialComment id={this.$f7route.params.id}/>
             </Page>
 
         );

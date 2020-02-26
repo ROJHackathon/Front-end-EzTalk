@@ -36,11 +36,13 @@ class CommentSheet extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
-        }
+            comment: '',
+        };
     }
 
     render() {
+
+        console.log(this.state.comment);
         return (
             <Sheet
                 className=".comment-sheet"
@@ -60,6 +62,7 @@ class CommentSheet extends React.Component {
                                 type="textarea"
                                 resizable
                                 placeholder="commenting ..."
+                                onChange={e => (this.setState({comment: e.target.value}))}
                             >
                                 <Icon ios="f7:bubble_left_bubble_right_fill" slot="media" />
                             </ListInput>
@@ -77,6 +80,8 @@ class CommentSheet extends React.Component {
             </Sheet >
         )
     }
+
+    handle
 
 }
 

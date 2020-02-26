@@ -94,7 +94,7 @@ export default class VideoPage extends React.Component {
                     <CommentSheet state={this.state.isCommentOpen} handleCloseComment={this.handleCloseComment.bind(this)}></CommentSheet>
                 </Card>
 
-                <RatingArea/>
+                <RatingArea material={this.state.material}/>
 
                 <MaterialComment id={this.$f7route.params.id}></MaterialComment>
             </Page>

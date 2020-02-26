@@ -24,8 +24,10 @@ import {
     AccordionContent,
     Icon
 } from 'framework7-react';
+import axios from 'axios';
 
 import Rating from '@material-ui/lab/Rating';
+import TokenContext from "../../tokenContext";
 
 class RatingArea extends React.Component {
     constructor(props) {
@@ -34,10 +36,12 @@ class RatingArea extends React.Component {
         this.state = {
             materials: [],
             rate: null,   // maximum should be five
-        }
+        };
 
-
+        this.handleChangeRate = this.handleChangeRate.bind(this);
     }
+
+    static contextType = TokenContext;
 
     render() {
 
@@ -53,9 +57,7 @@ class RatingArea extends React.Component {
                                     <Rating
                                         name="simple-controlled"
                                         value={this.state.rate}
-                                        onChange={(event,newValue) => {
-                                            this.setState({rate: newValue});
-                                        }}
+                                        onChange={this.handleChangeRate}
                                     />
                                 </div>
                             </Block>
@@ -67,6 +69,21 @@ class RatingArea extends React.Component {
         )
     }
     // rate: []
+
+    handleChangeRate(event, newValue){
+        console.log(this.context);
+        let url = "https://ez-talk-api-provider.azurewebsites.net/api/material/"+ this.props.material.id +"/rate";
+        axios.post(url, {
+            rate: newValue,
+            token: this.context,
+        }).then((res) => {
+            // console.log("rate!")
+        });
+
+        this.setState({rate: newValue});
+    }
+
+
 
 
 
