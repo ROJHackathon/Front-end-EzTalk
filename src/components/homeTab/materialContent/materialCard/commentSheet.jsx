@@ -28,8 +28,11 @@ import {
     ListInput,
 } from 'framework7-react';
 
+import axios from 'axios';
+
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import TokenContext from "../../../tokenContext";
 
 
 class CommentSheet extends React.Component {
@@ -38,11 +41,15 @@ class CommentSheet extends React.Component {
         this.state = {
             comment: '',
         };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    static contextType = TokenContext;
 
     render() {
 
-        console.log(this.state.comment);
+        // console.log(this.state.comment);
         return (
             <Sheet
                 className=".comment-sheet"
@@ -72,7 +79,9 @@ class CommentSheet extends React.Component {
                             <Col></Col>
                             <Col></Col>
                             <Col>
-                                <Button fill raised round>Submit</Button>
+                                <Button fill raised round onClick={this.handleSubmit}>
+                                    Submit
+                                </Button>
                             </Col>
                         </Row>
                     </Block>
@@ -81,8 +90,15 @@ class CommentSheet extends React.Component {
         )
     }
 
-    handle
-
+    handleSubmit(){
+        let url = "http://ez-talk-api-provider.azurewebsites.net/api/material/"+ this.props.id+ "/comment";
+        axios.post(url, {
+            content: this.state.comment,
+            token: this.context
+        }).then((res) => {
+            // console.log(this.state.comment);
+        });
+    }
 }
 
 export default CommentSheet;

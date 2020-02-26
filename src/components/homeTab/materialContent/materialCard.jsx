@@ -81,7 +81,7 @@ class MaterialCard extends React.Component {
                     </Button>
                     <Link iconF7="link"></Link>
                 </CardFooter>
-                <CommentSheet state={this.state.isCommentOpen} handleCloseComment={this.handleCloseComment.bind(this)}></CommentSheet>
+                <CommentSheet id={this.state.material.id} state={this.state.isCommentOpen} handleCloseComment={this.handleCloseComment.bind(this)}></CommentSheet>
             </Card>
 
         );
