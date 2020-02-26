@@ -29,14 +29,35 @@ export default class User extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-
+            userName: '',
+            email: '',
         };
     }
 
     static contextType = TokenContext;
 
+    componentDidMount() {
+        let url= "https://ez-talk-api-provider.azurewebsites.net/api/get-user/" + this.context;
+        axios.get(url).then((res) => {
+            this.setState({userName: res.data.name})
+        })
+
+    }
 
     render() {
+        const styles = {
+            logOut: {
+                fontSize: "16px",
+                height: "30px",
+                width: "auto",
+                /* horizontal margin */
+                marginInline: "15px",
+                /* top margin */
+                marginTop: "50px",
+
+            }
+        };
+
         return(
             <Page>
                 <Navbar sliding={false} large>
@@ -44,7 +65,30 @@ export default class User extends React.Component{
                     <NavTitleLarge>My Account</NavTitleLarge>
                 </Navbar>
 
-                <Button fill color="red" className="log-out-btn" onClick={this.handleClick.bind(this)}>Log
+                <List mediaList>
+                    <ListItem
+                        link="#"
+                        title={this.state.userName}
+                        subtitle={this.state.userName === 'admin' ? 'Administrator' : 'Normal User'}>
+                        <img slot="media" src="https://cdn.framework7.io/placeholder/people-160x160-1.jpg" width="44" />
+                    </ListItem>
+                </List>
+
+                <BlockTitle>Contacts</BlockTitle>
+                <List>
+                    <ListItem title="My Friends" link="#"></ListItem>
+                </List>
+
+
+                <BlockTitle>Settings</BlockTitle>
+                <List>
+                    <ListItem title="Set Email" link="#"></ListItem>
+                    <ListItem title="Set Avatar" link="#"></ListItem>
+                    <ListItem title="Set Preference" link="#"></ListItem>
+                </List>
+
+
+                <Button fill color="red" style={styles.logOut} onClick={this.handleClick.bind(this)}>Log
                     out</Button>
 
             </Page>
@@ -58,11 +102,13 @@ export default class User extends React.Component{
         axios.post(url, {
             token: this.context,
         }).then((res) => {
+
         });
 
         Cookies.remove("token");
         window.location.reload();
-
     }
+
+
 
 }
