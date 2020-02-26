@@ -26,6 +26,9 @@ import {
 } from 'framework7-react';
 import axios from 'axios';
 import TokenContext from "../../components/tokenContext";
+import CommentSheet from "../../components/homeTab/materialContent/materialCard/commentSheet";
+import MaterialComment from "../../components/homeTab/materialContent/materialComment";
+import RatingArea from "../../components/homeTab/materialContent/ratingArea";
 
 export default class VideoPage extends React.Component {
     constructor(props) {
@@ -33,6 +36,7 @@ export default class VideoPage extends React.Component {
         this.state = {
             material: {},
             isLiked: false,
+            isCommentOpen: false,
         }
         this.handleClickLike = this.handleClickLike.bind(this)
     }
@@ -45,6 +49,58 @@ export default class VideoPage extends React.Component {
             this.setState({ material: res.data })
         });
     };
+
+    render() {
+
+        let button;
+        if (this.state.isLiked) {
+            button = <Icon ios="f7:heart_fill"></Icon>
+        } else {
+            button = <Icon ios="f7:heart"></Icon>
+        }
+
+        return (
+            <Page
+            >
+                <Navbar title={this.state.material.title} backLink="Back" />
+                <Player material={this.state.material} />
+                {/*<List>*/}
+
+                {/*    <ListItem>*/}
+                {/*        <Col><Button onClick={this.handleClickLike}>{button}</Button></Col>*/}
+                {/*    </ListItem>*/}
+
+                {/*</List>*/}
+
+
+                <Card outline color="blue"
+                    title={this.state.material.title}
+                    //content={typeof(this.state.material[description]) === undefined ?  "no desc" : this.material.description}
+                    footer={"Language:" + this.state.material.language}
+                >
+                    <CardContent>
+                        <p className="date">Posted on January 21, 2019</p>
+                        <p>{this.state.material.description}</p>
+                    </CardContent>
+                    <CardFooter>
+                        <Button onClick={this.handleClickLike}>
+                            {button}
+                        </Button>
+                        <Button onClick={() => (this.setState({ isCommentOpen: true }))}>
+                            <Icon ios="f7:captions_bubble_fill"></Icon>
+                        </Button>
+                        <Link iconF7="link"></Link>
+                    </CardFooter>
+                    <CommentSheet state={this.state.isCommentOpen} handleCloseComment={this.handleCloseComment.bind(this)}></CommentSheet>
+                </Card>
+
+                <RatingArea/>
+
+                <MaterialComment id={this.$f7route.params.id}></MaterialComment>
+            </Page>
+
+        );
+    }
 
     handleClickLike() {
         if (this.state.isLiked === false) {
@@ -62,36 +118,8 @@ export default class VideoPage extends React.Component {
     }
 
 
-    render() {
-
-        let button;
-        if (this.state.isLiked) {
-            button = <Icon ios="f7:heart_fill"></Icon>
-        } else {
-            button = <Icon ios="f7:heart"></Icon>
-        }
-
-        return (
-            <Page
-            >
-                <Navbar backLink="Back" />
-                <Player material={this.state.material} />
-                <List>
-
-                    <ListItem>
-                        <Col><Button onClick={this.handleClickLike}>{button}</Button></Col>
-                    </ListItem>
-
-                </List>
-
-
-                <Card outline color="white"
-                    title={this.state.material.title}
-                    //content={typeof(this.state.material[description]) === undefined ?  "no desc" : this.material.description}
-                    footer={"Language:" + this.state.material.language}>
-                </Card>
-            </Page>
-
-        );
+    handleCloseComment() {
+        this.setState({ isCommentOpen: false });
+        //console.log(this.state.isCommentOpen)
     }
 }
