@@ -136,8 +136,8 @@ export default class SetPreference extends React.Component {
                             Set Preference
                         </Text>
                         <Text style={styles.preferenceSubheading}>
-                            Set your mother language and the
-                            language you want to learn for your feed recommendation
+                            Let us begin with choosing the topics you want to learn!
+                            Try to add some tags
                         </Text>
 
 
